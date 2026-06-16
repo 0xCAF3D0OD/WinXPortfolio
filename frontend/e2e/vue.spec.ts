@@ -4,5 +4,6 @@ import { test, expect } from '@playwright/test'
 // https://playwright.dev/docs/intro
 test('visits the app root url', async ({ page }) => {
   await page.goto('/')
-  await expect(page.locator('.titlebar .title')).toContainText('kevin@cloud')
+  await expect(page.locator('.start-btn')).toContainText('démarrer')
+  await expect(page.locator('.title-text').first()).toContainText('kevin@cloud')
 })

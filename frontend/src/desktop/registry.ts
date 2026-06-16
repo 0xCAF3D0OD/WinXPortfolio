@@ -1,0 +1,75 @@
+import type { Component } from 'vue'
+import TerminalConsole from '../components/TerminalConsole.vue'
+import AboutApp from './apps/AboutApp.vue'
+import ProjectsApp from './apps/ProjectsApp.vue'
+import SkillsApp from './apps/SkillsApp.vue'
+import ContactApp from './apps/ContactApp.vue'
+import RecycleBinApp from './apps/RecycleBinApp.vue'
+import { icons } from './icons'
+
+export interface AppDef {
+  id: string
+  label: string // texte sous l'icône / dans le menu
+  title: string // titre de la fenêtre
+  icon: string
+  component: Component
+  w: number
+  h: number
+}
+
+export const apps: AppDef[] = [
+  {
+    id: 'terminal',
+    label: 'Terminal',
+    title: 'kevin@cloud — Invite de commandes',
+    icon: icons.terminal,
+    component: TerminalConsole,
+    w: 720,
+    h: 460,
+  },
+  {
+    id: 'about',
+    label: 'À propos.txt',
+    title: 'À propos.txt — Bloc-notes',
+    icon: icons.notepad,
+    component: AboutApp,
+    w: 560,
+    h: 420,
+  },
+  {
+    id: 'projects',
+    label: 'Projets',
+    title: 'Projets',
+    icon: icons.folder,
+    component: ProjectsApp,
+    w: 620,
+    h: 440,
+  },
+  {
+    id: 'skills',
+    label: 'Compétences',
+    title: 'Compétences',
+    icon: icons.gear,
+    component: SkillsApp,
+    w: 540,
+    h: 420,
+  },
+  {
+    id: 'contact',
+    label: 'Contact',
+    title: 'Contact',
+    icon: icons.mail,
+    component: ContactApp,
+    w: 460,
+    h: 340,
+  },
+  {
+    id: 'bin',
+    label: 'Corbeille',
+    title: 'Corbeille',
+    icon: icons.bin,
+    component: RecycleBinApp,
+    w: 420,
+    h: 280,
+  },
+]

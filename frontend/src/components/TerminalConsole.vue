@@ -147,13 +147,6 @@ onMounted(() => {
 
 <template>
   <main class="window" @click="focusInput">
-    <header class="titlebar">
-      <span class="dot red"></span>
-      <span class="dot yellow"></span>
-      <span class="dot green"></span>
-      <span class="title">{{ prompt }}: ~</span>
-    </header>
-
     <div class="screen" ref="screenEl">
       <div v-for="(block, i) in blocks" :key="i" class="block">
         <div v-if="block.input !== null" class="cmd-line">
@@ -194,46 +187,13 @@ onMounted(() => {
 
 <style scoped>
 .window {
-  width: min(900px, 100%);
-  height: min(620px, 100%);
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   background: var(--bg);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-}
-
-.titlebar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 11px 14px;
-  background: var(--bg-bar);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  flex-shrink: 0;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-.dot.red {
-  background: #ff5f56;
-}
-.dot.yellow {
-  background: #ffbd2e;
-}
-.dot.green {
-  background: #27c93f;
-}
-.title {
-  margin-left: 8px;
-  color: var(--dim);
-  font-size: 12px;
 }
 
 .screen {
@@ -365,11 +325,6 @@ onMounted(() => {
 }
 
 @media (max-width: 640px) {
-  .window {
-    height: 100vh;
-    border-radius: 0;
-    border: none;
-  }
   .banner {
     font-size: 9px;
   }
