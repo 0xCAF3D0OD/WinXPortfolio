@@ -29,7 +29,10 @@ function login() {
 
     <main class="stage">
       <div class="brand">
-        <p class="logo">kevin<span>@cloud</span></p>
+        <div class="logo">
+          <img class="flag" src="/xp/windoors.svg" alt="" />
+          <span class="wordmark"><b>windoors</b><i>xp</i></span>
+        </div>
         <h1>Pour commencer, cliquez sur votre nom&nbsp;d'utilisateur</h1>
       </div>
 
@@ -119,29 +122,50 @@ function login() {
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
-  padding-right: 10px;
+  padding-right: 64px;
   position: relative;
   top: -30px;
 }
 .brand .logo {
-  font-size: 40px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.brand .logo .flag {
+  width: 56px;
+  height: 50px;
+  filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.4));
+}
+.brand .wordmark {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: Tahoma, sans-serif;
+  /* léger flou type ClearType d'origine */
+  text-shadow:
+    0 0 1px rgba(255, 255, 255, 0.6),
+    1px 2px 3px rgba(0, 0, 0, 0.4);
+  filter: blur(0.4px);
+}
+.brand .wordmark b {
+  font-size: 38px;
   font-weight: 600;
   color: #fff;
-  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.35);
-  font-family: Tahoma, sans-serif;
 }
-.brand .logo span {
-  color: #ff9f17;
-  font-weight: 400;
+.brand .wordmark i {
+  font-size: 32px;
+  font-weight: 700;
   font-style: italic;
+  color: #ff9f17;
 }
 .brand h1 {
   font-size: 19px;
   font-weight: 500;
   color: #fff;
   margin-top: 26px;
-  max-width: 330px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  max-width: 320px;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.4), 1px 1px 2px rgba(0, 0, 0, 0.3);
+  filter: blur(0.4px);
 }
 
 .divider {
