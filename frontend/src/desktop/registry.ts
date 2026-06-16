@@ -6,6 +6,7 @@ import SkillsApp from './apps/SkillsApp.vue'
 import ContactApp from './apps/ContactApp.vue'
 import GuestbookApp from './apps/GuestbookApp.vue'
 import IExplorerApp from './apps/IExplorerApp.vue'
+import MinesweeperApp from './apps/MinesweeperApp.vue'
 import RecycleBinApp from './apps/RecycleBinApp.vue'
 import { icons } from './icons'
 
@@ -82,6 +83,15 @@ export const apps: AppDef[] = [
     component: GuestbookApp,
     w: 540,
     h: 420,
+  },
+  {
+    id: 'minesweeper',
+    label: 'Démineur',
+    title: 'Démineur',
+    icon: icons.mine,
+    component: MinesweeperApp,
+    w: 250,
+    h: 330,
   },
   {
     id: 'bin',

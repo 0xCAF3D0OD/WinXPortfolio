@@ -3,6 +3,7 @@ import { ref, reactive, nextTick, onMounted } from 'vue'
 import { execute, banner, commandNames, type Action } from '../terminal/commands'
 import { profile } from '../portfolio'
 import { applyTheme, loadTheme } from '../terminal/themes'
+import { playSound } from '../desktop/sound'
 
 interface Block {
   input: string | null
@@ -69,10 +70,14 @@ function startBsod() {
 function submit() {
   if (booting.value) return
   const value = current.value
+  const trimmed = value.trim()
   const { lines, clear, action } = execute(value)
-  if (value.trim()) {
+  if (trimmed) {
     history.push(value)
     histIndex = history.length
+    // Son d'erreur XP si la commande est inconnue.
+    const name = trimmed.split(/\s+/)[0]?.toLowerCase()
+    if (name && !commandNames.includes(name)) playSound('error')
   }
   if (clear) blocks.splice(0, blocks.length)
   else blocks.push({ input: value, lines })

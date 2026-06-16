@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { apps, type AppDef } from './registry'
 import { useWindows } from './useWindows'
+import { muted } from './sound'
 import XpWindow from './XpWindow.vue'
 import StartMenu from './StartMenu.vue'
+import ClippyAssistant from './ClippyAssistant.vue'
 
 const emit = defineEmits<{ logoff: [] }>()
 const { windows, open, taskbarToggle, reset } = useWindows()
@@ -11,11 +13,70 @@ const { windows, open, taskbarToggle, reset } = useWindows()
 const selected = ref<string | null>(null)
 const startOpen = ref(false)
 const clock = ref('')
-const muted = ref(false)
+
+function toggleMute() {
+  muted.value = !muted.value
+}
 
 function openApp(app: AppDef) {
   open(app)
   startOpen.value = false
+}
+
+function openById(id: string) {
+  const app = apps.find((a) => a.id === id)
+  if (app) open(app)
+}
+
+// --- Économiseur d'écran (logo windoors rebondissant après inactivité) ---
+const screensaver = ref(false)
+const ssCanvas = ref<HTMLCanvasElement | null>(null)
+let idleTimer: number
+let ssRaf: number | null = null
+const IDLE_MS = 60000
+
+function resetIdle() {
+  if (screensaver.value) stopScreensaver()
+  clearTimeout(idleTimer)
+  idleTimer = window.setTimeout(startScreensaver, IDLE_MS)
+}
+
+function startScreensaver() {
+  screensaver.value = true
+  nextTick(() => {
+    const canvas = ssCanvas.value
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+    const img = new Image()
+    img.src = '/xp/windoors.svg'
+    const w = 150
+    const h = 136
+    let x = Math.random() * (canvas.width - w)
+    let y = Math.random() * (canvas.height - h)
+    let dx = 1.6
+    let dy = 1.3
+    function frame() {
+      if (!ctx) return
+      ctx.fillStyle = '#000'
+      ctx.fillRect(0, 0, canvas!.width, canvas!.height)
+      x += dx
+      y += dy
+      if (x <= 0 || x + w >= canvas!.width) dx = -dx
+      if (y <= 0 || y + h >= canvas!.height) dy = -dy
+      if (img.complete) ctx.drawImage(img, x, y, w, h)
+      ssRaf = requestAnimationFrame(frame)
+    }
+    frame()
+  })
+}
+
+function stopScreensaver() {
+  if (ssRaf) cancelAnimationFrame(ssRaf)
+  ssRaf = null
+  screensaver.value = false
 }
 
 function logoff() {
@@ -28,14 +89,22 @@ function tick() {
   clock.value = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
 }
 let timer: number
+const activityEvents = ['pointermove', 'pointerdown', 'keydown', 'wheel'] as const
 onMounted(() => {
   tick()
   timer = window.setInterval(tick, 1000 * 20)
   // Ouvre le terminal au démarrage pour donner le ton.
   const term = apps.find((a) => a.id === 'terminal')
   if (term) open(term)
+  activityEvents.forEach((e) => window.addEventListener(e, resetIdle))
+  resetIdle()
 })
-onBeforeUnmount(() => clearInterval(timer))
+onBeforeUnmount(() => {
+  clearInterval(timer)
+  clearTimeout(idleTimer)
+  if (ssRaf) cancelAnimationFrame(ssRaf)
+  activityEvents.forEach((e) => window.removeEventListener(e, resetIdle))
+})
 
 function onDesktopClick() {
   selected.value = null
@@ -99,10 +168,18 @@ function onDesktopClick() {
           :src="muted ? '/xp/tray/soundoff.png' : '/xp/tray/soundon.png'"
           :alt="muted ? 'Son coupé' : 'Son activé'"
           :title="muted ? 'Son coupé' : 'Volume'"
-          @click="muted = !muted"
+          @click="toggleMute"
         />
         <span class="tray-clock">{{ clock }}</span>
       </div>
+    </div>
+
+    <!-- Assistant -->
+    <ClippyAssistant @open="openById" />
+
+    <!-- Économiseur d'écran -->
+    <div v-if="screensaver" class="screensaver">
+      <canvas ref="ssCanvas"></canvas>
     </div>
   </div>
 </template>
@@ -306,5 +383,16 @@ function onDesktopClick() {
 .tray-clock {
   margin-left: 2px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.screensaver {
+  position: fixed;
+  inset: 0;
+  z-index: 100001;
+  background: #000;
+  cursor: none;
+}
+.screensaver canvas {
+  display: block;
 }
 </style>
