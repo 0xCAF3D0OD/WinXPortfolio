@@ -5,7 +5,7 @@ const emit = defineEmits<{ done: [] }>()
 let timer: number
 
 onMounted(() => {
-  timer = window.setTimeout(() => emit('done'), 4200)
+  timer = window.setTimeout(() => emit("done"), 4200)
 })
 onBeforeUnmount(() => clearTimeout(timer))
 </script>
@@ -16,7 +16,7 @@ onBeforeUnmount(() => clearTimeout(timer))
       <img class="flag" src="/xp/windoors.svg" alt="" />
       <span class="wordmark"><b>windoors</b><i>xp</i></span>
     </div>
-    <div class="progress"><span></span></div>
+    <div class="progress"><div class="blocks"><i></i><i></i><i></i></div></div>
     <button class="skip" @click.stop="emit('done')">passer</button>
   </div>
 </template>
@@ -38,55 +38,64 @@ onBeforeUnmount(() => clearTimeout(timer))
 }
 .logo {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 .flag {
-  width: 64px;
-  height: 58px;
+  width: 116px;
+  height: 105px;
+  margin-left: 78px;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
 }
 .wordmark {
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 9px;
   color: #fff;
   letter-spacing: 0.5px;
 }
 .wordmark b {
-  font-size: 34px;
+  font-size: 42px;
   font-weight: 400;
 }
 .wordmark i {
-  font-size: 28px;
+  font-size: 42px;
   font-weight: 700;
   font-style: italic;
   color: #ff9f17;
 }
 
 .progress {
-  width: 150px;
-  height: 16px;
-  border: 1px solid #5a5a5a;
+  width: 124px;
+  height: 17px;
+  border: 1px solid #4a4a4a;
   border-radius: 9px;
   overflow: hidden;
   position: relative;
+  background: #000;
 }
-.progress span {
+.progress .blocks {
   position: absolute;
-  top: 2px;
+  top: 3px;
   left: 0;
+  display: flex;
+  gap: 3px;
+  animation: slide 2.4s linear infinite;
+}
+.progress .blocks i {
+  display: block;
+  width: 9px;
   height: 10px;
-  width: 44px;
-  border-radius: 6px;
-  background: linear-gradient(to right, #1247a6, #3f8cf3, #1247a6);
-  animation: slide 2.1s linear infinite;
+  border-radius: 2px;
+  background: linear-gradient(to bottom, #6fb2ff, #1e5fd0 55%, #0b3aa0);
 }
 @keyframes slide {
   0% {
-    left: -46px;
+    transform: translateX(-39px);
   }
   100% {
-    left: 150px;
+    transform: translateX(124px);
   }
 }
 .skip {

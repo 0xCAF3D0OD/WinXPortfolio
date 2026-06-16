@@ -1,5 +1,6 @@
 import { reactive, markRaw, type Component } from 'vue'
 import type { AppDef } from './registry'
+import { playSound } from './sound'
 
 export interface WinState {
   id: number
@@ -47,6 +48,7 @@ function open(app: AppDef): WinState {
     maximized: false,
   })
   windows.push(win)
+  playSound(app.id === 'bin' ? 'recycle' : 'restore')
   return win
 }
 
@@ -57,6 +59,7 @@ function close(win: WinState) {
 
 function minimize(win: WinState) {
   win.minimized = true
+  playSound('minimize')
 }
 
 function toggleMaximize(win: WinState) {

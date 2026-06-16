@@ -3,13 +3,15 @@ import { ref, reactive, nextTick, onMounted } from 'vue'
 import { execute, banner, commandNames, type Action } from '../terminal/commands'
 import { profile } from '../portfolio'
 import { applyTheme, loadTheme } from '../terminal/themes'
+import { playSound } from '../desktop/sound'
 
 interface Block {
   input: string | null
   lines: string[]
 }
 
-const prompt = `${(profile.name.split(' ')[0] ?? 'user').toLowerCase()}@cloud`
+const firstName = profile.name.split(' ')[0] ?? 'User'
+const prompt = `C:\\Documents and Settings\\${firstName}>`
 
 // Bloc = une commande tapée + sa sortie. Le premier bloc (boot) se remplit progressivement.
 const blocks = reactive<Block[]>([{ input: null, lines: [] }])
@@ -25,6 +27,9 @@ const screenEl = ref<HTMLElement | null>(null)
 const showMatrix = ref(false)
 const matrixCanvas = ref<HTMLCanvasElement | null>(null)
 let matrixRaf: number | null = null
+
+// --- Easter egg écran bleu ---
+const showBsod = ref(false)
 
 function focusInput() {
   if (!booting.value && !showMatrix.value) inputEl.value?.focus()
@@ -53,15 +58,26 @@ function handleAction(action?: Action) {
   if (!action) return
   if (action.type === 'theme') applyTheme(action.name)
   if (action.type === 'matrix') startMatrix()
+  if (action.type === 'bsod') startBsod()
+}
+
+function startBsod() {
+  showBsod.value = true
+  // « redémarrage » : on recharge -> écran de chargement -> connexion.
+  window.setTimeout(() => location.reload(), 4500)
 }
 
 function submit() {
   if (booting.value) return
   const value = current.value
+  const trimmed = value.trim()
   const { lines, clear, action } = execute(value)
-  if (value.trim()) {
+  if (trimmed) {
     history.push(value)
     histIndex = history.length
+    // Son d'erreur XP si la commande est inconnue.
+    const name = trimmed.split(/\s+/)[0]?.toLowerCase()
+    if (name && !commandNames.includes(name)) playSound('error')
   }
   if (clear) blocks.splice(0, blocks.length)
   else blocks.push({ input: value, lines })
@@ -150,16 +166,13 @@ onMounted(() => {
     <div class="screen" ref="screenEl">
       <div v-for="(block, i) in blocks" :key="i" class="block">
         <div v-if="block.input !== null" class="cmd-line">
-          <span class="prompt">{{ prompt }}</span
-          ><span class="sep">:</span><span class="path">~</span><span class="dollar">$</span>
-          <span class="typed">{{ block.input }}</span>
+          <span class="prompt">{{ prompt }}</span><span class="typed">{{ block.input }}</span>
         </div>
         <div v-for="(line, j) in block.lines" :key="j" class="out" v-html="line || '&nbsp;'"></div>
       </div>
 
       <div v-if="!booting" class="cmd-line input-line">
-        <span class="prompt">{{ prompt }}</span
-        ><span class="sep">:</span><span class="path">~</span><span class="dollar">$</span>
+        <span class="prompt">{{ prompt }}</span>
         <input
           ref="inputEl"
           v-model="current"
@@ -173,14 +186,20 @@ onMounted(() => {
         />
       </div>
       <div v-else class="cmd-line">
-        <span class="prompt">{{ prompt }}</span
-        ><span class="sep">:</span><span class="path">~</span><span class="dollar">$</span>
+        <span class="prompt">{{ prompt }}</span>
         <span class="cursor"></span>
       </div>
     </div>
 
     <div v-if="showMatrix" class="matrix-overlay" @click="stopMatrix">
       <canvas ref="matrixCanvas"></canvas>
+    </div>
+
+    <div v-if="showBsod" class="bsod">
+      <p>Un problème a été détecté et Windoors a été arrêté pour protéger votre portfolio.</p>
+      <p>PORTFOLIO_OVERFLOW_OF_AWESOMENESS</p>
+      <p>Si c'est la première fois que vous voyez cet écran, pas de panique.</p>
+      <p class="dim2">Collecte des informations… redémarrage automatique.</p>
     </div>
   </main>
 </template>
@@ -193,20 +212,20 @@ onMounted(() => {
   flex-direction: column;
   background: var(--bg);
   overflow: hidden;
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: 'Lucida Console', 'DejaVu Sans Mono', 'Courier New', monospace;
 }
 
 .screen {
   flex: 1;
   overflow-y: auto;
-  padding: 16px 18px 22px;
-  font-size: 14px;
-  line-height: 1.65;
+  padding: 6px 8px 14px;
+  font-size: 13px;
+  line-height: 1.45;
   color: var(--fg);
 }
 
 .block {
-  margin-bottom: 2px;
+  margin-bottom: 0;
 }
 
 .cmd-line {
@@ -217,19 +236,10 @@ onMounted(() => {
 }
 .prompt {
   color: var(--prompt);
-}
-.sep {
-  color: var(--fg);
-}
-.path {
-  color: var(--path);
-}
-.dollar {
-  color: var(--fg);
-  margin: 0 8px 0 2px;
+  margin-right: 1px;
 }
 .typed {
-  color: #e6edf3;
+  color: var(--fg);
   white-space: pre-wrap;
 }
 
@@ -247,9 +257,9 @@ onMounted(() => {
   background: transparent;
   border: none;
   outline: none;
-  color: #e6edf3;
+  color: var(--fg);
   font: inherit;
-  caret-color: var(--accent);
+  caret-color: var(--fg);
   padding: 0;
 }
 
@@ -322,6 +332,26 @@ onMounted(() => {
 }
 .matrix-overlay canvas {
   display: block;
+}
+
+.bsod {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: #0827a8;
+  color: #fff;
+  font-family: 'Lucida Console', monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 12%;
+  gap: 14px;
+}
+.bsod .dim2 {
+  margin-top: 18px;
+  opacity: 0.85;
 }
 
 @media (max-width: 640px) {

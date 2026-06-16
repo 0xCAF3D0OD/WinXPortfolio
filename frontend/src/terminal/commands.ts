@@ -2,7 +2,7 @@ import { profile, about, skills, projects, experience } from '../portfolio'
 import { themeNames } from './themes'
 
 // Une commande renvoie soit un tableau de lignes HTML, soit { lines, action }.
-export type Action = { type: 'theme'; name: string } | { type: 'matrix' }
+export type Action = { type: 'theme'; name: string } | { type: 'matrix' } | { type: 'bsod' }
 export interface CommandResult {
   lines: string[]
   action?: Action
@@ -41,14 +41,10 @@ function cowsay(message: string): string[] {
 }
 
 export const banner: string[] = [
-  '<span class="banner">db   db d88888b db    db d888888b d8b   db</span>',
-  '<span class="banner">88  \'8D 88\'     88    88   \'88\'   888o  88</span>',
-  '<span class="banner">88ooo88 88ooooo Y8    8P    88    88V8o 88</span>',
-  '<span class="banner">88~~~88 88~~~~~ \'8b  d8\'    88    88 V8o88</span>',
-  '<span class="banner">88   88 88.      \'8bd8\'    .88.   88  V888</span>',
-  '<span class="banner">YP   YP Y88888P    YP    Y888888P VP   V8P</span>',
+  'Windoors XP [Version 5.1.2600]',
+  '(C) Copyright 1985-2026 Windoors Corp.',
   '',
-  `${accent(profile.name)} ${dim('—')} ${profile.role}`,
+  `${accent(profile.name)} ${dim('-')} ${profile.role}`,
   dim(profile.tagline),
   '',
   `Tape ${ok('help')} pour voir les commandes disponibles.`,
@@ -167,6 +163,21 @@ const commands: Record<string, Command> = {
       lines: [dim('Suis le lapin blanc… (clic ou touche pour sortir)')],
       action: { type: 'matrix' },
     }),
+  },
+  winver: {
+    desc: 'à propos de Windoors',
+    run: () => [
+      '',
+      `${accent('Windoors XP')} ${dim('— Édition Portfolio')}`,
+      'Version 5.1 (Build 2600)',
+      dim(`Concédé sous licence à : ${profile.name}`),
+      '',
+    ],
+  },
+  bsod: {
+    desc: '???',
+    hidden: true,
+    run: () => ({ lines: [dim('Erreur fatale… redémarrage imminent.')], action: { type: 'bsod' } }),
   },
   clear: { desc: "efface l'écran", clear: true, run: () => [] },
 }

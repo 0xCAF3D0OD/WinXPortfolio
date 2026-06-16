@@ -2,6 +2,11 @@
 export type Theme = Record<string, string>
 
 export const themes: Record<string, Theme> = {
+  xp: {
+    '--bg': '#000000', '--bg-bar': '#000000', '--fg': '#c0c0c0', '--dim': '#808080',
+    '--accent': '#ffffff', '--prompt': '#c0c0c0', '--path': '#c0c0c0', '--link': '#c0c0c0',
+    '--err': '#c0c0c0', '--ok': '#ffffff', '--banner': '#c0c0c0',
+  },
   github: {
     '--bg': '#0d1117', '--bg-bar': '#161b22', '--fg': '#c9d1d9', '--dim': '#8b949e',
     '--accent': '#7ee787', '--prompt': '#58a6ff', '--path': '#a371f7', '--link': '#79c0ff',
@@ -43,6 +48,6 @@ export function loadTheme(): string {
     applyTheme(saved)
     return saved
   }
-  applyTheme('github')
-  return 'github'
+  applyTheme('xp')
+  return 'xp'
 }

@@ -118,13 +118,14 @@ function login() {
 }
 
 .brand {
-  justify-self: center;
+  justify-self: end;
+  margin-right: 6%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
   position: relative;
-  top: -8px;
+  top: -4px;
 }
 .brand .logo {
   display: flex;
