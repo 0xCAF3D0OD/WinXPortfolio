@@ -164,7 +164,9 @@ function login() {
   color: #fff;
   margin-top: 26px;
   max-width: 320px;
-  text-shadow: 0 0 1px rgba(255, 255, 255, 0.4), 1px 1px 2px rgba(0, 0, 0, 0.3);
+  text-shadow:
+    0 0 1px rgba(255, 255, 255, 0.4),
+    1px 1px 2px rgba(0, 0, 0, 0.3);
   filter: blur(0.4px);
 }
 
