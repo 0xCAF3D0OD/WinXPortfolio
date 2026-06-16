@@ -3,7 +3,6 @@
 <template>
   <div class="bin">
     <p>La Corbeille est vide.</p>
-    <small>(rien à voir ici 🙂)</small>
   </div>
 </template>
 
