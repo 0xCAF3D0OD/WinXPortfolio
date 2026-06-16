@@ -19,6 +19,51 @@ const time = ref(0)
 let timer: number | null = null
 let placed = false
 
+// --- Quiz « connais-tu Kevin ? » : une bonne réponse = une vie (absorbe une mine) ---
+const lives = ref(0)
+const quiz = [
+  {
+    q: 'Chez quelle entreprise Kevin a-t-il fait son stage DevOps ?',
+    opts: ['NAGRA Kudelski', 'Google', 'OVHcloud'],
+    a: 0,
+  },
+  {
+    q: 'Quel projet de Kevin tourne en production ?',
+    opts: ['alloremplacant.ch', 'monsite.fr', 'example.com'],
+    a: 0,
+  },
+  {
+    q: 'Quel outil d’Infrastructure as Code Kevin utilise-t-il ?',
+    opts: ['Photoshop', 'Terraform', 'Excel'],
+    a: 1,
+  },
+  {
+    q: 'Dans quel pays Kevin travaille-t-il ?',
+    opts: ['Canada', 'Japon', 'Suisse'],
+    a: 2,
+  },
+  {
+    q: 'Quel orchestrateur de conteneurs Kevin maîtrise-t-il ?',
+    opts: ['Kubernetes', 'WordPress', 'MySQL'],
+    a: 0,
+  },
+]
+const qIndex = ref(Math.floor(Math.random() * quiz.length))
+const quizMsg = ref('')
+
+function answer(i: number) {
+  if (i === quiz[qIndex.value]!.a) {
+    lives.value++
+    quizMsg.value = '✓ Bonne réponse ! +1 vie.'
+  } else {
+    quizMsg.value = '✗ Raté… la bonne réponse t’en apprend plus sur Kevin.'
+  }
+  window.setTimeout(() => {
+    quizMsg.value = ''
+    qIndex.value = (qIndex.value + 1) % quiz.length
+  }, 1600)
+}
+
 function blank(): Cell {
   return { mine: false, revealed: false, flagged: false, adj: 0 }
 }
@@ -81,6 +126,16 @@ function reveal(r: number, c: number) {
     startTimer()
   }
   if (cell.mine) {
+    if (lives.value > 0) {
+      // Une vie absorbe la mine : on la désamorce (drapeau) et on continue.
+      lives.value--
+      cell.flagged = true
+      flags.value++
+      quizMsg.value = '💥 Mine désamorcée grâce à une vie !'
+      window.setTimeout(() => (quizMsg.value = ''), 1600)
+      checkWin()
+      return
+    }
     cell.revealed = true
     lose()
     return
@@ -139,6 +194,7 @@ onBeforeUnmount(() => {
       <button class="face" @click="reset">{{ face }}</button>
       <div class="led">{{ pad(time) }}</div>
     </div>
+    <div class="lives">Vies : <span v-if="lives">{{ '♥'.repeat(lives) }}</span><span v-else class="none">aucune</span></div>
     <div class="board" :style="{ gridTemplateColumns: `repeat(${COLS}, 22px)` }">
       <template v-for="(row, r) in grid" :key="r">
         <button
@@ -158,6 +214,15 @@ onBeforeUnmount(() => {
       </template>
     </div>
     <p class="hint">Clic gauche : révéler · Clic droit : drapeau</p>
+
+    <div class="quiz">
+      <p class="qtitle">Connais-tu Kevin ? <span class="reward">(bonne réponse = +1 vie)</span></p>
+      <p class="q">{{ quiz[qIndex]!.q }}</p>
+      <div class="opts">
+        <button v-for="(o, i) in quiz[qIndex]!.opts" :key="i" @click="answer(i)">{{ o }}</button>
+      </div>
+      <p v-if="quizMsg" class="qmsg">{{ quizMsg }}</p>
+    </div>
   </div>
 </template>
 
@@ -238,5 +303,53 @@ onBeforeUnmount(() => {
   font-size: 11px;
   color: #444;
   margin: 0;
+}
+.lives {
+  font-size: 12px;
+  color: #b00000;
+  font-weight: bold;
+}
+.lives .none {
+  color: #777;
+  font-weight: normal;
+}
+.quiz {
+  width: 100%;
+  max-width: 230px;
+  background: #fff;
+  box-shadow: inset 2px 2px #808080, inset -2px -2px #fff;
+  padding: 8px;
+  margin-top: 2px;
+}
+.qtitle {
+  margin: 0 0 5px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #1c4587;
+}
+.qtitle .reward {
+  font-weight: normal;
+  color: #777;
+  font-size: 10px;
+}
+.q {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: #222;
+}
+.opts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.opts button {
+  font-size: 12px;
+  padding: 3px 6px;
+  text-align: left;
+}
+.qmsg {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: #1a7a1a;
 }
 </style>

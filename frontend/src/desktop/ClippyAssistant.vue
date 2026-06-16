@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-// Assistant original « Trombi » (trombone à yeux) — pas l'artwork Microsoft.
 const emit = defineEmits<{ open: [string] }>()
 
 interface Tip {
@@ -11,27 +10,59 @@ interface Tip {
 const tips: Tip[] = [
   { text: 'On dirait que tu visites un portfolio ! Besoin d’un coup de main ?' },
   { text: 'Astuce : double-clique sur les icônes du bureau pour ouvrir les fenêtres.' },
-  { text: 'Envie de jouer ? Je peux lancer le Démineur.', action: { label: 'Ouvrir le Démineur', app: 'minesweeper' } },
+  { text: 'Envie de jouer ? Réponds au quiz du Démineur pour gagner des vies.', action: { label: 'Ouvrir le Démineur', app: 'minesweeper' } },
   { text: 'Curieux des projets de Kevin ? Ouvre Internet Explorer.', action: { label: 'Ouvrir Internet', app: 'iexplorer' } },
-  { text: 'Psst… le terminal cache quelques commandes secrètes. Essaie « help ».', action: { label: 'Ouvrir le terminal', app: 'terminal' } },
+  { text: 'Psst… le terminal cache des commandes secrètes. Essaie « help ».', action: { label: 'Ouvrir le terminal', app: 'terminal' } },
   { text: 'Laisse un petit mot à Kevin dans le Livre d’or !', action: { label: 'Ouvrir le Livre d’or', app: 'guestbook' } },
+  { text: 'Tu peux me retrouver sur MSN Messenger 😉', action: { label: 'Ouvrir MSN', app: 'msn' } },
 ]
 
+const idle = Array.from({ length: 22 }, (_, i) => `/xp/clippy/idle/${String(i + 1).padStart(2, '0')}.png`)
+const greet = Array.from({ length: 19 }, (_, i) => `/xp/clippy/greet/${String(i + 1).padStart(2, '0')}.png`)
+
+const frame = ref(idle[0]!)
 const visible = ref(false)
 const i = ref(0)
 let showTimer: number
+let animTimer: number | null = null
+
+function preload(list: string[]) {
+  list.forEach((src) => {
+    const im = new Image()
+    im.src = src
+  })
+}
+
+function play(frames: string[], loop: boolean, done?: () => void) {
+  if (animTimer) clearInterval(animTimer)
+  let f = 0
+  animTimer = window.setInterval(() => {
+    frame.value = frames[f]!
+    f++
+    if (f >= frames.length) {
+      if (loop) f = 0
+      else {
+        if (animTimer) clearInterval(animTimer)
+        animTimer = null
+        done?.()
+      }
+    }
+  }, 70)
+}
 
 function appear() {
   i.value = Math.floor(Math.random() * tips.length)
   visible.value = true
+  play(greet, false, () => play(idle, true))
 }
 function next() {
   i.value = (i.value + 1) % tips.length
 }
 function dismiss() {
   visible.value = false
+  if (animTimer) clearInterval(animTimer)
+  animTimer = null
   clearTimeout(showTimer)
-  // revient plus tard
   showTimer = window.setTimeout(appear, 90000)
 }
 function doAction(app: string) {
@@ -40,10 +71,13 @@ function doAction(app: string) {
 }
 
 onMounted(() => {
-  showTimer = window.setTimeout(appear, 12000)
+  preload(idle)
+  preload(greet)
+  showTimer = window.setTimeout(appear, 9000)
 })
 onBeforeUnmount(() => {
   clearTimeout(showTimer)
+  if (animTimer) clearInterval(animTimer)
 })
 </script>
 
@@ -60,16 +94,9 @@ onBeforeUnmount(() => {
       </div>
     </div>
 
-    <svg class="trombi" viewBox="0 0 80 110" @click="next" role="img" aria-label="Assistant">
-      <g fill="none" stroke="#9aa6b2" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M28 96 V40 a16 16 0 0 1 32 0 V78 a9 9 0 0 1 -18 0 V46" />
-        <path d="M20 90 V36 a24 24 0 0 1 48 0 V80" stroke="#c2ccd6" />
-      </g>
-      <circle cx="34" cy="30" r="9" fill="#fff" stroke="#5a6675" stroke-width="2" />
-      <circle cx="52" cy="30" r="9" fill="#fff" stroke="#5a6675" stroke-width="2" />
-      <circle cx="36" cy="32" r="3.5" fill="#222" />
-      <circle cx="54" cy="32" r="3.5" fill="#222" />
-    </svg>
+    <div class="clippy" @click="next">
+      <img :src="frame" alt="Assistant" draggable="false" />
+    </div>
   </div>
 </template>
 
@@ -77,17 +104,17 @@ onBeforeUnmount(() => {
 .assistant {
   position: fixed;
   right: 18px;
-  bottom: 42px;
+  bottom: 38px;
   z-index: 9990;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 6px;
+  gap: 4px;
   font-family: Tahoma, sans-serif;
 }
 .bubble {
   position: relative;
-  max-width: 230px;
+  max-width: 232px;
   background: #ffffe1;
   border: 1px solid #8d8d6b;
   border-radius: 8px;
@@ -99,7 +126,7 @@ onBeforeUnmount(() => {
 .bubble::after {
   content: '';
   position: absolute;
-  right: 26px;
+  right: 40px;
   bottom: -9px;
   width: 14px;
   height: 14px;
@@ -138,16 +165,17 @@ onBeforeUnmount(() => {
   padding: 1px 0;
   cursor: pointer;
 }
-.trombi {
-  width: 64px;
-  height: 88px;
+.clippy {
+  width: 100px;
+  height: 96px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   cursor: pointer;
-  filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.35));
-  animation: bob 3s ease-in-out infinite;
 }
-@keyframes bob {
-  50% {
-    transform: translateY(-5px) rotate(-3deg);
-  }
+.clippy img {
+  max-width: 100%;
+  max-height: 96px;
+  filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.35));
 }
 </style>

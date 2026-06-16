@@ -2,7 +2,7 @@
 // Source : github.com/bartekl1/windows-ui-assets
 export const icons = {
   terminal: '/xp/icons/terminal.ico',
-  notepad: '/xp/icons/notepad.ico',
+  notepad: '/xp/icons/notepad.svg',
   folder: '/xp/icons/folder.ico',
   gear: '/xp/icons/gear.ico',
   mail: '/xp/icons/mail.ico',
@@ -10,6 +10,7 @@ export const icons = {
   computer: '/xp/icons/computer.ico',
   iexplorer: '/xp/start/iexplorer.png',
   mine: '/xp/icons/mine.svg',
+  msn: '/xp/msn/windowsmesenger.png',
 }
 
 // Logo Windows du bouton « démarrer » (pas de bitmap dédié dans les assets).

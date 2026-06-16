@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick, provide } from 'vue'
 import { apps, type AppDef } from './registry'
 import { useWindows } from './useWindows'
 import { muted } from './sound'
@@ -27,6 +27,8 @@ function openById(id: string) {
   const app = apps.find((a) => a.id === id)
   if (app) open(app)
 }
+// Permet aux apps (MSN, etc.) d'en ouvrir d'autres.
+provide('openApp', openById)
 
 // --- Économiseur d'écran (logo windoors rebondissant après inactivité) ---
 const screensaver = ref(false)

@@ -6,6 +6,7 @@ import SkillsApp from './apps/SkillsApp.vue'
 import ContactApp from './apps/ContactApp.vue'
 import GuestbookApp from './apps/GuestbookApp.vue'
 import IExplorerApp from './apps/IExplorerApp.vue'
+import MsnApp from './apps/MsnApp.vue'
 import MinesweeperApp from './apps/MinesweeperApp.vue'
 import RecycleBinApp from './apps/RecycleBinApp.vue'
 import { icons } from './icons'
@@ -85,13 +86,22 @@ export const apps: AppDef[] = [
     h: 420,
   },
   {
+    id: 'msn',
+    label: 'MSN Messenger',
+    title: 'MSN Messenger',
+    icon: icons.msn,
+    component: MsnApp,
+    w: 330,
+    h: 480,
+  },
+  {
     id: 'minesweeper',
     label: 'Démineur',
     title: 'Démineur',
     icon: icons.mine,
     component: MinesweeperApp,
-    w: 250,
-    h: 330,
+    w: 264,
+    h: 510,
   },
   {
     id: 'bin',
