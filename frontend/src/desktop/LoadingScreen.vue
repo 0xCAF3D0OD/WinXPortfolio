@@ -5,7 +5,7 @@ const emit = defineEmits<{ done: [] }>()
 let timer: number
 
 onMounted(() => {
-  timer = window.setTimeout(() => emit('done'), 4200)
+  timer = window.setTimeout(() => emit("done"), 4200)
 })
 onBeforeUnmount(() => clearTimeout(timer))
 </script>
@@ -119,9 +119,12 @@ onBeforeUnmount(() => clearTimeout(timer))
   transform: translateY(-16px);
   display: inline-block; /* Nécessaire pour que le transform s'applique correctement */
 }
+/* box-sizing content-box : indispensable car l'app a un * { box-sizing: border-box }
+   global qui, sinon, écrase la hauteur utile de la barre (boîtes invisibles). */
 .container {
   width: 200px;
-  height: 20px;
+  height: 14px;
+  box-sizing: content-box;
   border: 2px solid #b2b2b2;
   border-radius: 7px;
   margin: 0 auto;
@@ -130,6 +133,7 @@ onBeforeUnmount(() => clearTimeout(timer))
   font-size: 0;
 }
 .container .box {
+  box-sizing: content-box;
   width: 9px;
   height: 100%;
   background: linear-gradient(
@@ -143,16 +147,14 @@ onBeforeUnmount(() => clearTimeout(timer))
   );
   display: inline-block;
   margin-right: 2px;
-  animation: loader 2.2s infinite;
-  animation-timing-function: linear;
+  animation: loader 2.2s infinite linear;
 }
-
 @keyframes loader {
   0% {
-    transform: translate(-30px);
+    transform: translateX(-30px);
   }
   100% {
-    transform: translate(200px);
+    transform: translateX(200px);
   }
 }
 
