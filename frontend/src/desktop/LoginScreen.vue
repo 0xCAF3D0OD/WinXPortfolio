@@ -129,18 +129,20 @@ function login() {
 }
 .brand .logo {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 8px;
 }
 .brand .logo .flag {
-  width: 56px;
-  height: 50px;
-  filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.4));
+  width: 96px;
+  height: 87px;
+  margin-left: 60px;
+  filter: drop-shadow(1px 2px 4px rgba(0, 0, 0, 0.45));
 }
 .brand .wordmark {
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 8px;
   font-family: Tahoma, sans-serif;
   /* léger flou type ClearType d'origine */
   text-shadow:
@@ -149,12 +151,12 @@ function login() {
   filter: blur(0.4px);
 }
 .brand .wordmark b {
-  font-size: 38px;
+  font-size: 40px;
   font-weight: 600;
   color: #fff;
 }
 .brand .wordmark i {
-  font-size: 32px;
+  font-size: 40px;
   font-weight: 700;
   font-style: italic;
   color: #ff9f17;

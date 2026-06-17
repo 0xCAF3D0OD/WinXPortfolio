@@ -29,6 +29,8 @@ function openById(id: string) {
 }
 // Permet aux apps (MSN, etc.) d'en ouvrir d'autres.
 provide('openApp', openById)
+// Permet au lanceur de jeux d'ouvrir une fenêtre dynamique (jeu non listé dans apps).
+provide('openWindow', (def: AppDef) => open(def))
 
 // --- Économiseur d'écran (logo windoors rebondissant après inactivité) ---
 const screensaver = ref(false)

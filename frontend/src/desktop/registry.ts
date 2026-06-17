@@ -7,9 +7,9 @@ import ContactApp from './apps/ContactApp.vue'
 import GuestbookApp from './apps/GuestbookApp.vue'
 import IExplorerApp from './apps/IExplorerApp.vue'
 import MsnApp from './apps/MsnApp.vue'
-import MinesweeperApp from './apps/MinesweeperApp.vue'
 import RecycleBinApp from './apps/RecycleBinApp.vue'
 import { icons } from './icons'
+import { games } from '../games/registry'
 
 export interface AppDef {
   id: string
@@ -78,12 +78,12 @@ export const apps: AppDef[] = [
   },
   {
     id: 'guestbook',
-    label: 'Livre d’or.txt',
-    title: 'Livre d’or.txt — Bloc-notes',
-    icon: icons.notepad,
+    label: 'Me contacter',
+    title: 'Nouveau message — Outlook Express',
+    icon: icons.outlook,
     component: GuestbookApp,
-    w: 540,
-    h: 420,
+    w: 560,
+    h: 460,
   },
   {
     id: 'msn',
@@ -95,15 +95,6 @@ export const apps: AppDef[] = [
     h: 480,
   },
   {
-    id: 'minesweeper',
-    label: 'Démineur',
-    title: 'Démineur',
-    icon: icons.mine,
-    component: MinesweeperApp,
-    w: 264,
-    h: 510,
-  },
-  {
     id: 'bin',
     label: 'Corbeille',
     title: 'Corbeille',
@@ -112,4 +103,17 @@ export const apps: AppDef[] = [
     w: 420,
     h: 280,
   },
+  // Jeux découverts dans src/games/ : chacun arrive sur le bureau avec sa
+  // propre icône (le champ `icon` de son game.ts).
+  ...games.map(
+    (g): AppDef => ({
+      id: 'game-' + g.id,
+      label: g.name,
+      title: g.name,
+      icon: g.icon || icons.games,
+      component: g.component,
+      w: g.w ?? 520,
+      h: g.h ?? 440,
+    }),
+  ),
 ]

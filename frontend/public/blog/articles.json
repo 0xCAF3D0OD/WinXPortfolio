@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Bienvenue sur mon blog",
+    "date": "16.06.2026",
+    "tags": ["intro"],
+    "body": [
+      "Ce portfolio est une recréation de Windows XP. Ce « MSN Messenger » me sert de blog : j'y publie des notes sur le DevOps, le cloud et mes projets.",
+      "Pour publier un article, j'édite ce fichier public/blog/articles.json (aucun rebuild nécessaire après déploiement)."
+    ]
+  },
+  {
+    "title": "alloremplacant.ch en production",
+    "date": "10.06.2026",
+    "tags": ["kubernetes", "gitops"],
+    "body": [
+      "Retour d'expérience sur le déploiement d'alloremplacant.ch : un cluster K3s, du GitOps avec ArgoCD et une chaîne CI/CD GitHub Actions.",
+      "Objectif : des déploiements reproductibles et un rollback en un clic."
+    ]
+  }
+]

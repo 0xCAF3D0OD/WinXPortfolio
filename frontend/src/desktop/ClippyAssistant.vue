@@ -10,10 +10,10 @@ interface Tip {
 const tips: Tip[] = [
   { text: 'On dirait que tu visites un portfolio ! Besoin d’un coup de main ?' },
   { text: 'Astuce : double-clique sur les icônes du bureau pour ouvrir les fenêtres.' },
-  { text: 'Envie de jouer ? Réponds au quiz du Démineur pour gagner des vies.', action: { label: 'Ouvrir le Démineur', app: 'minesweeper' } },
+  { text: 'Envie de jouer ? Tente le Démineur (réponds à un quiz pour survivre).', action: { label: 'Ouvrir le Démineur', app: 'game-minesweeper' } },
   { text: 'Curieux des projets de Kevin ? Ouvre Internet Explorer.', action: { label: 'Ouvrir Internet', app: 'iexplorer' } },
   { text: 'Psst… le terminal cache des commandes secrètes. Essaie « help ».', action: { label: 'Ouvrir le terminal', app: 'terminal' } },
-  { text: 'Laisse un petit mot à Kevin dans le Livre d’or !', action: { label: 'Ouvrir le Livre d’or', app: 'guestbook' } },
+  { text: 'Tu veux contacter Kevin ? Ouvre le formulaire (tu peux joindre un fichier).', action: { label: 'Me contacter', app: 'guestbook' } },
   { text: 'Tu peux me retrouver sur MSN Messenger 😉', action: { label: 'Ouvrir MSN', app: 'msn' } },
 ]
 
@@ -88,8 +88,8 @@ function dismiss() {
   showTimer = window.setTimeout(appear, 90000)
 }
 function doAction(app: string) {
+  // On ouvre l'app mais Clippy reste à l'écran (il ne disparaît que via ×).
   emit('open', app)
-  dismiss()
 }
 
 onMounted(() => {

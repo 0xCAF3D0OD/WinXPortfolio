@@ -13,14 +13,14 @@ interface Cell {
 }
 
 const grid = reactive<Cell[][]>([])
-const state = ref<'ready' | 'playing' | 'won' | 'lost'>('ready')
+const state = ref<'ready' | 'playing' | 'question' | 'won' | 'lost'>('ready')
 const flags = ref(0)
 const time = ref(0)
 let timer: number | null = null
 let placed = false
 
-// --- Quiz « connais-tu Kevin ? » : une bonne réponse = une vie (absorbe une mine) ---
-const lives = ref(0)
+// --- Quiz « connais-tu Kevin ? » : posé UNIQUEMENT quand le joueur touche une mine.
+// Bonne réponse = la mine est désamorcée et la partie continue. Mauvaise = game over.
 const quiz = [
   {
     q: 'Chez quelle entreprise Kevin a-t-il fait son stage DevOps ?',
@@ -48,20 +48,35 @@ const quiz = [
     a: 0,
   },
 ]
-const qIndex = ref(Math.floor(Math.random() * quiz.length))
-const quizMsg = ref('')
+const qIndex = ref(0)
+let pending: { r: number; c: number } | null = null
+
+function askQuestion(r: number, c: number) {
+  pending = { r, c }
+  qIndex.value = Math.floor(Math.random() * quiz.length)
+  state.value = 'question'
+  if (timer) clearInterval(timer) // on met le chrono en pause
+  timer = null
+}
 
 function answer(i: number) {
+  if (state.value !== 'question' || !pending) return
   if (i === quiz[qIndex.value]!.a) {
-    lives.value++
-    quizMsg.value = '✓ Bonne réponse ! +1 vie.'
+    // Bonne réponse : on désamorce la mine et on reprend la partie.
+    const cell = grid[pending.r]![pending.c]!
+    cell.flagged = true
+    flags.value++
+    pending = null
+    state.value = 'playing'
+    startTimer()
+    checkWin()
   } else {
-    quizMsg.value = '✗ Raté… la bonne réponse t’en apprend plus sur Kevin.'
+    // Mauvaise réponse : game over (on révèle les mines maintenant).
+    const cell = grid[pending.r]![pending.c]!
+    cell.revealed = true
+    pending = null
+    lose()
   }
-  window.setTimeout(() => {
-    quizMsg.value = ''
-    qIndex.value = (qIndex.value + 1) % quiz.length
-  }, 1600)
 }
 
 function blank(): Cell {
@@ -117,7 +132,7 @@ function neighbors(r: number, c: number): [number, number][] {
 }
 
 function reveal(r: number, c: number) {
-  if (state.value === 'won' || state.value === 'lost') return
+  if (state.value !== 'ready' && state.value !== 'playing') return
   const cell = grid[r]![c]!
   if (cell.revealed || cell.flagged) return
   if (!placed) {
@@ -126,18 +141,8 @@ function reveal(r: number, c: number) {
     startTimer()
   }
   if (cell.mine) {
-    if (lives.value > 0) {
-      // Une vie absorbe la mine : on la désamorce (drapeau) et on continue.
-      lives.value--
-      cell.flagged = true
-      flags.value++
-      quizMsg.value = '💥 Mine désamorcée grâce à une vie !'
-      window.setTimeout(() => (quizMsg.value = ''), 1600)
-      checkWin()
-      return
-    }
-    cell.revealed = true
-    lose()
+    // On ne révèle pas les autres mines : on pose une question pour survivre.
+    askQuestion(r, c)
     return
   }
   flood(r, c)
@@ -152,7 +157,7 @@ function flood(r: number, c: number) {
 }
 
 function toggleFlag(r: number, c: number) {
-  if (state.value === 'won' || state.value === 'lost') return
+  if (state.value !== 'playing' && state.value !== 'ready') return
   const cell = grid[r]![c]!
   if (cell.revealed) return
   cell.flagged = !cell.flagged
@@ -175,7 +180,13 @@ function checkWin() {
 }
 
 const face = computed(() =>
-  state.value === 'lost' ? '😵' : state.value === 'won' ? '😎' : '🙂',
+  state.value === 'lost'
+    ? '😵'
+    : state.value === 'won'
+      ? '😎'
+      : state.value === 'question'
+        ? '😨'
+        : '🙂',
 )
 const minesLeft = computed(() => Math.max(0, MINES - flags.value))
 const pad = (n: number) => n.toString().padStart(3, '0')
@@ -194,7 +205,6 @@ onBeforeUnmount(() => {
       <button class="face" @click="reset">{{ face }}</button>
       <div class="led">{{ pad(time) }}</div>
     </div>
-    <div class="lives">Vies : <span v-if="lives">{{ '♥'.repeat(lives) }}</span><span v-else class="none">aucune</span></div>
     <div class="board" :style="{ gridTemplateColumns: `repeat(${COLS}, 22px)` }">
       <template v-for="(row, r) in grid" :key="r">
         <button
@@ -213,21 +223,28 @@ onBeforeUnmount(() => {
         </button>
       </template>
     </div>
-    <p class="hint">Clic gauche : révéler · Clic droit : drapeau</p>
+    <p class="hint">
+      <template v-if="state === 'lost'">Perdu ! Clique sur 🙂 pour rejouer.</template>
+      <template v-else-if="state === 'won'">Gagné ! 😎</template>
+      <template v-else>Clic gauche : révéler · Clic droit : drapeau</template>
+    </p>
 
-    <div class="quiz">
-      <p class="qtitle">Connais-tu Kevin ? <span class="reward">(bonne réponse = +1 vie)</span></p>
-      <p class="q">{{ quiz[qIndex]!.q }}</p>
-      <div class="opts">
-        <button v-for="(o, i) in quiz[qIndex]!.opts" :key="i" @click="answer(i)">{{ o }}</button>
+    <!-- Question posée seulement quand on touche une mine (overlay sur le plateau) -->
+    <div v-if="state === 'question'" class="quiz-overlay">
+      <div class="quiz">
+        <p class="qtitle">💣 Mine ! Réponds pour survivre :</p>
+        <p class="q">{{ quiz[qIndex]!.q }}</p>
+        <div class="opts">
+          <button v-for="(o, i) in quiz[qIndex]!.opts" :key="i" @click="answer(i)">{{ o }}</button>
+        </div>
       </div>
-      <p v-if="quizMsg" class="qmsg">{{ quizMsg }}</p>
     </div>
   </div>
 </template>
 
 <style scoped>
 .ms {
+  position: relative;
   height: 100%;
   background: #c0c0c0;
   padding: 8px;
@@ -304,52 +321,44 @@ onBeforeUnmount(() => {
   color: #444;
   margin: 0;
 }
-.lives {
-  font-size: 12px;
-  color: #b00000;
-  font-weight: bold;
-}
-.lives .none {
-  color: #777;
-  font-weight: normal;
+.quiz-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 12px;
 }
 .quiz {
   width: 100%;
   max-width: 230px;
-  background: #fff;
-  box-shadow: inset 2px 2px #808080, inset -2px -2px #fff;
-  padding: 8px;
-  margin-top: 2px;
+  background: #ece9d8;
+  border: 1px solid #0831d9;
+  border-radius: 4px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.45);
+  padding: 10px;
 }
 .qtitle {
-  margin: 0 0 5px;
+  margin: 0 0 6px;
   font-size: 12px;
   font-weight: bold;
-  color: #1c4587;
-}
-.qtitle .reward {
-  font-weight: normal;
-  color: #777;
-  font-size: 10px;
+  color: #a32d2d;
 }
 .q {
-  margin: 0 0 6px;
+  margin: 0 0 8px;
   font-size: 12px;
   color: #222;
 }
 .opts {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
 }
 .opts button {
   font-size: 12px;
-  padding: 3px 6px;
+  padding: 4px 8px;
   text-align: left;
-}
-.qmsg {
-  margin: 6px 0 0;
-  font-size: 11px;
-  color: #1a7a1a;
 }
 </style>

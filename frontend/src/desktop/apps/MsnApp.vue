@@ -1,13 +1,28 @@
 <script setup lang="ts">
-import { ref, inject } from 'vue'
+import { ref, computed, onMounted, inject } from 'vue'
 import { profile } from '../../portfolio'
-import { articles } from '../../blog'
+import { articles as fallbackArticles, type Article } from '../../blog'
 
 const openApp = inject<(id: string) => void>('openApp', () => {})
 
 type View = 'login' | 'contacts' | 'blog'
 const view = ref<View>('login')
 const email = ref(profile.email)
+
+// Articles chargés depuis public/blog/articles.json (éditable/déployable sans rebuild).
+// blog.ts sert de repli si le fichier est absent.
+const articles = ref<Article[]>(fallbackArticles)
+onMounted(async () => {
+  try {
+    const res = await fetch('/blog/articles.json', { cache: 'no-cache' })
+    if (res.ok) {
+      const data = await res.json()
+      if (Array.isArray(data)) articles.value = data
+    }
+  } catch {
+    /* repli sur blog.ts */
+  }
+})
 
 const avatarSrc = ref('/xp/login/avatar.jpg')
 function avatarFallback() {
@@ -22,13 +37,13 @@ interface Contact {
   app?: string
   blog?: boolean
 }
-const online: Contact[] = [
-  { name: '📓 Blog de Kevin', status: `${articles.length} article(s)`, online: true, blog: true },
+const online = computed<Contact[]>(() => [
+  { name: '📓 Blog de Kevin', status: `${articles.value.length} article(s)`, online: true, blog: true },
   { name: 'GitHub — @0xCAF3D0OD', status: 'mes dépôts', online: true, href: profile.github },
   { name: 'LinkedIn', status: 'me contacter', online: true, href: profile.linkedin },
   { name: 'alloremplacant.ch', status: 'projet en prod', online: true, href: 'https://alloremplacant.ch' },
   { name: 'Internet Explorer', status: 'parcourir mes projets', online: true, app: 'iexplorer' },
-]
+])
 const offline: Contact[] = [
   { name: 'Clippy', status: 'apparaît parfois…', online: false },
   { name: 'BSOD', status: 'tape « bsod » dans le terminal', online: false },

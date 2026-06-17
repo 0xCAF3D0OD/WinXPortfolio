@@ -1,0 +1,12 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- dossier -->
+  <path d="M5 13h13l4 4h21a2 2 0 0 1 2 2v20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V15a2 2 0 0 1 2-2z" fill="#f5c33b" stroke="#d39e00" stroke-width="1.5"/>
+  <path d="M5 20h40v19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V20z" fill="#ffd95a"/>
+  <!-- manette -->
+  <rect x="13" y="27" width="22" height="11" rx="5.5" fill="#4a6da8" stroke="#274a82" stroke-width="1.2"/>
+  <g stroke="#fff" stroke-width="2" stroke-linecap="round">
+    <line x1="18" y1="30" x2="18" y2="35"/><line x1="15.5" y1="32.5" x2="20.5" y2="32.5"/>
+  </g>
+  <circle cx="29" cy="31.5" r="1.6" fill="#ff7b72"/>
+  <circle cx="32" cy="34.5" r="1.6" fill="#7ee787"/>
+</svg>

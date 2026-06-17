@@ -162,7 +162,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="window" @click="focusInput">
+  <main class="term" @click="focusInput">
     <div class="screen" ref="screenEl">
       <div v-for="(block, i) in blocks" :key="i" class="block">
         <div v-if="block.input !== null" class="cmd-line">
@@ -205,7 +205,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.window {
+.term {
   width: 100%;
   height: 100%;
   display: flex;
