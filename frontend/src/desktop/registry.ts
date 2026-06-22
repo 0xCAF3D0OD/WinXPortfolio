@@ -7,6 +7,7 @@ import ContactApp from './apps/ContactApp.vue'
 import GuestbookApp from './apps/GuestbookApp.vue'
 import IExplorerApp from './apps/IExplorerApp.vue'
 import MsnApp from './apps/MsnApp.vue'
+import MyComputerApp from './apps/MyComputerApp.vue'
 import RecycleBinApp from './apps/RecycleBinApp.vue'
 import { icons } from './icons'
 import { games } from '../games/registry'
@@ -112,6 +113,15 @@ export const apps: AppDef[] = [
     component: pdfViewer('/cv/candidate-folder-en.pdf'),
     w: 780,
     h: 580,
+  },
+  {
+    id: 'mycomputer',
+    label: 'Poste de travail',
+    title: 'Poste de travail',
+    icon: icons.computer,
+    component: MyComputerApp,
+    w: 620,
+    h: 440,
   },
   {
     id: 'bin',

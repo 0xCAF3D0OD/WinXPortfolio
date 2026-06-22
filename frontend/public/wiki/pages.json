@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "Certifications",
+    "title": "Certifications",
+    "body": [
+      "Cette page liste mes certifications et formations continues. Pour l'éditer, je modifie public/wiki/pages.json (aucun rebuild nécessaire après déploiement)."
+    ],
+    "sections": [
+      {
+        "heading": "En cours / visées",
+        "body": ["AWS Certified Solutions Architect — Associate", "Certified Kubernetes Administrator (CKA)"]
+      }
+    ]
+  },
+  {
+    "slug": "Stack_technique",
+    "title": "Stack technique",
+    "body": [
+      "Vue d'ensemble des technologies que j'utilise au quotidien, du provisioning à l'observabilité."
+    ],
+    "sections": [
+      {
+        "heading": "Infrastructure",
+        "body": ["Terraform et Ansible pour décrire et configurer l'infrastructure de façon reproductible."]
+      },
+      {
+        "heading": "Orchestration",
+        "body": ["Kubernetes (K3s) avec Helm et un déploiement GitOps via ArgoCD."]
+      }
+    ]
+  }
+]

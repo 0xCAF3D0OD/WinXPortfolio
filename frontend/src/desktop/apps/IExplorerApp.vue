@@ -1,16 +1,53 @@
 <script setup lang="ts">
-import { ref, computed, nextTick } from 'vue'
+import { ref, computed, nextTick, onMounted, inject } from 'vue'
 import { projects, profile, about, experience, education, skills } from '../../portfolio'
+
+const openApp = inject<(id: string) => void>('openApp', () => {})
+
+// Pages WikiDK personnalisées (éditables dans public/wiki/pages.json, sans rebuild).
+interface WikiSection {
+  heading: string
+  body: string[]
+}
+interface WikiPage {
+  slug: string
+  title: string
+  body?: string[]
+  sections?: WikiSection[]
+}
+const customPages = ref<WikiPage[]>([])
+onMounted(async () => {
+  try {
+    const res = await fetch('/wiki/pages.json', { cache: 'no-cache' })
+    if (res.ok) {
+      const data = await res.json()
+      if (Array.isArray(data)) customPages.value = data
+    }
+  } catch {
+    /* pas de pages custom */
+  }
+})
 
 interface Page {
   url: string
   title: string
-  kind: 'wiki' | 'project'
+  kind: 'wiki' | 'project' | 'custom'
   projectIndex?: number
+  pageSlug?: string
 }
 
 const wikiUrl = 'http://wikidk.org/wiki/Kevin_Di_Nocera'
 const home: Page = { url: wikiUrl, title: 'Kevin Di Nocera — WikiDK', kind: 'wiki' }
+// Dépôt utilisé pour l'onglet « Discussion » (issues GitHub).
+const issuesRepo = 'https://github.com/0xCAF3D0OD/Educhat'
+
+const favOpen = ref(false)
+const favorites = [
+  { label: 'GitHub — @0xCAF3D0OD', url: profile.github },
+  { label: 'LinkedIn', url: 'https://' + profile.linkedin.replace(/^https?:\/\//, '') },
+  { label: 'alloremplacant.ch', url: 'https://alloremplacant.ch' },
+  { label: 'Educhat (dépôt)', url: 'https://github.com/0xCAF3D0OD/Educhat' },
+]
 
 const history = ref<Page[]>([home])
 const index = ref(0)
@@ -49,8 +86,22 @@ function openProject(i: number) {
   const p = projects[i]!
   navigate({ url: `${wikiUrl}/projets/${p.name}`, title: p.name, kind: 'project', projectIndex: i })
 }
+function openCustom(p: WikiPage) {
+  navigate({ url: `${wikiUrl}/${p.slug}`, title: p.title, kind: 'custom', pageSlug: p.slug })
+}
 function openExternal(url: string) {
   window.open(url, '_blank', 'noopener')
+}
+// Onglet « Discussion » -> issues GitHub du dépôt concerné.
+function openDiscussion() {
+  const base = activeProject.value ? activeProject.value.url : issuesRepo
+  openExternal(base.replace(/\/$/, '') + '/issues')
+}
+function mail() {
+  openApp('guestbook')
+}
+function print() {
+  window.print()
 }
 function go() {
   let url = address.value.trim()
@@ -65,6 +116,11 @@ function scrollTo(id: string) {
 const activeProject = computed(() =>
   current.value.kind === 'project' && current.value.projectIndex !== undefined
     ? projects[current.value.projectIndex]
+    : null,
+)
+const activeCustom = computed(() =>
+  current.value.kind === 'custom'
+    ? customPages.value.find((p) => p.slug === current.value.pageSlug) || null
     : null,
 )
 const firstName = profile.name.split(' ')[0]
@@ -102,15 +158,24 @@ const firstName = profile.name.split(' ')[0]
       <div class="ie__btn" title="Actualiser" @click="goHome"><img src="/xp/ie/refresh.png" alt="" /></div>
       <div class="ie__btn" title="Démarrage" @click="goHome"><img src="/xp/ie/home.png" alt="" /></div>
       <span class="ie__sep"></span>
-      <div class="ie__btn" title="Rechercher">
+      <div class="ie__btn" title="Rechercher" @click="scrollTo('competences')">
         <img class="sm" src="/xp/ie/search.png" alt="" /><span class="t">Rechercher</span>
       </div>
-      <div class="ie__btn" title="Favoris">
+      <div class="ie__btn fav" title="Favoris" @click.stop="favOpen = !favOpen">
         <img class="sm" src="/xp/ie/favorites.png" alt="" /><span class="t">Favoris</span>
+        <div v-if="favOpen" class="fav-menu" @click.stop>
+          <p class="fav-title">Favoris</p>
+          <a v-for="f in favorites" :key="f.url" @click="openExternal(f.url)">{{ f.label }}</a>
+        </div>
       </div>
       <div class="ie__btn" title="Historique"><img class="sm" src="/xp/ie/history.png" alt="" /></div>
       <span class="ie__sep"></span>
-      <div class="ie__btn" title="Courrier"><img src="/xp/ie/mail.png" alt="" /><i class="arr"></i></div>
+      <div class="ie__btn" title="Courrier — me contacter" @click="mail">
+        <img src="/xp/ie/mail.png" alt="" /><i class="arr"></i>
+      </div>
+      <div class="ie__btn" title="Imprimer" @click="print"><img class="sm12" src="/xp/ie/printer.png" alt="" /></div>
+      <div class="ie__btn ie__btn--disable" title="Modifier"><img src="/xp/ie/edit.png" alt="" /></div>
+      <div class="ie__btn" title="Messenger" @click="openApp('msn')"><img class="sm12" src="/xp/ie/msn.png" alt="" /></div>
     </div>
 
     <!-- Barre d'adresse -->
@@ -144,6 +209,12 @@ const firstName = profile.name.split(' ')[0]
             <li><a @click="scrollTo('competences')">Compétences</a></li>
             <li><a @click="scrollTo('projets')">Projets</a></li>
           </ul>
+          <template v-if="customPages.length">
+            <p class="navtitle">pages</p>
+            <ul>
+              <li v-for="p in customPages" :key="p.slug"><a @click="openCustom(p)">{{ p.title }}</a></li>
+            </ul>
+          </template>
           <p class="navtitle">liens externes</p>
           <ul>
             <li><a @click="openExternal(profile.github)">GitHub ↗</a></li>
@@ -154,15 +225,30 @@ const firstName = profile.name.split(' ')[0]
         <!-- Article -->
         <main class="wiki-main">
           <div class="tabs">
-            <span class="tab active">Article</span><span class="tab">Discussion</span>
+            <span class="tab active">Article</span
+            ><span class="tab clickable" title="Issues GitHub" @click="openDiscussion"
+              >Discussion ↗</span
+            >
             <span class="tabs-right"
               ><span class="tab">Lire</span><span class="tab">Modifier</span
               ><span class="tab">Historique</span></span
             >
           </div>
 
+          <!-- Page WikiDK personnalisée (depuis le JSON) -->
+          <template v-if="activeCustom">
+            <h1>{{ activeCustom.title }}</h1>
+            <p class="sub">Un article de WikiDK, l'encyclopédie libre.</p>
+            <p v-for="(p, i) in activeCustom.body || []" :key="i">{{ p }}</p>
+            <template v-for="(s, si) in activeCustom.sections || []" :key="si">
+              <h2>{{ s.heading }}</h2>
+              <p v-for="(p, pi) in s.body" :key="pi">{{ p }}</p>
+            </template>
+            <p><a @click="goHome">← Retour à l'article principal</a></p>
+          </template>
+
           <!-- Page projet -->
-          <template v-if="activeProject">
+          <template v-else-if="activeProject">
             <h1>{{ activeProject.name }}</h1>
             <p class="sub">Un article de WikiDK, l'encyclopédie libre.</p>
             <p>{{ activeProject.desc }}</p>
@@ -256,9 +342,20 @@ const firstName = profile.name.split(' ')[0]
       </div>
     </div>
 
-    <div class="status-bar">
-      <div class="status-bar-field grow">Terminé</div>
-      <div class="status-bar-field">Internet</div>
+    <!-- Footer / barre d'état façon winXP -->
+    <div class="ie__footer">
+      <div class="ie__footer-status">
+        <img src="/xp/ie/ie-paper.png" alt="" />
+        <span>Terminé</span>
+      </div>
+      <div class="ie__footer-block"></div>
+      <div class="ie__footer-block"></div>
+      <div class="ie__footer-block"></div>
+      <div class="ie__footer-block"></div>
+      <div class="ie__footer-right">
+        <img src="/xp/ie/windows.png" alt="" />
+        <span>Internet</span>
+      </div>
     </div>
   </div>
 </template>
@@ -634,22 +731,97 @@ table.skills td {
   color: #72777d;
   font-style: italic;
 }
-.status-bar {
+/* Footer / barre d'état façon winXP */
+.ie__footer {
+  height: 20px;
   display: flex;
-  gap: 2px;
-  padding: 2px 3px;
+  align-items: center;
+  padding-top: 2px;
   background: #ece9d8;
+  box-shadow: inset 0 1px 3px rgba(50, 50, 50, 0.6);
   flex-shrink: 0;
-}
-.status-bar-field {
-  box-shadow:
-    inset 1px 1px #808080,
-    inset -1px -1px #fff;
-  padding: 2px 6px;
-  font-size: 12px;
+  font-size: 11px;
   color: #333;
 }
-.status-bar-field.grow {
+.ie__footer-status {
   flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding-left: 3px;
+}
+.ie__footer-status img {
+  width: 14px;
+  height: 14px;
+}
+.ie__footer-block {
+  height: 85%;
+  width: 22px;
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: inset 1px 0 rgba(255, 255, 255, 0.7);
+}
+.ie__footer-right {
+  width: 150px;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding-left: 6px;
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: inset 1px 0 rgba(255, 255, 255, 0.7);
+}
+.ie__footer-right img {
+  width: 14px;
+  height: 14px;
+}
+
+/* Onglet Discussion cliquable */
+.tab.clickable {
+  cursor: pointer;
+}
+.tab.clickable:hover {
+  text-decoration: underline;
+}
+
+/* Menu Favoris */
+.ie__btn.fav {
+  position: relative;
+}
+.fav-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 20;
+  min-width: 180px;
+  background: #fff;
+  border: 1px solid #7f7f7f;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  padding: 3px 0;
+  cursor: default;
+}
+.fav-title {
+  margin: 0;
+  padding: 3px 10px;
+  font-weight: bold;
+  color: #555;
+  border-bottom: 1px solid #e0e0e0;
+}
+.fav-menu a {
+  display: block;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: #0645ad;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.fav-menu a:hover {
+  background: #316ac5;
+  color: #fff;
+}
+.ie__btn img.sm12 {
+  width: 22px;
+  height: 22px;
+  margin: 0 2px;
 }
 </style>
