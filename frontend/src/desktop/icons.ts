@@ -13,6 +13,7 @@ export const icons = {
   msn: '/xp/msn/windowsmesenger.png',
   games: '/xp/icons/games.svg',
   outlook: '/xp/start/emailoutlook.png',
+  pdf: '/xp/icons/pdf.svg',
 }
 
 // Logo Windows du bouton « démarrer » (pas de bitmap dédié dans les assets).

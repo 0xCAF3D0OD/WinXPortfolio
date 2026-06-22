@@ -10,6 +10,7 @@ import MsnApp from './apps/MsnApp.vue'
 import RecycleBinApp from './apps/RecycleBinApp.vue'
 import { icons } from './icons'
 import { games } from '../games/registry'
+import { pdfViewer } from './pdfViewer'
 
 export interface AppDef {
   id: string
@@ -93,6 +94,24 @@ export const apps: AppDef[] = [
     component: MsnApp,
     w: 330,
     h: 480,
+  },
+  {
+    id: 'cv-fr',
+    label: 'Dossier de candidature.pdf',
+    title: 'Dossier de candidature (FR) — Adobe Reader',
+    icon: icons.pdf,
+    component: pdfViewer('/cv/dossier-candidature-fr.pdf'),
+    w: 780,
+    h: 580,
+  },
+  {
+    id: 'cv-en',
+    label: 'Candidate folder.pdf',
+    title: 'Candidate folder (EN) — Adobe Reader',
+    icon: icons.pdf,
+    component: pdfViewer('/cv/candidate-folder-en.pdf'),
+    w: 780,
+    h: 580,
   },
   {
     id: 'bin',
