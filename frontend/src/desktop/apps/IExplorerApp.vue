@@ -73,20 +73,54 @@ const firstName = profile.name.split(' ')[0]
 <template>
   <div class="ie">
     <!-- Barre d'outils -->
-    <div class="toolbar">
-      <button class="tbtn" :disabled="index === 0" title="Précédent" @click="back">
-        ‹ Précédent
-      </button>
-      <button class="tbtn" :disabled="index >= history.length - 1" title="Suivant" @click="forward">
-        Suivant ›
-      </button>
-      <button class="tbtn icon" title="Actualiser" @click="goHome">⟳</button>
-      <button class="tbtn icon" title="Démarrage" @click="goHome">⌂</button>
+    <!-- Barre de menus -->
+    <div class="ie__menu">
+      <span>Fichier</span><span>Edition</span><span>Affichage</span><span>Favoris</span
+      ><span>Outils</span><span>?</span>
+      <img class="ie__menu-logo" src="/xp/ie/windows.png" alt="" />
     </div>
-    <div class="addressbar">
-      <span class="lbl">Adresse</span>
-      <input v-model="address" type="text" @keyup.enter="go" aria-label="Adresse" />
-      <button class="go" @click="go">OK</button>
+
+    <!-- Barre de fonctions -->
+    <div class="ie__bar">
+      <div
+        class="ie__btn"
+        :class="{ 'ie__btn--disable': index === 0 }"
+        title="Précédent"
+        @click="back"
+      >
+        <img src="/xp/ie/back.png" alt="" /><span class="t">Précédent</span><i class="arr"></i>
+      </div>
+      <div
+        class="ie__btn"
+        :class="{ 'ie__btn--disable': index >= history.length - 1 }"
+        title="Suivant"
+        @click="forward"
+      >
+        <img src="/xp/ie/forward.png" alt="" /><i class="arr"></i>
+      </div>
+      <div class="ie__btn ie__btn--disable" title="Arrêter"><img src="/xp/ie/stop.png" alt="" /></div>
+      <div class="ie__btn" title="Actualiser" @click="goHome"><img src="/xp/ie/refresh.png" alt="" /></div>
+      <div class="ie__btn" title="Démarrage" @click="goHome"><img src="/xp/ie/home.png" alt="" /></div>
+      <span class="ie__sep"></span>
+      <div class="ie__btn" title="Rechercher">
+        <img class="sm" src="/xp/ie/search.png" alt="" /><span class="t">Rechercher</span>
+      </div>
+      <div class="ie__btn" title="Favoris">
+        <img class="sm" src="/xp/ie/favorites.png" alt="" /><span class="t">Favoris</span>
+      </div>
+      <div class="ie__btn" title="Historique"><img class="sm" src="/xp/ie/history.png" alt="" /></div>
+      <span class="ie__sep"></span>
+      <div class="ie__btn" title="Courrier"><img src="/xp/ie/mail.png" alt="" /><i class="arr"></i></div>
+    </div>
+
+    <!-- Barre d'adresse -->
+    <div class="ie__address">
+      <span class="ie__address-title">Adresse</span>
+      <div class="ie__address-box">
+        <img src="/xp/ie/ie-paper.png" alt="" />
+        <input v-model="address" type="text" @keyup.enter="go" aria-label="Adresse" />
+      </div>
+      <button class="ie__go" @click="go"><img src="/xp/ie/go.png" alt="" />Aller</button>
     </div>
 
     <!-- Contenu : WikiDK -->
@@ -237,57 +271,143 @@ const firstName = profile.name.split(' ')[0]
   background: #fff;
   font-family: Tahoma, sans-serif;
 }
-.toolbar {
+/* Chrome Internet Explorer repris de ShizukuIchi/winXP (MIT). */
+.ie__menu {
   display: flex;
-  gap: 4px;
-  padding: 3px 6px;
-  background: #ece9d8;
+  align-items: center;
+  gap: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+  color: #1a1a1a;
+  background: linear-gradient(to bottom, #fdfdfd, #ecebe4);
   border-bottom: 1px solid #c5c2b8;
   flex-shrink: 0;
 }
-.tbtn {
+.ie__menu span {
+  cursor: default;
+}
+.ie__menu-logo {
+  margin-left: auto;
+  width: 22px;
+  height: 22px;
+}
+.ie__bar {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  padding: 1px 4px 0;
+  background: linear-gradient(to bottom, #f8f8f4, #d6d3c6);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+.ie__btn {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #1a1a1a;
+  padding: 0 2px;
+}
+.ie__btn:hover {
+  border-color: rgba(0, 0, 0, 0.18);
+  box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.4);
+}
+.ie__btn:active {
+  border-color: #b9b9b9;
+  background: #dedede;
+}
+.ie__btn:active > * {
+  transform: translate(1px, 1px);
+}
+.ie__btn--disable {
+  filter: grayscale(1);
+  opacity: 0.55;
+  pointer-events: none;
+}
+.ie__btn img {
+  width: 30px;
+  height: 30px;
+}
+.ie__btn img.sm {
+  width: 22px;
+  height: 22px;
+  margin: 0 3px 0 1px;
+}
+.ie__btn .t {
+  margin-right: 4px;
+}
+.ie__btn .arr {
+  width: 0;
+  height: 0;
+  border: 3px solid transparent;
+  border-top-color: #000;
+  border-bottom: 0;
+  margin: 0 4px;
+}
+.ie__sep {
+  width: 1px;
+  height: 80%;
+  background: rgba(0, 0, 0, 0.2);
+  margin: 0 3px;
+}
+.ie__address {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 4px 2px;
+  font-size: 11px;
+  background: #ece9d8;
+  border-bottom: 1px solid #c5c2b8;
+  box-shadow: inset 0 -2px 3px -1px rgba(45, 45, 45, 0.4);
+  flex-shrink: 0;
+}
+.ie__address-title {
+  color: rgba(0, 0, 0, 0.5);
+  padding: 0 4px;
+}
+.ie__address-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  background: #fff;
+  border: 1px solid #7f9db9;
+  padding: 0 3px;
+}
+.ie__address-box img {
+  width: 14px;
+  height: 14px;
+}
+.ie__address-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 12px;
+}
+.ie__go {
+  display: flex;
+  align-items: center;
+  gap: 3px;
   font-size: 12px;
   border: 1px solid transparent;
   background: transparent;
-  padding: 2px 8px;
   border-radius: 3px;
+  padding: 1px 6px 1px 3px;
   cursor: pointer;
-  color: #0a1835;
 }
-.tbtn.icon {
-  font-size: 14px;
-  padding: 2px 7px;
+.ie__go:hover {
+  border-color: rgba(0, 0, 0, 0.18);
+  background: rgba(255, 255, 255, 0.5);
 }
-.tbtn:hover:not(:disabled) {
-  border-color: #b6c8e8;
-  background: #eef4fd;
-}
-.tbtn:disabled {
-  color: #aaa;
-  cursor: default;
-}
-.addressbar {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 3px 6px;
-  background: #ece9d8;
-  border-bottom: 1px solid #c5c2b8;
-  flex-shrink: 0;
-}
-.addressbar .lbl {
-  font-size: 12px;
-  color: #555;
-}
-.addressbar input {
-  flex: 1;
-  border: 1px solid #7f9db9;
-  padding: 2px 6px;
-  font-size: 12px;
-}
-.addressbar .go {
-  font-size: 12px;
-  padding: 2px 10px;
+.ie__go img {
+  width: 18px;
+  height: 18px;
 }
 
 .page {
