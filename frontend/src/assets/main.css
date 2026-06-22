@@ -8,6 +8,7 @@ body {
   height: 100%;
   background: #010409;
   -webkit-font-smoothing: antialiased;
+  font-family: Tahoma, 'Noto Sans', sans-serif;
 }
 
 #app {

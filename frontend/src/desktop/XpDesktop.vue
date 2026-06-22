@@ -110,7 +110,15 @@ function iconPointerMove(e: PointerEvent) {
   iconPos[dragId] = { x: Math.max(0, dOrigX + dx), y: Math.max(0, dOrigY + dy) }
 }
 function iconPointerUp() {
-  if (dragId && dragged) saveLayout()
+  if (dragId && dragged) {
+    // Alignement sur la grille au lâcher.
+    const p = iconPos[dragId]
+    if (p) {
+      p.x = X0 + Math.max(0, Math.round((p.x - X0) / COL_W)) * COL_W
+      p.y = Y0 + Math.max(0, Math.round((p.y - Y0) / ROW_H)) * ROW_H
+    }
+    saveLayout()
+  }
   dragId = null
   window.removeEventListener('pointermove', iconPointerMove)
   window.removeEventListener('pointerup', iconPointerUp)
