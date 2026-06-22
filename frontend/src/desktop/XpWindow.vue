@@ -155,7 +155,6 @@ function startResize(e: PointerEvent, d: string) {
 .window-body {
   flex: 1;
   min-height: 0;
-  margin: 0 3px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
