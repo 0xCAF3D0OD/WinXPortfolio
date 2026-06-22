@@ -42,7 +42,7 @@ export const profile: Profile = {
   tagline: 'Infrastructure as code, automatisation et plateformes cloud.',
   email: 'kevin.dinocera@protonmail.com',
   github: 'https://github.com/0xCAF3D0OD',
-  linkedin: 'https://www.linkedin.com/in/',
+  linkedin: 'www.linkedin.com/in/kevin-di-nocera',
 }
 
 export const about: string[] = [
