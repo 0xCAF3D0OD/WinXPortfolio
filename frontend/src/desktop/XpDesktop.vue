@@ -153,7 +153,7 @@ function startScreensaver() {
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
     const img = new Image()
-    img.src = '/xp/windoors_agit.svg'
+    img.src = '/xp/windoors-2.svg'
     const w = 150
     const h = 136
     let x = Math.random() * (canvas.width - w)

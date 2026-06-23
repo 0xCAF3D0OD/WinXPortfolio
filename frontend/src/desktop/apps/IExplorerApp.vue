@@ -48,6 +48,9 @@ const favorites = [
   { label: 'alloremplacant.ch', url: 'https://alloremplacant.ch' },
   { label: 'Educhat (dépôt)', url: 'https://github.com/0xCAF3D0OD/Educhat' },
 ]
+const menuItems = ['Fichier', 'Edition', 'Affichage', 'Favoris', 'Outils', '?']
+const tabsRight = ['Lire', 'Modifier', 'Historique']
+const footerBlocks = [0, 1, 2, 3]
 
 const history = ref<Page[]>([home])
 const index = ref(0)
@@ -112,6 +115,103 @@ function go() {
 function scrollTo(id: string) {
   pageEl.value?.querySelector('#' + id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
+function toggleFavorites(event: MouseEvent) {
+  event.stopPropagation()
+  favOpen.value = !favOpen.value
+}
+
+const sideNavigationLinks = [
+  { label: 'Accueil', onClick: goHome },
+  { label: 'Biographie', onClick: () => scrollTo('bio') },
+  { label: 'Parcours professionnel', onClick: () => scrollTo('parcours') },
+  { label: 'Formation', onClick: () => scrollTo('formation') },
+  { label: 'Compétences', onClick: () => scrollTo('competences') },
+  { label: 'Projets', onClick: () => scrollTo('projets') },
+]
+const sideExternalLinks = [
+  { label: 'GitHub ↗', url: profile.github },
+  { label: 'alloremplacant.ch ↗', url: 'https://alloremplacant.ch' },
+]
+
+interface ToolbarButton {
+  key: string
+  title: string
+  icon: string
+  iconClass?: string
+  label?: string
+  arrow?: boolean
+  disabled?: boolean
+  favorite?: boolean
+  onClick?: (event: MouseEvent) => void
+}
+const toolbarSections = computed<ToolbarButton[][]>(() => [
+  [
+    {
+      key: 'back',
+      title: 'Précédent',
+      icon: '/xp/ie/back.png',
+      label: 'Précédent',
+      arrow: true,
+      disabled: index.value === 0,
+      onClick: back,
+    },
+    {
+      key: 'forward',
+      title: 'Suivant',
+      icon: '/xp/ie/forward.png',
+      arrow: true,
+      disabled: index.value >= history.value.length - 1,
+      onClick: forward,
+    },
+    { key: 'stop', title: 'Arrêter', icon: '/xp/ie/stop.png', disabled: true },
+    { key: 'refresh', title: 'Actualiser', icon: '/xp/ie/refresh.png', onClick: goHome },
+    { key: 'home', title: 'Démarrage', icon: '/xp/ie/home.png', onClick: goHome },
+  ],
+  [
+    {
+      key: 'search',
+      title: 'Rechercher',
+      icon: '/xp/ie/search.png',
+      iconClass: 'sm',
+      label: 'Rechercher',
+      onClick: () => scrollTo('competences'),
+    },
+    {
+      key: 'favorites',
+      title: 'Favoris',
+      icon: '/xp/ie/favorites.png',
+      iconClass: 'sm',
+      label: 'Favoris',
+      favorite: true,
+      onClick: toggleFavorites,
+    },
+    { key: 'history', title: 'Historique', icon: '/xp/ie/history.png', iconClass: 'sm' },
+  ],
+  [
+    {
+      key: 'mail',
+      title: 'Courrier — me contacter',
+      icon: '/xp/ie/mail.png',
+      arrow: true,
+      onClick: mail,
+    },
+    {
+      key: 'print',
+      title: 'Imprimer',
+      icon: '/xp/ie/printer.png',
+      iconClass: 'sm12',
+      onClick: print,
+    },
+    { key: 'edit', title: 'Modifier', icon: '/xp/ie/edit.png', disabled: true },
+    {
+      key: 'msn',
+      title: 'Messenger',
+      icon: '/xp/ie/msn.png',
+      iconClass: 'sm12',
+      onClick: () => openApp('msn'),
+    },
+  ],
+])
 
 const activeProject = computed(() =>
   current.value.kind === 'project' && current.value.projectIndex !== undefined
@@ -123,7 +223,6 @@ const activeCustom = computed(() =>
     ? customPages.value.find((p) => p.slug === current.value.pageSlug) || null
     : null,
 )
-const firstName = profile.name.split(' ')[0]
 </script>
 
 <template>
@@ -131,51 +230,33 @@ const firstName = profile.name.split(' ')[0]
     <!-- Barre d'outils -->
     <!-- Barre de menus -->
     <div class="ie__menu">
-      <span>Fichier</span><span>Edition</span><span>Affichage</span><span>Favoris</span
-      ><span>Outils</span><span>?</span>
-      <img class="ie__menu-logo" src="/xp/ie/windows.png" alt="" />
+      <span v-for="item in menuItems" :key="item">{{ item }}</span>
+      <img class="ie__menu-logo" src="/xp/tray/xplogo.png" alt="" />
     </div>
 
     <!-- Barre de fonctions -->
     <div class="ie__bar">
-      <div
-        class="ie__btn"
-        :class="{ 'ie__btn--disable': index === 0 }"
-        title="Précédent"
-        @click="back"
-      >
-        <img src="/xp/ie/back.png" alt="" /><span class="t">Précédent</span><i class="arr"></i>
-      </div>
-      <div
-        class="ie__btn"
-        :class="{ 'ie__btn--disable': index >= history.length - 1 }"
-        title="Suivant"
-        @click="forward"
-      >
-        <img src="/xp/ie/forward.png" alt="" /><i class="arr"></i>
-      </div>
-      <div class="ie__btn ie__btn--disable" title="Arrêter"><img src="/xp/ie/stop.png" alt="" /></div>
-      <div class="ie__btn" title="Actualiser" @click="goHome"><img src="/xp/ie/refresh.png" alt="" /></div>
-      <div class="ie__btn" title="Démarrage" @click="goHome"><img src="/xp/ie/home.png" alt="" /></div>
-      <span class="ie__sep"></span>
-      <div class="ie__btn" title="Rechercher" @click="scrollTo('competences')">
-        <img class="sm" src="/xp/ie/search.png" alt="" /><span class="t">Rechercher</span>
-      </div>
-      <div class="ie__btn fav" title="Favoris" @click.stop="favOpen = !favOpen">
-        <img class="sm" src="/xp/ie/favorites.png" alt="" /><span class="t">Favoris</span>
-        <div v-if="favOpen" class="fav-menu" @click.stop>
-          <p class="fav-title">Favoris</p>
-          <a v-for="f in favorites" :key="f.url" @click="openExternal(f.url)">{{ f.label }}</a>
+      <template v-for="(section, sectionIndex) in toolbarSections" :key="sectionIndex">
+        <span v-if="sectionIndex > 0" class="ie__sep"></span>
+        <div
+          v-for="button in section"
+          :key="button.key"
+          class="ie__btn"
+          :class="{ 'ie__btn--disable': button.disabled, fav: button.favorite }"
+          :title="button.title"
+          @click="(event) => button.onClick?.(event)"
+        >
+          <img :class="button.iconClass" :src="button.icon" alt="" /><span
+            v-if="button.label"
+            class="t"
+            >{{ button.label }}</span
+          ><i v-if="button.arrow" class="arr"></i>
+          <div v-if="button.favorite && favOpen" class="fav-menu" @click.stop>
+            <p class="fav-title">Favoris</p>
+            <a v-for="f in favorites" :key="f.url" @click="openExternal(f.url)">{{ f.label }}</a>
+          </div>
         </div>
-      </div>
-      <div class="ie__btn" title="Historique"><img class="sm" src="/xp/ie/history.png" alt="" /></div>
-      <span class="ie__sep"></span>
-      <div class="ie__btn" title="Courrier — me contacter" @click="mail">
-        <img src="/xp/ie/mail.png" alt="" /><i class="arr"></i>
-      </div>
-      <div class="ie__btn" title="Imprimer" @click="print"><img class="sm12" src="/xp/ie/printer.png" alt="" /></div>
-      <div class="ie__btn ie__btn--disable" title="Modifier"><img src="/xp/ie/edit.png" alt="" /></div>
-      <div class="ie__btn" title="Messenger" @click="openApp('msn')"><img class="sm12" src="/xp/ie/msn.png" alt="" /></div>
+      </template>
     </div>
 
     <!-- Barre d'adresse -->
@@ -202,23 +283,23 @@ const firstName = profile.name.split(' ')[0]
           </div>
           <p class="navtitle">navigation</p>
           <ul>
-            <li><a @click="goHome">Accueil</a></li>
-            <li><a @click="scrollTo('bio')">Biographie</a></li>
-            <li><a @click="scrollTo('parcours')">Parcours professionnel</a></li>
-            <li><a @click="scrollTo('formation')">Formation</a></li>
-            <li><a @click="scrollTo('competences')">Compétences</a></li>
-            <li><a @click="scrollTo('projets')">Projets</a></li>
+            <li v-for="link in sideNavigationLinks" :key="link.label">
+              <a @click="link.onClick">{{ link.label }}</a>
+            </li>
           </ul>
           <template v-if="customPages.length">
             <p class="navtitle">pages</p>
             <ul>
-              <li v-for="p in customPages" :key="p.slug"><a @click="openCustom(p)">{{ p.title }}</a></li>
+              <li v-for="p in customPages" :key="p.slug">
+                <a @click="openCustom(p)">{{ p.title }}</a>
+              </li>
             </ul>
           </template>
           <p class="navtitle">liens externes</p>
           <ul>
-            <li><a @click="openExternal(profile.github)">GitHub ↗</a></li>
-            <li><a @click="openExternal('https://alloremplacant.ch')">alloremplacant.ch ↗</a></li>
+            <li v-for="link in sideExternalLinks" :key="link.url">
+              <a @click="openExternal(link.url)">{{ link.label }}</a>
+            </li>
           </ul>
         </aside>
 
@@ -230,8 +311,7 @@ const firstName = profile.name.split(' ')[0]
               >Discussion ↗</span
             >
             <span class="tabs-right"
-              ><span class="tab">Lire</span><span class="tab">Modifier</span
-              ><span class="tab">Historique</span></span
+              ><span v-for="tab in tabsRight" :key="tab" class="tab">{{ tab }}</span></span
             >
           </div>
 
@@ -268,26 +348,28 @@ const firstName = profile.name.split(' ')[0]
               <div class="ib-title">{{ profile.name }}</div>
               <div class="ib-photo"><img :src="avatarSrc" alt="" @error="avatarFallback" /></div>
               <table>
-                <tr>
-                  <th>Poste</th>
-                  <td>{{ profile.role }}</td>
-                </tr>
-                <tr>
-                  <th>Localisation</th>
-                  <td>{{ profile.location }}</td>
-                </tr>
-                <tr>
-                  <th>Courriel</th>
-                  <td>
-                    <a class="ext" @click="openExternal('mailto:' + profile.email)">{{
-                      profile.email
-                    }}</a>
-                  </td>
-                </tr>
-                <tr>
-                  <th>GitHub</th>
-                  <td><a class="ext" @click="openExternal(profile.github)">@0xCAF3D0OD</a></td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <th>Poste</th>
+                    <td>{{ profile.role }}</td>
+                  </tr>
+                  <tr>
+                    <th>Localisation</th>
+                    <td>{{ profile.location }}</td>
+                  </tr>
+                  <tr>
+                    <th>Courriel</th>
+                    <td>
+                      <a class="ext" @click="openExternal('mailto:' + profile.email)">{{
+                        profile.email
+                      }}</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>GitHub</th>
+                    <td><a class="ext" @click="openExternal(profile.github)">@0xCAF3D0OD</a></td>
+                  </tr>
+                </tbody>
               </table>
             </div>
 
@@ -320,10 +402,12 @@ const firstName = profile.name.split(' ')[0]
 
             <h2 id="competences">Compétences</h2>
             <table class="skills">
-              <tr v-for="s in skills" :key="s.group">
-                <th>{{ s.group }}</th>
-                <td>{{ s.items.join(', ') }}</td>
-              </tr>
+              <tbody>
+                <tr v-for="s in skills" :key="s.group">
+                  <th>{{ s.group }}</th>
+                  <td>{{ s.items.join(', ') }}</td>
+                </tr>
+              </tbody>
             </table>
 
             <h2 id="projets">Projets</h2>
@@ -348,13 +432,11 @@ const firstName = profile.name.split(' ')[0]
         <img src="/xp/ie/ie-paper.png" alt="" />
         <span>Terminé</span>
       </div>
-      <div class="ie__footer-block"></div>
-      <div class="ie__footer-block"></div>
-      <div class="ie__footer-block"></div>
-      <div class="ie__footer-block"></div>
-      <div class="ie__footer-right">
-        <img src="/xp/ie/windows.png" alt="" />
+      <div v-for="block in footerBlocks" :key="block" class="ie__footer-block"></div>
+      <div class="ie__footer-right" style="position: relative">
+        <img src="/xp/ie/earth.png" alt="" />
         <span>Internet</span>
+        <div class="dots"></div>
       </div>
     </div>
   </div>
@@ -774,6 +856,26 @@ table.skills td {
 .ie__footer-right img {
   width: 14px;
   height: 14px;
+}
+
+.ie__footer-right .dots {
+  position: absolute;
+  right: 11px;
+  bottom: -1px;
+  width: 2px;
+  height: 2px;
+  box-shadow:
+    2px 0px rgba(0, 0, 0, 0.25),
+    5.5px 0px rgba(0, 0, 0, 0.25),
+    9px 0px rgba(0, 0, 0, 0.25),
+    5.5px -3.5px rgba(0, 0, 0, 0.25),
+    9px -3.5px rgba(0, 0, 0, 0.25),
+    9px -7px rgba(0, 0, 0, 0.25),
+    3px 1px rgba(255, 255, 255, 1),
+    6.5px 1px rgba(255, 255, 255, 1),
+    10px 1px rgba(255, 255, 255, 1),
+    10px -2.5px rgba(255, 255, 255, 1),
+    10px -6px rgba(255, 255, 255, 1);
 }
 
 /* Onglet Discussion cliquable */

@@ -28,7 +28,7 @@ function login() {
     <main class="stage">
       <div class="brand">
         <div class="logo">
-          <img class="flag" src="/xp/windoors_agit.svg" alt="" />
+          <img class="flag" src="/xp/windoors-2.svg" alt="" />
           <span class="tag-tech">0xCAF3D0OD<i>®</i></span>
           <span class="wordmark"
             ><b><span class="initiale">W</span>indoors</b><i>DK</i></span
@@ -140,7 +140,7 @@ function login() {
 .tag-tech {
   position: absolute;
   top: 130px; /* Ajuste cette valeur pour monter/descendre par rapport au drapeau */
-  right: 150px; /* Propulse le texte sur la droite du logo */
+  right: 165px; /* Propulse le texte sur la droite du logo */
 
   font-family: Tahoma, sans-serif; /* Style très "DevOps / adresse mémoire" */
   font-size: 12px;
@@ -157,10 +157,9 @@ function login() {
   display: inline-block; /* Nécessaire pour que le transform s'applique correctement */
 }
 .brand .logo .flag {
-  width: 186px;
+  width: 200px;
   height: 137px;
   margin-left: 66px;
-  filter: drop-shadow(1px 2px 4px rgba(0, 0, 0, 0.45));
 }
 .brand .wordmark {
   display: flex;

@@ -14,7 +14,7 @@ onBeforeUnmount(() => clearTimeout(timer))
   <div class="loading" @click="emit('done')">
     <div class="brand">
       <div class="logo">
-        <img class="flag" src="/xp/windoors_agit.svg" alt="" />
+        <img class="flag" src="/xp/windoors-2.svg" alt="" />
         <span class="tag-tech">0xCAF3D0OD<i>®</i></span>
         <span class="wordmark"
           ><b><span class="initiale">W</span>indoors</b><i>DK</i></span
