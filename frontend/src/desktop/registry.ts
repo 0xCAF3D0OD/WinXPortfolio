@@ -11,6 +11,7 @@ import MyComputerApp from './apps/MyComputerApp.vue'
 import RecycleBinApp from './apps/RecycleBinApp.vue'
 import HelpSupportApp from './apps/HelpSupportApp.vue'
 import WelcomeApp from './apps/WelcomeApp.vue'
+import ControlPanelApp from './apps/ControlPanelApp.vue'
 import { icons } from './icons'
 import { games } from '../games/registry'
 import { pdfViewer } from './pdfViewer'
@@ -124,6 +125,15 @@ export const apps: AppDef[] = [
     component: MyComputerApp,
     w: 620,
     h: 440,
+  },
+  {
+    id: 'controlpanel',
+    label: 'Panneau de configuration',
+    title: 'Panneau de configuration',
+    icon: '/xp/start/controll.png',
+    component: ControlPanelApp,
+    w: 640,
+    h: 460,
   },
   {
     id: 'welcome',

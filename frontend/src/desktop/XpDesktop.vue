@@ -44,7 +44,15 @@ provide('openApp', openById)
 provide('openWindow', (def: AppDef) => open(def))
 // Apps volontairement absentes du bureau (restent accessibles via le menu
 // Démarrer) — pour garder le bureau centré sur l'essentiel « qui je suis ».
-const HIDDEN_DESKTOP = new Set(['game-hearts', 'help', 'game-morpion', 'contact', 'msn', 'welcome'])
+const HIDDEN_DESKTOP = new Set([
+  'game-hearts',
+  'help',
+  'game-morpion',
+  'contact',
+  'msn',
+  'welcome',
+  'controlpanel',
+])
 const desktopApps = computed(() => apps.filter((a) => !HIDDEN_DESKTOP.has(a.id)))
 
 // --- Icônes du bureau : disposition en groupes + déplacement (persisté) ---

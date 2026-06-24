@@ -73,7 +73,7 @@ const linkedinUrl = profile.linkedin.startsWith('http')
             <img src="/xp/windowsIcons/308(16x16).png" alt="" />
             <span class="ptxt">Mes projets</span>
           </a>
-          <a @click="openApp('skills')">
+          <a @click="openApp('controlpanel')">
             <img src="/xp/windowsIcons/300(16x16).png" alt="" />
             <span class="ptxt">Panneau de configuration</span>
           </a>

@@ -31,7 +31,7 @@ const places = [
   { label: 'Poste de travail', icon: '/xp/start/computer.png', app: 'mycomputer' },
 ]
 const tools = [
-  { label: 'Panneau de configuration', icon: '/xp/start/controll.png', app: 'skills' },
+  { label: 'Panneau de configuration', icon: '/xp/start/controll.png', app: 'controlpanel' },
   { label: 'Aide et support', icon: '/xp/start/help.png', app: 'help' },
   { label: 'Rechercher', icon: '/xp/start/search.png', app: null },
   { label: 'Exécuter…', icon: '/xp/start/run.png', app: 'terminal' },
