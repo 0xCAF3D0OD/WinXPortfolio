@@ -50,7 +50,7 @@ function dismiss() {
 <style scoped>
 .balloon {
   position: fixed;
-  right: 86px;
+  right: 34px;
   bottom: 38px;
   z-index: 11000;
   opacity: 0;

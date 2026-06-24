@@ -290,6 +290,12 @@ function onDesktopClick() {
           :title="muted ? 'Son coupé' : 'Volume'"
           @click="toggleMute"
         />
+        <img
+          class="tray-ico tray-risk"
+          src="/xp/windowsIcons/229(16x16).png"
+          alt="Alerte de sécurité"
+          title="Alerte de sécurité"
+        />
         <span class="tray-clock">{{ clock }}</span>
       </div>
 
