@@ -156,6 +156,8 @@ function print() {
 function go() {
   let url = address.value.trim()
   if (!url) return
+  // Adresses internes WikiDK (fausses URLs) : on reste dans l'app, pas d'onglet réel.
+  if (/wikidk\.org/i.test(url)) return
   if (!/^https?:\/\//.test(url) && url.includes('.')) url = 'https://' + url
   if (/^https?:\/\//.test(url)) openExternal(url)
 }
