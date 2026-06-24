@@ -1,7 +1,51 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 // Centre d'aide et de support façon Windows XP.
-// Contenu factuel : procédure réelle de l'« Assistance à distance » (Remote
-// Assistance) de Windows XP. Source : csgnetwork.com/rdcsupport.html
+// Page d'accueil reproduisant l'interface réelle (rubriques + icônes), et page
+// liée « Assistance à distance » dont le contenu vient de la documentation
+// fournie (csgnetwork.com/rdcsupport.html), reformulé et sourcé.
+type View = 'home' | 'remote'
+const view = ref<View>('home')
+
+const ico = (name: string) => `/xp/windowsIcons/${name}`
+
+const helpTopics = [
+  { label: 'Nouveautés de Windows XP', icon: ico('windows.png') },
+  { label: 'Musique, vidéo, jeux et photos', icon: ico('846(16x16).png') },
+  { label: 'Réseau et Web', icon: ico('404(16x16).png') },
+  { label: 'Travailler à distance', icon: ico('rdp.png') },
+  { label: 'Personnaliser votre ordinateur', icon: ico('300(16x16).png') },
+  { label: 'Accessibilité', icon: ico('238(16x16).png') },
+  { label: 'Impression et télécopie', icon: ico('printer(32x32).png') },
+  { label: 'Résolution d\'un problème', icon: ico('214(16x16).png') },
+]
+
+const askAssistance = [
+  {
+    label: 'Inviter un ami à se connecter à votre ordinateur avec l\'Assistance à distance',
+    icon: ico('357(16x16).png'),
+    go: 'remote' as View,
+  },
+  { label: 'Obtenir de l\'aide de Microsoft', icon: ico('747(16x16).png'), go: null },
+]
+
+const pickTask = [
+  { label: 'Maintenir votre ordinateur à jour avec Windows Update', icon: ico('322(16x16).png') },
+  {
+    label: 'Rechercher du matériel et des logiciels compatibles avec Windows XP',
+    icon: ico('392(16x16).png'),
+  },
+  {
+    label: 'Annuler des modifications avec la Restauration du système',
+    icon: ico('restore.ico'),
+  },
+  {
+    label: 'Utiliser des outils pour afficher les informations de votre ordinateur',
+    icon: ico('505(16x16).png'),
+  },
+]
+
 const steps = [
   'Cliquez sur Démarrer, puis sur Aide et support.',
   'Dans le Centre d\'aide et de support, sous « Demander de l\'assistance », cliquez sur « Inviter un ami à se connecter à votre ordinateur avec l\'Assistance à distance ».',
@@ -35,57 +79,93 @@ const steps = [
 
     <!-- Barre de navigation -->
     <nav class="help-nav">
-      <span class="nav-btn disabled">◄ Précédent</span>
+      <span class="nav-btn" :class="{ disabled: view === 'home' }" @click="view = 'home'">
+        ◄ Précédent
+      </span>
       <span class="nav-btn disabled">Suivant ►</span>
       <span class="nav-sep"></span>
-      <span class="nav-btn">Accueil</span>
+      <span class="nav-btn" @click="view = 'home'">Accueil</span>
       <span class="nav-btn">Index</span>
       <span class="nav-btn">Favoris</span>
       <span class="nav-btn">Historique</span>
+      <span class="nav-btn">Support</span>
+      <span class="nav-btn">Options</span>
     </nav>
 
-    <div class="help-body">
-      <!-- Volet gauche -->
-      <aside class="help-side">
-        <p class="side-title">Demander de l'assistance</p>
-        <a class="side-link active">Inviter un ami avec l'Assistance à distance</a>
-        <a class="side-link">Obtenir une assistance Microsoft en ligne</a>
-        <p class="side-title">Choisir une rubrique d'aide</p>
-        <a class="side-link">Nouveautés de Windows XP</a>
-        <a class="side-link">Musique, vidéo, jeux et photos</a>
-        <a class="side-link">Connexions réseau et Web</a>
-        <a class="side-link">Protection de votre ordinateur</a>
-      </aside>
+    <!-- ACCUEIL -->
+    <div v-if="view === 'home'" class="help-home">
+      <div class="col col-left">
+        <section class="card">
+          <h2 class="card-title">Choisir une rubrique d'aide</h2>
+          <ul class="topics">
+            <li v-for="t in helpTopics" :key="t.label" class="topic">
+              <img :src="t.icon" alt="" />
+              <a>{{ t.label }}</a>
+            </li>
+          </ul>
+        </section>
+      </div>
 
-      <!-- Contenu -->
-      <article class="help-content">
-        <h1>Obtenir de l'aide avec l'Assistance à distance</h1>
-        <p>
-          Lorsqu'un problème survient sur votre ordinateur, il peut être difficile d'expliquer ce
-          qui se passe et de le résoudre au téléphone avec un ami ou un technicien. Windows XP
-          propose pour cela l'<b>Assistance à distance</b> : vous pouvez inviter un ami ou un
-          technicien à voir votre Bureau et, si nécessaire, à prendre temporairement le contrôle de
-          votre clavier et de votre souris via Internet. Vous voyez tout ce qu'il fait, ce qui vous
-          permet aussi d'apprendre comment résoudre le problème.
-        </p>
+      <div class="col col-right">
+        <section class="card">
+          <h2 class="card-title">Demander de l'assistance</h2>
+          <ul class="links">
+            <li v-for="a in askAssistance" :key="a.label" class="link">
+              <img :src="a.icon" alt="" />
+              <a :class="{ clickable: a.go }" @click="a.go && (view = a.go)">{{ a.label }}</a>
+            </li>
+          </ul>
+        </section>
 
-        <h2>Pour utiliser l'Assistance à distance</h2>
-        <ol class="steps">
-          <li v-for="(s, i) in steps" :key="i">{{ s }}</li>
-        </ol>
+        <section class="card">
+          <h2 class="card-title">Choisir une tâche</h2>
+          <ul class="links">
+            <li v-for="t in pickTask" :key="t.label" class="link">
+              <img :src="t.icon" alt="" />
+              <a>{{ t.label }}</a>
+            </li>
+          </ul>
+        </section>
 
-        <p class="note">
-          L'Assistance à distance est un moyen rapide d'obtenir de l'aide à distance — et aussi de
-          montrer quelque chose à quelqu'un, comme un diaporama de photos ou un nouveau programme.
-        </p>
+        <section class="card didyouknow">
+          <h2 class="card-title">Le saviez-vous ?</h2>
+          <p>
+            Connectez-vous à Internet pour recevoir les dernières actualités et mises à jour dans
+            le Centre d'aide et de support.
+          </p>
+        </section>
+      </div>
+    </div>
 
-        <p class="source">
-          Source :
-          <a href="http://www.csgnetwork.com/rdcsupport.html" target="_blank" rel="noreferrer">
-            XP Remote Desktop Connection Support — csgnetwork.com
-          </a>
-        </p>
-      </article>
+    <!-- PAGE : ASSISTANCE À DISTANCE -->
+    <div v-else class="help-article">
+      <p class="crumbs">
+        <a @click="view = 'home'">Centre d'aide et de support</a>
+        <span> › Demander de l'assistance</span>
+      </p>
+      <h1>Obtenir de l'aide avec l'Assistance à distance</h1>
+      <p>
+        Lorsqu'un problème survient sur votre ordinateur, il peut être difficile d'expliquer ce qui
+        se passe et de le résoudre au téléphone avec un ami ou un technicien. Windows XP propose
+        pour cela l'<b>Assistance à distance</b> : vous pouvez inviter un ami ou un technicien à
+        voir votre Bureau et, si nécessaire, à prendre temporairement le contrôle de votre clavier
+        et de votre souris via Internet. Vous voyez tout ce qu'il fait, ce qui vous permet aussi
+        d'apprendre comment résoudre le problème.
+      </p>
+      <h2>Pour utiliser l'Assistance à distance</h2>
+      <ol class="steps">
+        <li v-for="(s, i) in steps" :key="i">{{ s }}</li>
+      </ol>
+      <p class="note">
+        L'Assistance à distance est un moyen rapide d'obtenir de l'aide à distance — et aussi de
+        montrer quelque chose à quelqu'un, comme un diaporama de photos ou un nouveau programme.
+      </p>
+      <p class="source">
+        Source :
+        <a href="http://www.csgnetwork.com/rdcsupport.html" target="_blank" rel="noreferrer">
+          XP Remote Desktop Connection Support — csgnetwork.com
+        </a>
+      </p>
     </div>
   </div>
 </template>
@@ -145,7 +225,7 @@ const steps = [
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   padding: 4px 10px;
   background: linear-gradient(180deg, #f6f5ee 0%, #e6e3d8 100%);
   border-bottom: 1px solid #b7b5ad;
@@ -177,62 +257,111 @@ const steps = [
   margin: 0 4px;
 }
 
-/* Corps deux colonnes */
-.help-body {
+/* Accueil deux colonnes */
+.help-home {
   flex: 1;
   min-height: 0;
   display: flex;
+  gap: 12px;
+  padding: 12px;
+  overflow: auto;
+  background: linear-gradient(180deg, #eef3fb 0%, #dfe8f6 100%);
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.col-left {
+  width: 46%;
+}
+.col-right {
+  flex: 1;
+}
+.card {
+  background: #fff;
+  border: 1px solid #b9c8e3;
+  border-radius: 4px;
   overflow: hidden;
 }
-.help-side {
-  width: 210px;
+.card-title {
+  margin: 0;
+  padding: 5px 10px;
+  font-size: 13px;
+  color: #fff;
+  background: linear-gradient(180deg, #5b86d6 0%, #3f6cc4 100%);
+}
+.topics,
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 8px 10px;
+}
+.topic,
+.link {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 4px 0;
+}
+.topic img,
+.link img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
   flex-shrink: 0;
-  background: linear-gradient(180deg, #5b86d6 0%, #4a73c8 100%);
-  color: #fff;
-  padding: 10px 10px;
-  overflow: auto;
+  margin-top: 1px;
 }
-.side-title {
-  margin: 8px 0 5px;
-  font-weight: bold;
-  font-size: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  padding-bottom: 3px;
-}
-.side-title:first-child {
-  margin-top: 0;
-}
-.side-link {
-  display: block;
-  font-size: 12px;
-  color: #fff;
-  padding: 3px 0;
+.topic a,
+.link a {
+  color: #16469f;
   cursor: pointer;
 }
-.side-link:hover {
+.topic a:hover,
+.link a.clickable:hover {
   text-decoration: underline;
+  color: #d35400;
 }
-.side-link.active {
-  font-weight: bold;
-  color: #ffe27a;
+.link a:not(.clickable) {
+  cursor: default;
+}
+.didyouknow p {
+  margin: 0;
+  padding: 8px 10px;
+  line-height: 1.5;
+  color: #333;
 }
 
-.help-content {
+/* Page article */
+.help-article {
   flex: 1;
+  min-height: 0;
   overflow: auto;
-  padding: 14px 20px;
+  padding: 14px 22px;
 }
-.help-content h1 {
+.crumbs {
+  margin: 0 0 10px;
+  font-size: 11px;
+  color: #666;
+}
+.crumbs a {
+  color: #16469f;
+  cursor: pointer;
+}
+.crumbs a:hover {
+  text-decoration: underline;
+}
+.help-article h1 {
   font-size: 17px;
   color: #16469f;
   margin: 0 0 10px;
 }
-.help-content h2 {
+.help-article h2 {
   font-size: 14px;
   color: #16469f;
   margin: 16px 0 8px;
 }
-.help-content p {
+.help-article p {
   line-height: 1.5;
   margin: 0 0 10px;
 }
