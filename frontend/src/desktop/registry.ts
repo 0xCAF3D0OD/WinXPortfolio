@@ -94,11 +94,11 @@ export const apps: AppDef[] = [
   {
     id: 'msn',
     label: 'MSN',
-    title: 'MSN',
+    title: 'MSN Messenger',
     icon: icons.msn,
     component: DiscordApp,
-    w: 420,
-    h: 520,
+    w: 360,
+    h: 560,
   },
   {
     id: 'cv-fr',
