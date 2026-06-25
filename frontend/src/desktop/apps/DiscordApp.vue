@@ -6,7 +6,7 @@ import { computed } from 'vue'
 // ⚠️ À RENSEIGNER : mets ici l'ID de ton serveur Discord (clic droit sur le
 // serveur → « Copier l'identifiant », mode développeur activé). Et active le
 // widget côté Discord : Paramètres du serveur → Widget → « Activer le widget ».
-const DISCORD_SERVER_ID = ''
+const DISCORD_SERVER_ID = '1519700730435604480'
 
 const widgetUrl = computed(() =>
   DISCORD_SERVER_ID ? `https://discord.com/widget?id=${DISCORD_SERVER_ID}&theme=dark` : '',
@@ -36,8 +36,8 @@ const widgetUrl = computed(() =>
         <p class="msn-setup-title">Widget Discord à configurer</p>
         <p class="msn-setup-text">
           Renseigne l'ID de ton serveur dans
-          <code>DiscordApp.vue</code> (constante <code>DISCORD_SERVER_ID</code>) et active le
-          widget côté Discord, puis le salon apparaîtra ici.
+          <code>DiscordApp.vue</code> (constante <code>DISCORD_SERVER_ID</code>) et active le widget
+          côté Discord, puis le salon apparaîtra ici.
         </p>
       </div>
     </div>
