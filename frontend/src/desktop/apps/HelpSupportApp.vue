@@ -99,11 +99,11 @@ const steps = [
       <span class="nav-btn disabled">Suivant ►</span>
       <span class="nav-sep"></span>
       <span class="nav-btn" @click="view = 'home'">Accueil</span>
-      <span class="nav-btn">Index</span>
-      <span class="nav-btn">Favoris</span>
-      <span class="nav-btn">Historique</span>
-      <span class="nav-btn">Support</span>
-      <span class="nav-btn">Options</span>
+      <span class="nav-btn inert">Index</span>
+      <span class="nav-btn inert">Favoris</span>
+      <span class="nav-btn inert">Historique</span>
+      <span class="nav-btn inert">Support</span>
+      <span class="nav-btn inert">Options</span>
     </nav>
 
     <!-- ACCUEIL -->
@@ -267,6 +267,10 @@ const steps = [
 .nav-btn.disabled:hover {
   border-color: transparent;
   background: transparent;
+}
+/* Onglet de nav inerte : visible et cliquable, mais grisé (sans effet) */
+.nav-btn.inert {
+  color: #9a9a9a;
 }
 .nav-sep {
   width: 1px;

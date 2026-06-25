@@ -91,12 +91,12 @@ function toggleClassic() {
       <div class="fb-btn disabled">
         <img src="/xp/windowsIcons/forward.png" alt="" /><i class="fb-arrow"></i>
       </div>
-      <div class="fb-btn"><img class="norm" src="/xp/windowsIcons/up.png" alt="Dossier parent" /></div>
+      <div class="fb-btn inert"><img class="norm" src="/xp/windowsIcons/up.png" alt="Dossier parent" /></div>
       <div class="fb-sep"></div>
       <div class="fb-btn" :class="{ active: searchOpen }" @click="toggleSearch">
         <img class="norm" src="/xp/windowsIcons/299(32x32).png" alt="" /><span>Rechercher</span>
       </div>
-      <div class="fb-btn">
+      <div class="fb-btn inert">
         <img class="norm" src="/xp/windowsIcons/337(32x32).png" alt="" /><span>Dossiers</span>
       </div>
     </div>
@@ -116,7 +116,7 @@ function toggleClassic() {
           view === 'detail' && selected ? ' \\ ' + selected.title : ''
         }}
       </div>
-      <button class="go"><img src="/xp/ie/go.png" class="mini" alt="" /> Aller</button>
+      <button class="go inert"><img src="/xp/ie/go.png" class="mini" alt="" /> Aller</button>
     </div>
 
     <div class="cp-body">
@@ -319,6 +319,12 @@ function toggleClassic() {
 .fb-btn.active {
   border-color: rgba(0, 0, 0, 0.2);
   background: #dbe6ff;
+}
+/* Boutons inertes (visibles, cliquables, mais sans effet) : logo grisé */
+.fb-btn.inert img,
+.go.inert img {
+  filter: grayscale(1);
+  opacity: 0.4;
 }
 
 /* Barre de recherche */

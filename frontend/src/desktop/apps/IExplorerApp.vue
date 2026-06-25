@@ -210,6 +210,7 @@ interface ToolbarButton {
   label?: string
   arrow?: boolean
   disabled?: boolean
+  inert?: boolean
   favorite?: boolean
   onClick?: (event: MouseEvent) => void
 }
@@ -254,7 +255,7 @@ const toolbarSections = computed<ToolbarButton[][]>(() => [
       favorite: true,
       onClick: toggleFavorites,
     },
-    { key: 'history', title: 'Historique', icon: '/xp/ie/history.png', iconClass: 'sm' },
+    { key: 'history', title: 'Historique', icon: '/xp/ie/history.png', iconClass: 'sm', inert: true },
   ],
   [
     {
@@ -311,7 +312,7 @@ const activeCustom = computed(() =>
           v-for="button in section"
           :key="button.key"
           class="ie__btn"
-          :class="{ 'ie__btn--disable': button.disabled, fav: button.favorite }"
+          :class="{ 'ie__btn--disable': button.disabled, 'ie__btn--inert': button.inert, fav: button.favorite }"
           :title="button.title"
           @click="(event) => button.onClick?.(event)"
         >
@@ -589,6 +590,11 @@ const activeCustom = computed(() =>
   filter: grayscale(1);
   opacity: 0.55;
   pointer-events: none;
+}
+/* Bouton inerte : visible et cliquable, mais le logo est grisé (sans effet) */
+.ie__btn--inert img {
+  filter: grayscale(1);
+  opacity: 0.4;
 }
 .ie__btn img {
   width: 30px;
