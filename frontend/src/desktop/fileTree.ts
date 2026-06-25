@@ -1,4 +1,4 @@
-import { projects } from '../portfolio'
+import { profile, projects } from '../portfolio'
 
 // Mini « système de fichiers » statique (pas de store réactif, pas de filesystem
 // distant) : un simple arbre de nœuds indexés par id, chacun connaissant son
@@ -21,6 +21,9 @@ export interface FsNode {
 }
 
 const FOLDER = '/xp/win/folder.png'
+
+const ghUrl = profile.github
+const liUrl = profile.linkedin.startsWith('http') ? profile.linkedin : `https://${profile.linkedin}`
 
 // Les projets du portfolio deviennent des éléments du dossier « Projets ».
 const projectNodes: FsNode[] = projects.map((p, i) => ({
@@ -82,8 +85,8 @@ const nodes: FsNode[] = [
   },
 
   // Raccourcis « À propos de moi » visibles sur le Poste de travail
-  { id: 'gh', name: 'GitHub', type: 'link', icon: '/xp/windowsIcons/earth.png', parent: 'computer' },
-  { id: 'li', name: 'LinkedIn', type: 'link', icon: '/xp/windowsIcons/links.png', parent: 'computer' },
+  { id: 'gh', name: 'GitHub', type: 'link', icon: '/xp/windowsIcons/earth.png', parent: 'computer', href: ghUrl },
+  { id: 'li', name: 'LinkedIn', type: 'link', icon: '/xp/windowsIcons/links.png', parent: 'computer', href: liUrl },
   {
     id: 'contact',
     name: 'Me contacter',
@@ -97,13 +100,6 @@ const nodes: FsNode[] = [
 ]
 
 export const fsTree: Record<string, FsNode> = Object.fromEntries(nodes.map((n) => [n.id, n]))
-
-// Liens externes posés après coup (dépendent du profil).
-import { profile } from '../portfolio'
-const ghUrl = profile.github
-const liUrl = profile.linkedin.startsWith('http') ? profile.linkedin : `https://${profile.linkedin}`
-fsTree.gh.href = ghUrl
-fsTree.li.href = liUrl
 
 // Chemin lisible façon barre d'adresse XP : « Poste de travail \ Disque local (C:) \ Projets ».
 export function fsPath(id: string): string {
