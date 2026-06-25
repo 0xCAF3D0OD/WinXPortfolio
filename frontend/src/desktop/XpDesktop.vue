@@ -170,6 +170,30 @@ function resetIdle() {
   idleTimer = window.setTimeout(startScreensaver, IDLE_MS)
 }
 
+// Les jeux (Pinball…) tournent dans une iframe : les événements souris/clavier
+// restent à l'intérieur et n'atteignent jamais `window`, donc l'économiseur se
+// déclencherait en pleine partie. On écoute aussi l'activité dans les iframes de
+// même origine pour réinitialiser l'inactivité tant que l'on joue.
+const attachedFrames = new WeakSet<HTMLIFrameElement>()
+function attachFrameActivity() {
+  document.querySelectorAll<HTMLIFrameElement>('.area iframe').forEach((frame) => {
+    if (attachedFrames.has(frame)) return
+    attachedFrames.add(frame)
+    const attach = () => {
+      try {
+        const doc = frame.contentDocument
+        if (!doc) return
+        activityEvents.forEach((e) => doc.addEventListener(e, resetIdle, { passive: true }))
+      } catch {
+        /* iframe d'une autre origine : impossible d'écouter, on ignore */
+      }
+    }
+    attach() // si déjà chargée
+    frame.addEventListener('load', attach) // et à chaque (re)chargement
+  })
+}
+let frameObserver: MutationObserver | null = null
+
 function startScreensaver() {
   screensaver.value = true
   nextTick(() => {
@@ -250,6 +274,13 @@ onMounted(() => {
     requestAnimationFrame(() => placeCentered(w, 0, -8))
   }
   activityEvents.forEach((e) => window.addEventListener(e, resetIdle))
+  // Surveille l'apparition d'iframes (fenêtres de jeu) pour y brancher l'activité.
+  const area = document.querySelector('.area')
+  if (area) {
+    frameObserver = new MutationObserver(() => attachFrameActivity())
+    frameObserver.observe(area, { childList: true, subtree: true })
+  }
+  attachFrameActivity()
   resetIdle()
 })
 onBeforeUnmount(() => {
@@ -257,6 +288,7 @@ onBeforeUnmount(() => {
   clearTimeout(idleTimer)
   if (ssRaf) cancelAnimationFrame(ssRaf)
   activityEvents.forEach((e) => window.removeEventListener(e, resetIdle))
+  frameObserver?.disconnect()
 })
 
 function onDesktopClick() {
