@@ -1,64 +1,102 @@
 <script setup lang="ts">
-import { inject, ref, computed } from 'vue'
+import { inject, ref, computed, watch } from 'vue'
 import { profile } from '../../portfolio'
+import { fsTree, fsPath, type FsNode } from '../fileTree'
+
+// Explorer XP générique piloté par fileTree.ts : le Poste de travail, les
+// disques et chaque dossier (Projets…) utilisent ce même composant. La prop
+// `start` indique le nœud de départ.
+const props = withDefaults(defineProps<{ start?: string }>(), { start: 'computer' })
 
 const openApp = inject<(id: string) => void>('openApp', () => {})
+// Fenêtre hôte (fournie par XpWindow) : on met à jour son titre / icône au fil
+// de la navigation, comme un vrai Explorer.
+const win = inject<{ title: string; icon: string } | null>('win', null)
 
-const linkedinUrl = profile.linkedin.startsWith('http')
-  ? profile.linkedin
-  : `https://${profile.linkedin}`
+// --- Navigation (historique façon Précédent / Suivant / Dossier parent) ---
+const history = ref<string[]>([props.start])
+const index = ref(0)
+const currentId = computed(() => history.value[index.value]!)
+const node = computed<FsNode>(() => fsTree[currentId.value]!)
+const children = computed<FsNode[]>(() =>
+  (node.value.children ?? []).map((id) => fsTree[id]).filter(Boolean) as FsNode[],
+)
 
-const files = [
-  { name: 'Mes projets', icon: '/xp/win/folder.png', app: 'projects' },
-  { name: 'À propos de Kevin', icon: '/xp/win/folder.png', app: 'about' },
-]
-const drives = [
-  { name: 'Disque local (C:)', icon: '/xp/win/disk.png', free: '34,2 Go libres sur 80,0 Go', pct: 58 },
-  { name: 'Données (D:)', icon: '/xp/win/disk.png', free: '120 Go libres sur 250 Go', pct: 52 },
-]
-const devices = [{ name: 'Lecteur CD (E:)', icon: '/xp/win/cd.png' }]
-const aboutMe: { name: string; icon: string; href?: string; app?: string }[] = [
-  { name: 'GitHub', icon: '/xp/windowsIcons/earth.png', href: profile.github },
-  { name: 'LinkedIn', icon: '/xp/windowsIcons/links.png', href: linkedinUrl },
-  { name: 'Me contacter', icon: '/xp/start/emailoutlook.png', app: 'contact' },
-]
+function navigate(id: string) {
+  history.value = [...history.value.slice(0, index.value + 1), id]
+  index.value = history.value.length - 1
+}
+function back() {
+  if (index.value > 0) index.value--
+}
+function forward() {
+  if (index.value < history.value.length - 1) index.value++
+}
+function up() {
+  if (node.value.parent) navigate(node.value.parent)
+}
+const canBack = computed(() => index.value > 0)
+const canForward = computed(() => index.value < history.value.length - 1)
+const canUp = computed(() => !!node.value.parent)
 
-// Recherche (loupe) : filtre les éléments de cet ordinateur par nom.
+// Ouvre un nœud : conteneur → on y entre ; application → fenêtre ; lien → onglet.
+function activate(n: FsNode) {
+  if (n.type === 'computer' || n.type === 'drive' || n.type === 'folder') navigate(n.id)
+  else if (n.type === 'app' && n.open) openApp(n.open)
+  else if (n.type === 'link' && n.href) window.open(n.href, '_blank', 'noopener')
+}
+
+// Titre / icône de la fenêtre suivent le dossier courant.
+watch(
+  node,
+  (n) => {
+    if (win) {
+      win.title = n.name
+      win.icon = n.icon
+    }
+  },
+  { immediate: true },
+)
+
+// --- Recherche (loupe) : filtre le contenu du dossier courant ---
 const searchOpen = ref(false)
 const query = ref('')
 function toggleSearch() {
   searchOpen.value = !searchOpen.value
   if (!searchOpen.value) query.value = ''
 }
-const has = (name: string) => name.toLowerCase().includes(query.value.trim().toLowerCase())
-const fFiles = computed(() => files.filter((f) => has(f.name)))
-const fDrives = computed(() => drives.filter((d) => has(d.name)))
-const fDevices = computed(() => devices.filter((d) => has(d.name)))
-const fAbout = computed(() => aboutMe.filter((a) => has(a.name)))
-const noResults = computed(
-  () =>
-    !!query.value.trim() &&
-    !fFiles.value.length &&
-    !fDrives.value.length &&
-    !fDevices.value.length &&
-    !fAbout.value.length,
+const q = computed(() => query.value.trim().toLowerCase())
+const shown = computed(() =>
+  q.value ? children.value.filter((c) => c.name.toLowerCase().includes(q.value)) : children.value,
 )
+
+// Groupes (uniquement à la racine Poste de travail, comme le vrai XP)
+const grouped = computed(() => node.value.type === 'computer' && !q.value)
+const gFiles = computed(() => shown.value.filter((c) => c.type === 'folder' || c.type === 'app'))
+const gDrives = computed(() => shown.value.filter((c) => c.type === 'drive'))
+const gDevices = computed(() => shown.value.filter((c) => c.type === 'device'))
+const gLinks = computed(() => shown.value.filter((c) => c.type === 'link'))
+const noResults = computed(() => !!q.value && shown.value.length === 0)
+
+const linkedinUrl = profile.linkedin.startsWith('http')
+  ? profile.linkedin
+  : `https://${profile.linkedin}`
 </script>
 
 <template>
   <div class="mc">
-    <!-- Barre de fonctions (Précédent / Suivant / Dossier parent / Rechercher / Dossiers) -->
+    <!-- Barre de fonctions : Précédent / Suivant / Dossier parent / Rechercher / Dossiers -->
     <div class="funcbar">
-      <div class="fb-btn disabled">
+      <div class="fb-btn" :class="{ disabled: !canBack }" @click="back">
         <img src="/xp/windowsIcons/back.png" alt="" />
         <span>Précédent</span>
         <i class="fb-arrow"></i>
       </div>
-      <div class="fb-btn disabled">
+      <div class="fb-btn" :class="{ disabled: !canForward }" @click="forward">
         <img src="/xp/windowsIcons/forward.png" alt="" />
         <i class="fb-arrow"></i>
       </div>
-      <div class="fb-btn inert">
+      <div class="fb-btn" :class="{ disabled: !canUp }" @click="up">
         <img class="norm" src="/xp/win/up.png" alt="Dossier parent" />
       </div>
       <div class="fb-sep"></div>
@@ -75,44 +113,40 @@ const noResults = computed(
     <!-- Barre de recherche -->
     <div v-if="searchOpen" class="mc-search">
       <img src="/xp/windowsIcons/299(32x32).png" alt="" />
-      <input v-model="query" type="text" placeholder="Rechercher dans le Poste de travail…" />
+      <input v-model="query" type="text" placeholder="Rechercher dans ce dossier…" />
       <button v-if="query" class="mc-search-clear" @click="query = ''">✕</button>
     </div>
 
     <!-- Barre d'adresse -->
     <div class="addressbar">
       <span class="lbl">Adresse</span>
-      <div class="path"><img src="/xp/win/computer16.png" class="mini" alt="" /> Poste de travail</div>
+      <div class="path"><img :src="node.icon" class="mini" alt="" /> {{ fsPath(currentId) }}</div>
       <button class="go inert"><img src="/xp/ie/go.png" class="mini" alt="" /> Aller</button>
     </div>
 
     <div class="body">
       <!-- Volet latéral -->
       <aside class="side">
-        <div class="panel">
-          <p class="panel-title">Gestion du système</p>
-          <a @click="openApp('about')">
-            <img src="/xp/windowsIcons/view-info.ico" alt="" />
-            <span class="ptxt">Afficher les informations système</span>
+        <div v-if="canUp" class="panel">
+          <p class="panel-title">Gestion des dossiers</p>
+          <a @click="up">
+            <img src="/xp/win/up.png" alt="" />
+            <span class="ptxt">Remonter d'un niveau</span>
           </a>
-          <a @click="openApp('controlpanel')">
-            <img src="/xp/windowsIcons/302(16x16).png" alt="" />
-            <span class="ptxt">Ajouter ou supprimer des programmes</span>
-          </a>
-          <a @click="openApp('iexplorer')">
-            <img src="/xp/windowsIcons/ie.png" alt="" />
-            <span class="ptxt">Ouvrir WikiDK</span>
+          <a @click="navigate('computer')">
+            <img src="/xp/win/computer16.png" alt="" />
+            <span class="ptxt">Poste de travail</span>
           </a>
         </div>
         <div class="panel">
           <p class="panel-title">Autres emplacements</p>
-          <a @click="openApp('projects')">
-            <img src="/xp/windowsIcons/308(16x16).png" alt="" />
-            <span class="ptxt">Mes projets</span>
-          </a>
           <a @click="openApp('controlpanel')">
             <img src="/xp/windowsIcons/300(16x16).png" alt="" />
             <span class="ptxt">Panneau de configuration</span>
+          </a>
+          <a @click="openApp('iexplorer')">
+            <img src="/xp/windowsIcons/ie.png" alt="" />
+            <span class="ptxt">Ouvrir WikiDK</span>
           </a>
           <a @click="openApp('guestbook')">
             <img src="/xp/windowsIcons/mail.png" alt="" />
@@ -121,8 +155,11 @@ const noResults = computed(
         </div>
         <div class="panel">
           <p class="panel-title">Détails</p>
-          <p class="detail-name">{{ profile.name }}</p>
-          <p class="detail-role">{{ profile.role }}</p>
+          <p class="detail-name">{{ node.name }}</p>
+          <p class="detail-role">
+            <template v-if="node.type === 'drive'">{{ node.free }}</template>
+            <template v-else>{{ profile.role }}</template>
+          </p>
           <a :href="profile.github" target="_blank" rel="noreferrer">
             <img src="/xp/windowsIcons/earth.png" alt="" />
             <span class="ptxt">GitHub</span>
@@ -136,51 +173,64 @@ const noResults = computed(
 
       <!-- Contenu -->
       <div class="content">
-        <template v-if="fFiles.length">
-          <p class="group">Fichiers stockés sur cet ordinateur</p>
-          <div class="items">
-            <button v-for="f in fFiles" :key="f.name" class="item" @click="openApp(f.app)">
-              <img :src="f.icon" alt="" />
-              <span>{{ f.name }}</span>
-            </button>
-          </div>
-        </template>
+        <!-- Racine Poste de travail : groupes façon XP -->
+        <template v-if="grouped">
+          <template v-if="gFiles.length">
+            <p class="group">Fichiers stockés sur cet ordinateur</p>
+            <div class="items">
+              <button v-for="f in gFiles" :key="f.id" class="item" @click="activate(f)">
+                <img :src="f.icon" alt="" />
+                <span>{{ f.name }}</span>
+              </button>
+            </div>
+          </template>
 
-        <template v-if="fDrives.length">
-          <p class="group">Disques durs</p>
-          <div class="items">
-            <button v-for="d in fDrives" :key="d.name" class="item drive">
-              <img :src="d.icon" alt="" />
-              <span class="dn">{{ d.name }}</span>
-              <span class="ds">{{ d.free }}</span>
-              <span class="bar"><i :style="{ width: d.pct + '%' }"></i></span>
-            </button>
-          </div>
-        </template>
+          <template v-if="gDrives.length">
+            <p class="group">Disques durs</p>
+            <div class="items">
+              <button v-for="d in gDrives" :key="d.id" class="item drive" @click="activate(d)">
+                <img :src="d.icon" alt="" />
+                <span class="dn">{{ d.name }}</span>
+                <span class="ds">{{ d.free }}</span>
+                <span class="bar"><i :style="{ width: (d.pct ?? 0) + '%' }"></i></span>
+              </button>
+            </div>
+          </template>
 
-        <template v-if="fDevices.length">
-          <p class="group">Périphériques utilisant des supports amovibles</p>
-          <div class="items">
-            <button v-for="dev in fDevices" :key="dev.name" class="item">
-              <img :src="dev.icon" alt="" />
-              <span>{{ dev.name }}</span>
-            </button>
-          </div>
-        </template>
+          <template v-if="gDevices.length">
+            <p class="group">Périphériques utilisant des supports amovibles</p>
+            <div class="items">
+              <button v-for="dev in gDevices" :key="dev.id" class="item">
+                <img :src="dev.icon" alt="" />
+                <span>{{ dev.name }}</span>
+              </button>
+            </div>
+          </template>
 
-        <template v-if="fAbout.length">
-          <p class="group">À propos de moi :)</p>
-          <div class="items">
-            <template v-for="a in fAbout" :key="a.name">
-              <a v-if="a.href" class="item me" :href="a.href" target="_blank" rel="noreferrer">
-                <img :src="a.icon" alt="" />
-                <span>{{ a.name }}</span>
-              </a>
-              <button v-else class="item me" @click="openApp(a.app!)">
+          <template v-if="gLinks.length">
+            <p class="group">À propos de moi :)</p>
+            <div class="items">
+              <button v-for="a in gLinks" :key="a.id" class="item me" @click="activate(a)">
                 <img :src="a.icon" alt="" />
                 <span>{{ a.name }}</span>
               </button>
-            </template>
+            </div>
+          </template>
+        </template>
+
+        <!-- Dossier ordinaire : grille de mosaïques (même format que C:) -->
+        <template v-else>
+          <div class="tiles">
+            <button
+              v-for="c in shown"
+              :key="c.id"
+              class="tile"
+              @click="activate(c)"
+            >
+              <img :src="c.icon" alt="" />
+              <span class="tname">{{ c.name }}</span>
+              <span v-if="c.detail" class="tdesc">{{ c.detail }}</span>
+            </button>
           </div>
         </template>
 
@@ -188,9 +238,7 @@ const noResults = computed(
       </div>
     </div>
 
-    <div class="statusbar">
-      {{ fFiles.length + fDrives.length + fDevices.length + fAbout.length }} objet(s)
-    </div>
+    <div class="statusbar">{{ shown.length }} objet(s)</div>
   </div>
 </template>
 
@@ -260,7 +308,6 @@ const noResults = computed(
   border-color: rgba(0, 0, 0, 0.2);
   background: #dbe6ff;
 }
-/* Boutons inertes (visibles, cliquables, mais sans effet) : logo grisé */
 .fb-btn.inert img,
 .go.inert img {
   filter: grayscale(1);
@@ -342,6 +389,7 @@ const noResults = computed(
 .mini {
   width: 14px;
   height: 14px;
+  object-fit: contain;
 }
 .body {
   flex: 1;
@@ -480,6 +528,52 @@ const noResults = computed(
   display: block;
   height: 100%;
   background: linear-gradient(to right, #3aa0ff, #1f6fd0);
+}
+
+/* Vue mosaïque (contenu d'un dossier ordinaire, ex. Projets) */
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-content: flex-start;
+}
+.tile {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 8px;
+  align-items: center;
+  width: 240px;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+.tile:hover {
+  background: #e8f0fe;
+  border-color: #b6c8e8;
+}
+.tile img {
+  grid-row: 1 / span 2;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+.tile .tname {
+  font-size: 12px;
+  font-weight: bold;
+  color: #1c4587;
+  align-self: end;
+}
+.tile .tdesc {
+  font-size: 11px;
+  color: #666;
+  align-self: start;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .statusbar {
   border-top: 1px solid #d6d3ce;

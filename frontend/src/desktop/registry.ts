@@ -1,7 +1,6 @@
 import { defineComponent, h, markRaw, type Component } from 'vue'
 import TerminalConsole from '../components/TerminalConsole.vue'
 import AboutApp from './apps/AboutApp.vue'
-import ProjectsApp from './apps/ProjectsApp.vue'
 import SkillsApp from './apps/SkillsApp.vue'
 import ContactApp from './apps/ContactApp.vue'
 import GuestbookApp from './apps/GuestbookApp.vue'
@@ -29,6 +28,16 @@ function withHelp(g: GameDef): Component {
     defineComponent({
       name: 'GameWithHelp',
       setup: () => () => h(GameFrame, { component: comp, rules, newGame }),
+    }),
+  )
+}
+
+// Ouvre l'Explorer générique (MyComputerApp) sur un dossier précis de fileTree.
+function folderApp(start: string): Component {
+  return markRaw(
+    defineComponent({
+      name: 'FolderApp',
+      setup: () => () => h(MyComputerApp, { start }),
     }),
   )
 }
@@ -76,7 +85,7 @@ export const apps: AppDef[] = [
     label: 'Projets',
     title: 'Projets',
     icon: icons.folder,
-    component: ProjectsApp,
+    component: folderApp('projects'),
     w: 620,
     h: 440,
   },
