@@ -7,6 +7,7 @@ const game: GameDef = {
   w: 700,
   h: 560,
   component: iframeGame('/games/solitaire/index.html'),
+  newGame: '#js-reset',
   rules: {
     title: 'Règles du Solitaire',
     intro:

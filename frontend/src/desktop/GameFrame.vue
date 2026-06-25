@@ -5,14 +5,25 @@ import type { GameHelp } from '../games/types'
 // Encadre un jeu : une barre de menu façon Windows XP (cf. 3D Pinball : « Game
 // Options Help ») dont le menu « Help » ouvre les règles du jeu dans une vraie
 // boîte de dialogue XP. Le jeu occupe tout l'espace en dessous.
-defineProps<{ component: Component; rules: GameHelp }>()
+const props = defineProps<{ component: Component; rules: GameHelp; newGame?: string }>()
 const helpOpen = ref(false)
+const root = ref<HTMLElement>()
+
+// « New game » : pour un jeu en iframe (même origine), clique le bouton de
+// nouvelle partie situé à l'intérieur de l'iframe.
+function startNewGame() {
+  if (!props.newGame) return
+  const frame = root.value?.querySelector('iframe') as HTMLIFrameElement | null
+  const btn = frame?.contentWindow?.document.querySelector(props.newGame) as HTMLElement | null
+  btn?.click()
+}
 </script>
 
 <template>
-  <div class="gframe">
+  <div ref="root" class="gframe">
     <!-- Barre de menu façon XP -->
     <div class="gframe-menu">
+      <span v-if="newGame" class="gframe-item" @click="startNewGame">New game</span>
       <span class="gframe-item" :class="{ active: helpOpen }" @click="helpOpen = !helpOpen">Help</span>
     </div>
 

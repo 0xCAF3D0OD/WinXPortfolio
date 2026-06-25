@@ -24,10 +24,11 @@ function withHelp(g: GameDef): Component {
   const comp = g.component
   const rules = g.rules
   if (!rules) return comp
+  const newGame = g.newGame
   return markRaw(
     defineComponent({
       name: 'GameWithHelp',
-      setup: () => () => h(GameFrame, { component: comp, rules }),
+      setup: () => () => h(GameFrame, { component: comp, rules, newGame }),
     }),
   )
 }

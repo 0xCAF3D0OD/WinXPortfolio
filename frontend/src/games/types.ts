@@ -17,6 +17,10 @@ export interface GameDef {
   h?: number
   component: Component // composant Vue du jeu
   rules?: GameHelp // règles affichées par le bouton « ? » (absent = pas d'aide)
+  // Pour un jeu en iframe : sélecteur du bouton « nouvelle partie » à l'intérieur
+  // de l'iframe. S'il est fourni, le cadre ajoute un item « New game » dans son
+  // bandeau qui clique ce bouton (même origine).
+  newGame?: string
 }
 
 // Aide pour intégrer un jeu HTML5 externe via une iframe.
