@@ -10,7 +10,7 @@ export const icons = {
   computer: '/xp/icons/computer.ico',
   iexplorer: '/xp/start/iexplorer.png',
   mine: '/xp/icons/mine.svg',
-  msn: '/xp/msn/windowsmesenger.png',
+  msn: '/xp/WindowsXPIconsSVG/MSN Messenger.svg',
   games: '/xp/icons/games.svg',
   outlook: '/xp/start/emailoutlook.png',
   pdf: '/xp/icons/pdf.svg',
