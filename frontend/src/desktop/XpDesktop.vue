@@ -46,6 +46,7 @@ provide('openWindow', (def: AppDef) => open(def))
 // Démarrer) — pour garder le bureau centré sur l'essentiel « qui je suis ».
 const HIDDEN_DESKTOP = new Set([
   'game-pinball',
+  'game-solitaire',
   'game-hearts',
   'help',
   'game-morpion',

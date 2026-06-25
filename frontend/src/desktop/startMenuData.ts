@@ -141,7 +141,7 @@ export const allProgramsMenu: StartMenuEntry[] = [
       },
       { type: 'item', icon: xpIcon('pinball.png'), label: 'Pinball', app: 'game-pinball' },
       { type: 'item', icon: xpIcon('890(16x16).png'), label: 'Internet Pinball' },
-      { type: 'item', icon: xpIcon('solitaire.png'), label: 'Solitaire' },
+      { type: 'item', icon: xpIcon('solitaire.png'), label: 'Solitaire', app: 'game-solitaire' },
       { type: 'item', icon: xpIcon('spider.png'), label: 'Spider Solitaire' },
       { type: 'item', icon: '/xp/icons/morpion.svg', label: 'Morpion', app: 'game-morpion' },
     ],
