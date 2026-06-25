@@ -26,7 +26,7 @@ const openCascade = ref<'progs' | 'recent' | 'connect' | null>(null)
 // Colonne de droite : libellés façon XP qui ouvrent les apps du portfolio.
 const places = [
   { label: 'Mes projets', icon: '/xp/start/mydocs.png', app: 'projects' },
-  { label: 'Mes compétences', icon: '/xp/start/mymusic.png', app: 'skills' },
+  { label: 'Mes compétences', icon: '/xp/start/mymusic.png', app: 'controlpanel' },
   { label: 'Me contacter', icon: '/xp/start/mypics.png', app: 'contact' },
   { label: 'Poste de travail', icon: '/xp/start/computer.png', app: 'mycomputer' },
 ]

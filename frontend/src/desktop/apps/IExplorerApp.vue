@@ -50,6 +50,9 @@ const home: Page = { url: wikiUrl, title: 'Kevin Di Nocera — WikiDK', kind: 'w
 const issuesRepo = 'https://github.com/0xCAF3D0OD/Educhat'
 
 const favOpen = ref(false)
+// Recherche « dans la page » (loupe) : trouve le texte et y défile.
+const findOpen = ref(false)
+const findQuery = ref('')
 const favorites = [
   { label: 'GitHub — @0xCAF3D0OD', url: profile.github },
   { label: 'LinkedIn', url: 'https://' + profile.linkedin.replace(/^https?:\/\//, '') },
@@ -164,6 +167,23 @@ function go() {
 function scrollTo(id: string) {
   pageEl.value?.querySelector('#' + id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
+function toggleFind() {
+  findOpen.value = !findOpen.value
+  if (!findOpen.value) findQuery.value = ''
+}
+function runFind() {
+  const q = findQuery.value.trim().toLowerCase()
+  if (!q || !pageEl.value) return
+  const els = pageEl.value.querySelectorAll(
+    '.wiki-main h1, .wiki-main h2, .wiki-main p, .wiki-main li, .wiki-side a',
+  )
+  const hit = Array.from(els).find((el) => el.textContent?.toLowerCase().includes(q))
+  if (hit) {
+    hit.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    hit.classList.add('ie-flash')
+    setTimeout(() => hit.classList.remove('ie-flash'), 1600)
+  }
+}
 function toggleFavorites(event: MouseEvent) {
   event.stopPropagation()
   favOpen.value = !favOpen.value
@@ -219,11 +239,11 @@ const toolbarSections = computed<ToolbarButton[][]>(() => [
   [
     {
       key: 'search',
-      title: 'Rechercher',
+      title: 'Rechercher dans la page',
       icon: '/xp/ie/search.png',
       iconClass: 'sm',
       label: 'Rechercher',
-      onClick: () => scrollTo('competences'),
+      onClick: toggleFind,
     },
     {
       key: 'favorites',
@@ -316,6 +336,20 @@ const activeCustom = computed(() =>
         <input v-model="address" type="text" @keyup.enter="go" aria-label="Adresse" />
       </div>
       <button class="ie__go" @click="go"><img src="/xp/ie/go.png" alt="" />Aller</button>
+    </div>
+
+    <!-- Barre de recherche dans la page -->
+    <div v-if="findOpen" class="ie__find">
+      <img src="/xp/ie/search.png" alt="" />
+      <span>Rechercher dans la page :</span>
+      <input
+        v-model="findQuery"
+        type="text"
+        placeholder="ex. Kubernetes, projet, formation…"
+        @keyup.enter="runFind"
+      />
+      <button @click="runFind">Suivant</button>
+      <button class="ie__find-close" @click="toggleFind">✕</button>
     </div>
 
     <!-- Contenu : WikiDK -->
@@ -636,6 +670,42 @@ const activeCustom = computed(() =>
 .ie__go img {
   width: 18px;
   height: 18px;
+}
+
+/* Barre de recherche dans la page */
+.ie__find {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  background: #eef3fb;
+  border-bottom: 1px solid #c5c2b8;
+  flex-shrink: 0;
+}
+.ie__find img {
+  width: 16px;
+  height: 16px;
+}
+.ie__find input {
+  flex: 1;
+  font-size: 12px;
+  padding: 2px 5px;
+  border: 1px solid #7f9db9;
+}
+.ie__find button {
+  font-size: 11px;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+.ie__find-close {
+  border: 1px solid #9aa0a6;
+  background: #fff;
+}
+.ie-flash {
+  background: #fff6a8 !important;
+  transition: background 0.4s;
+  border-radius: 2px;
 }
 
 .page {

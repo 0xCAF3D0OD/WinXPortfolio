@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 // Centre d'aide et de support façon Windows XP.
 // Page d'accueil reproduisant l'interface réelle (rubriques + icônes), et page
@@ -46,6 +46,20 @@ const pickTask = [
   },
 ]
 
+// Recherche (loupe) : filtre les rubriques, l'assistance et les tâches.
+const query = ref('')
+const has = (label: string) => label.toLowerCase().includes(query.value.trim().toLowerCase())
+const fTopics = computed(() => helpTopics.filter((t) => has(t.label)))
+const fAsk = computed(() => askAssistance.filter((a) => has(a.label)))
+const fTask = computed(() => pickTask.filter((t) => has(t.label)))
+const searching = computed(() => query.value.trim().length > 0)
+const noResults = computed(
+  () => searching.value && !fTopics.value.length && !fAsk.value.length && !fTask.value.length,
+)
+function onSearch() {
+  if (searching.value) view.value = 'home'
+}
+
 const steps = [
   'Cliquez sur Démarrer, puis sur Aide et support.',
   'Dans le Centre d\'aide et de support, sous « Demander de l\'assistance », cliquez sur « Inviter un ami à se connecter à votre ordinateur avec l\'Assistance à distance ».',
@@ -72,8 +86,8 @@ const steps = [
         <span>Centre d'aide et de support</span>
       </div>
       <div class="help-search">
-        <input type="text" placeholder="Rechercher" />
-        <button>Démarrer la recherche</button>
+        <input v-model="query" type="text" placeholder="Rechercher" @input="onSearch" />
+        <button @click="onSearch">Démarrer la recherche</button>
       </div>
     </header>
 
@@ -95,10 +109,10 @@ const steps = [
     <!-- ACCUEIL -->
     <div v-if="view === 'home'" class="help-home">
       <div class="col col-left">
-        <section class="card">
+        <section v-if="fTopics.length" class="card">
           <h2 class="card-title">Choisir une rubrique d'aide</h2>
           <ul class="topics">
-            <li v-for="t in helpTopics" :key="t.label" class="topic unavailable">
+            <li v-for="t in fTopics" :key="t.label" class="topic unavailable">
               <img :src="t.icon" alt="" />
               <a>{{ t.label }}</a>
             </li>
@@ -107,33 +121,37 @@ const steps = [
       </div>
 
       <div class="col col-right">
-        <section class="card">
+        <section v-if="fAsk.length" class="card">
           <h2 class="card-title">Demander de l'assistance</h2>
           <ul class="links">
-            <li v-for="a in askAssistance" :key="a.label" class="link" :class="{ unavailable: !a.go }">
+            <li v-for="a in fAsk" :key="a.label" class="link" :class="{ unavailable: !a.go }">
               <img :src="a.icon" alt="" />
               <a :class="{ clickable: a.go }" @click="a.go && (view = a.go)">{{ a.label }}</a>
             </li>
           </ul>
         </section>
 
-        <section class="card">
+        <section v-if="fTask.length" class="card">
           <h2 class="card-title">Choisir une tâche</h2>
           <ul class="links">
-            <li v-for="t in pickTask" :key="t.label" class="link unavailable">
+            <li v-for="t in fTask" :key="t.label" class="link unavailable">
               <img :src="t.icon" alt="" />
               <a>{{ t.label }}</a>
             </li>
           </ul>
         </section>
 
-        <section class="card didyouknow">
+        <section v-if="!searching" class="card didyouknow">
           <h2 class="card-title">Le saviez-vous ?</h2>
           <p>
             Connectez-vous à Internet pour recevoir les dernières actualités et mises à jour dans
             le Centre d'aide et de support.
           </p>
         </section>
+
+        <p v-if="noResults" class="help-noresult">
+          Aucune rubrique d'aide ne correspond à « {{ query }} ».
+        </p>
       </div>
     </div>
 
@@ -345,6 +363,11 @@ const steps = [
   padding: 8px 10px;
   line-height: 1.5;
   color: #333;
+}
+.help-noresult {
+  margin: 4px 0;
+  font-size: 12px;
+  color: #16469f;
 }
 
 /* Page article */

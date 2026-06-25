@@ -1,18 +1,48 @@
 <script setup lang="ts">
-import { inject } from 'vue'
+import { inject, ref, computed } from 'vue'
 import { profile } from '../../portfolio'
 
 const openApp = inject<(id: string) => void>('openApp', () => {})
 
+const linkedinUrl = profile.linkedin.startsWith('http')
+  ? profile.linkedin
+  : `https://${profile.linkedin}`
+
+const files = [
+  { name: 'Mes projets', icon: '/xp/win/folder.png', app: 'projects' },
+  { name: 'À propos de Kevin', icon: '/xp/win/folder.png', app: 'about' },
+]
 const drives = [
   { name: 'Disque local (C:)', icon: '/xp/win/disk.png', free: '34,2 Go libres sur 80,0 Go', pct: 58 },
   { name: 'Données (D:)', icon: '/xp/win/disk.png', free: '120 Go libres sur 250 Go', pct: 52 },
 ]
 const devices = [{ name: 'Lecteur CD (E:)', icon: '/xp/win/cd.png' }]
+const aboutMe: { name: string; icon: string; href?: string; app?: string }[] = [
+  { name: 'GitHub', icon: '/xp/windowsIcons/earth.png', href: profile.github },
+  { name: 'LinkedIn', icon: '/xp/windowsIcons/links.png', href: linkedinUrl },
+  { name: 'Me contacter', icon: '/xp/start/emailoutlook.png', app: 'contact' },
+]
 
-const linkedinUrl = profile.linkedin.startsWith('http')
-  ? profile.linkedin
-  : `https://${profile.linkedin}`
+// Recherche (loupe) : filtre les éléments de cet ordinateur par nom.
+const searchOpen = ref(false)
+const query = ref('')
+function toggleSearch() {
+  searchOpen.value = !searchOpen.value
+  if (!searchOpen.value) query.value = ''
+}
+const has = (name: string) => name.toLowerCase().includes(query.value.trim().toLowerCase())
+const fFiles = computed(() => files.filter((f) => has(f.name)))
+const fDrives = computed(() => drives.filter((d) => has(d.name)))
+const fDevices = computed(() => devices.filter((d) => has(d.name)))
+const fAbout = computed(() => aboutMe.filter((a) => has(a.name)))
+const noResults = computed(
+  () =>
+    !!query.value.trim() &&
+    !fFiles.value.length &&
+    !fDrives.value.length &&
+    !fDevices.value.length &&
+    !fAbout.value.length,
+)
 </script>
 
 <template>
@@ -32,7 +62,7 @@ const linkedinUrl = profile.linkedin.startsWith('http')
         <img class="norm" src="/xp/win/up.png" alt="Dossier parent" />
       </div>
       <div class="fb-sep"></div>
-      <div class="fb-btn">
+      <div class="fb-btn" :class="{ active: searchOpen }" @click="toggleSearch">
         <img class="norm" src="/xp/windowsIcons/299(32x32).png" alt="" />
         <span>Rechercher</span>
       </div>
@@ -40,6 +70,13 @@ const linkedinUrl = profile.linkedin.startsWith('http')
         <img class="norm" src="/xp/win/folders.png" alt="" />
         <span>Dossiers</span>
       </div>
+    </div>
+
+    <!-- Barre de recherche -->
+    <div v-if="searchOpen" class="mc-search">
+      <img src="/xp/windowsIcons/299(32x32).png" alt="" />
+      <input v-model="query" type="text" placeholder="Rechercher dans le Poste de travail…" />
+      <button v-if="query" class="mc-search-clear" @click="query = ''">✕</button>
     </div>
 
     <!-- Barre d'adresse -->
@@ -58,7 +95,7 @@ const linkedinUrl = profile.linkedin.startsWith('http')
             <img src="/xp/windowsIcons/view-info.ico" alt="" />
             <span class="ptxt">Afficher les informations système</span>
           </a>
-          <a @click="openApp('skills')">
+          <a @click="openApp('controlpanel')">
             <img src="/xp/windowsIcons/302(16x16).png" alt="" />
             <span class="ptxt">Ajouter ou supprimer des programmes</span>
           </a>
@@ -99,55 +136,61 @@ const linkedinUrl = profile.linkedin.startsWith('http')
 
       <!-- Contenu -->
       <div class="content">
-        <p class="group">Fichiers stockés sur cet ordinateur</p>
-        <div class="items">
-          <button class="item" @click="openApp('projects')">
-            <img src="/xp/win/folder.png" alt="" />
-            <span>Mes projets</span>
-          </button>
-          <button class="item" @click="openApp('about')">
-            <img src="/xp/win/folder.png" alt="" />
-            <span>À propos de Kevin</span>
-          </button>
-        </div>
+        <template v-if="fFiles.length">
+          <p class="group">Fichiers stockés sur cet ordinateur</p>
+          <div class="items">
+            <button v-for="f in fFiles" :key="f.name" class="item" @click="openApp(f.app)">
+              <img :src="f.icon" alt="" />
+              <span>{{ f.name }}</span>
+            </button>
+          </div>
+        </template>
 
-        <p class="group">Disques durs</p>
-        <div class="items">
-          <button v-for="d in drives" :key="d.name" class="item drive">
-            <img :src="d.icon" alt="" />
-            <span class="dn">{{ d.name }}</span>
-            <span class="ds">{{ d.free }}</span>
-            <span class="bar"><i :style="{ width: d.pct + '%' }"></i></span>
-          </button>
-        </div>
+        <template v-if="fDrives.length">
+          <p class="group">Disques durs</p>
+          <div class="items">
+            <button v-for="d in fDrives" :key="d.name" class="item drive">
+              <img :src="d.icon" alt="" />
+              <span class="dn">{{ d.name }}</span>
+              <span class="ds">{{ d.free }}</span>
+              <span class="bar"><i :style="{ width: d.pct + '%' }"></i></span>
+            </button>
+          </div>
+        </template>
 
-        <p class="group">Périphériques utilisant des supports amovibles</p>
-        <div class="items">
-          <button v-for="dev in devices" :key="dev.name" class="item">
-            <img :src="dev.icon" alt="" />
-            <span>{{ dev.name }}</span>
-          </button>
-        </div>
+        <template v-if="fDevices.length">
+          <p class="group">Périphériques utilisant des supports amovibles</p>
+          <div class="items">
+            <button v-for="dev in fDevices" :key="dev.name" class="item">
+              <img :src="dev.icon" alt="" />
+              <span>{{ dev.name }}</span>
+            </button>
+          </div>
+        </template>
 
-        <p class="group">À propos de moi :)</p>
-        <div class="items">
-          <a class="item me" :href="profile.github" target="_blank" rel="noreferrer">
-            <img src="/xp/windowsIcons/earth.png" alt="" />
-            <span>GitHub</span>
-          </a>
-          <a class="item me" :href="linkedinUrl" target="_blank" rel="noreferrer">
-            <img src="/xp/windowsIcons/links.png" alt="" />
-            <span>LinkedIn</span>
-          </a>
-          <button class="item me" @click="openApp('contact')">
-            <img src="/xp/start/emailoutlook.png" alt="" />
-            <span>Me contacter</span>
-          </button>
-        </div>
+        <template v-if="fAbout.length">
+          <p class="group">À propos de moi :)</p>
+          <div class="items">
+            <template v-for="a in fAbout" :key="a.name">
+              <a v-if="a.href" class="item me" :href="a.href" target="_blank" rel="noreferrer">
+                <img :src="a.icon" alt="" />
+                <span>{{ a.name }}</span>
+              </a>
+              <button v-else class="item me" @click="openApp(a.app!)">
+                <img :src="a.icon" alt="" />
+                <span>{{ a.name }}</span>
+              </button>
+            </template>
+          </div>
+        </template>
+
+        <p v-if="noResults" class="mc-noresult">Aucun élément ne correspond à « {{ query }} ».</p>
       </div>
     </div>
 
-    <div class="statusbar">{{ drives.length + devices.length + 2 }} objet(s)</div>
+    <div class="statusbar">
+      {{ fFiles.length + fDrives.length + fDevices.length + fAbout.length }} objet(s)
+    </div>
   </div>
 </template>
 
@@ -212,6 +255,44 @@ const linkedinUrl = profile.linkedin.startsWith('http')
   height: 80%;
   margin: 0 3px;
   background: rgba(0, 0, 0, 0.2);
+}
+.fb-btn.active {
+  border-color: rgba(0, 0, 0, 0.2);
+  background: #dbe6ff;
+}
+
+/* Barre de recherche */
+.mc-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  background: #eef3fb;
+  border-bottom: 1px solid #c7d4ea;
+  flex-shrink: 0;
+}
+.mc-search img {
+  width: 16px;
+  height: 16px;
+}
+.mc-search input {
+  flex: 1;
+  font-size: 12px;
+  padding: 2px 5px;
+  border: 1px solid #7f9db9;
+}
+.mc-search-clear {
+  border: 1px solid #9aa0a6;
+  background: #fff;
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1;
+  padding: 2px 6px;
+}
+.mc-noresult {
+  font-size: 12px;
+  color: #555;
+  margin: 10px 2px;
 }
 
 .addressbar {

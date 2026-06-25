@@ -52,6 +52,22 @@ let prevView: 'category' | 'classic' = 'category'
 const selected = ref<Category | null>(null)
 const detailProjects = computed(() => (selected.value ? projectsFor(selected.value.items) : []))
 
+// Recherche (loupe) : filtre les catégories par nom ou technologie.
+const searchOpen = ref(false)
+const query = ref('')
+function toggleSearch() {
+  searchOpen.value = !searchOpen.value
+  if (!searchOpen.value) query.value = ''
+  else if (view.value === 'detail') view.value = prevView
+}
+const shownCategories = computed(() => {
+  const q = query.value.trim().toLowerCase()
+  if (!q) return categories
+  return categories.filter(
+    (c) => c.title.toLowerCase().includes(q) || c.items.some((i) => i.toLowerCase().includes(q)),
+  )
+})
+
 function openGroup(c: Category) {
   selected.value = c
   if (view.value !== 'detail') prevView = view.value
@@ -77,12 +93,19 @@ function toggleClassic() {
       </div>
       <div class="fb-btn"><img class="norm" src="/xp/windowsIcons/up.png" alt="Dossier parent" /></div>
       <div class="fb-sep"></div>
-      <div class="fb-btn">
+      <div class="fb-btn" :class="{ active: searchOpen }" @click="toggleSearch">
         <img class="norm" src="/xp/windowsIcons/299(32x32).png" alt="" /><span>Rechercher</span>
       </div>
       <div class="fb-btn">
         <img class="norm" src="/xp/windowsIcons/337(32x32).png" alt="" /><span>Dossiers</span>
       </div>
+    </div>
+
+    <!-- Barre de recherche -->
+    <div v-if="searchOpen" class="cp-search">
+      <img src="/xp/windowsIcons/299(32x32).png" alt="" />
+      <input v-model="query" type="text" placeholder="Rechercher une technologie ou une catégorie…" />
+      <button v-if="query" class="cp-search-clear" @click="query = ''">✕</button>
     </div>
 
     <!-- Barre d'adresse -->
@@ -127,10 +150,10 @@ function toggleClassic() {
       <div class="cp-main">
         <!-- Vue par catégories -->
         <template v-if="view === 'category'">
-          <h1 class="cp-h1">Choisir une catégorie</h1>
+          <h1 class="cp-h1">{{ query ? 'Résultats de la recherche' : 'Choisir une catégorie' }}</h1>
           <p class="cp-sub">Ma stack technique, du provisioning à l'observabilité.</p>
           <div class="cats">
-            <div v-for="c in categories" :key="c.title" class="cat" @click="openGroup(c)">
+            <div v-for="c in shownCategories" :key="c.title" class="cat" @click="openGroup(c)">
               <img :src="c.icon" alt="" />
               <span class="cat-text">
                 <b>{{ c.title }}</b>
@@ -138,15 +161,21 @@ function toggleClassic() {
               </span>
             </div>
           </div>
+          <p v-if="!shownCategories.length" class="cp-noresult">
+            Aucune catégorie ne correspond à « {{ query }} ».
+          </p>
         </template>
 
         <!-- Vue classique (grille d'icônes) -->
         <template v-else-if="view === 'classic'">
           <div class="classic">
-            <button v-for="c in categories" :key="c.title" class="tile" @click="openGroup(c)">
+            <button v-for="c in shownCategories" :key="c.title" class="tile" @click="openGroup(c)">
               <img :src="c.icon" alt="" />
               <span>{{ c.title }}</span>
             </button>
+            <p v-if="!shownCategories.length" class="cp-noresult dark">
+              Aucune catégorie ne correspond à « {{ query }} ».
+            </p>
           </div>
         </template>
 
@@ -286,6 +315,47 @@ function toggleClassic() {
 .mini {
   width: 14px;
   height: 14px;
+}
+.fb-btn.active {
+  border-color: rgba(0, 0, 0, 0.2);
+  background: #dbe6ff;
+}
+
+/* Barre de recherche */
+.cp-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  background: #eef3fb;
+  border-bottom: 1px solid #c7d4ea;
+  flex-shrink: 0;
+}
+.cp-search img {
+  width: 16px;
+  height: 16px;
+}
+.cp-search input {
+  flex: 1;
+  font-size: 12px;
+  padding: 2px 5px;
+  border: 1px solid #7f9db9;
+}
+.cp-search-clear {
+  border: 1px solid #9aa0a6;
+  background: #fff;
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1;
+  padding: 2px 6px;
+}
+.cp-noresult {
+  margin: 14px 2px;
+  font-size: 12px;
+  color: #15317e;
+}
+.cp-noresult.dark {
+  color: #444;
 }
 
 /* Corps */
