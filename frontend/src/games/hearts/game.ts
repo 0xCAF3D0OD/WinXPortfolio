@@ -4,8 +4,8 @@ const game: GameDef = {
   id: 'hearts',
   name: 'Hearts',
   icon: '/xp/winxp-icons/heart.png', // déjà présent dans tes assets
-  w: 700,
-  h: 560,
+  w: 1000,
+  h: 600,
   component: iframeGame('/games/hearts/index.html'),
   rules: {
     title: 'Règles du Hearts',
