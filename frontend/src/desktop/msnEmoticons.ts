@@ -2,7 +2,7 @@
 // public/xp/msn/emoticons/). Chaque entrée associe les raccourcis classiques MSN
 // au numéro de bitmap. Identifiées visuellement à partir des images — rien d'inventé.
 export interface Emoticon {
-  codes: string[] // raccourcis (le premier est inséré par le sélecteur)
+  codes: [string, ...string[]] // raccourcis non vides (codes[0] est inséré par le sélecteur)
   n: number // numéro de bitmap → /xp/msn/emoticons/<n>.png
   title: string
 }
