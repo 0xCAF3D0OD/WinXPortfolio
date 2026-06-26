@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-
+import { initialTracks } from '@/desktop/config.ts'
 // Winamp (Webamp) monté directement dans la page (pas d'iframe) : ses fenêtres
 // sont de vrais éléments DOM, déplaçables et redimensionnables partout sur le
 // bureau, façon winamp.org. Le conteneur laisse passer les clics (pointer-events
@@ -34,13 +34,7 @@ onMounted(async () => {
       return
     }
     webamp = new Webamp({
-      initialTracks: [
-        {
-          metaData: { artist: 'DJ Mike Llama', title: "Llama Whippin' Intro" },
-          url: 'https://cdn.jsdelivr.net/gh/captbaritone/webamp@43434d82cfe9e37286806/mp3/llama-2.91.mp3',
-          duration: 5.322286,
-        },
-      ],
+      initialTracks,
       // Visualiseur Milkdrop (Butterchurn), comme sur winamp.org
       __butterchurnOptions: {
         importButterchurn: () => Promise.resolve(w.butterchurn),
