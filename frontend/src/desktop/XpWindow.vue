@@ -95,11 +95,16 @@ function startDrag(e: PointerEvent) {
   <div
     v-show="!win.minimized"
     class="window"
-    :class="{ maximized: win.maximized }"
+    :class="{ maximized: win.maximized, frameless: win.frameless }"
     :style="style"
     @pointerdown="focus(win)"
   >
-    <div class="title-bar" @pointerdown="startDrag" @dblclick="toggleMaximize(win)">
+    <div
+      v-if="!win.frameless"
+      class="title-bar"
+      @pointerdown="startDrag"
+      @dblclick="toggleMaximize(win)"
+    >
       <div class="title-bar-text">
         <img :src="win.icon" alt="" />
         <span>{{ win.title }}</span>
@@ -118,7 +123,7 @@ function startDrag(e: PointerEvent) {
       <component :is="win.component" />
     </div>
     <!-- Poignées de redimensionnement -->
-    <template v-if="!win.maximized">
+    <template v-if="!win.maximized && !win.frameless">
       <div class="rz n" @pointerdown.stop="startResize($event, 'n')"></div>
       <div class="rz s" @pointerdown.stop="startResize($event, 's')"></div>
       <div class="rz e" @pointerdown.stop="startResize($event, 'e')"></div>
@@ -144,6 +149,18 @@ function startDrag(e: PointerEvent) {
   width: auto !important;
   height: auto !important;
   border-radius: 0;
+}
+/* Fenêtre « sans chrome » (Winamp) : pas de barre de titre ni de bordure bleue. */
+.window.frameless {
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+}
+.window.frameless .window-body {
+  margin: 0;
+  background: transparent;
 }
 
 .title-bar {

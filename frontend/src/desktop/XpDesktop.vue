@@ -10,7 +10,16 @@ import ErrorDialog from './ErrorDialog.vue'
 import TrayBalloon from './TrayBalloon.vue'
 
 const emit = defineEmits<{ logoff: [] }>()
-const { windows, open, taskbarToggle, reset } = useWindows()
+const { windows, open, close, taskbarToggle, reset } = useWindows()
+
+// Winamp (frameless) n'a pas de croix XP : sa propre croix poste un message
+// pour fermer la fenêtre parente.
+function onWindowMessage(e: MessageEvent) {
+  if (e.data === 'webamp-close') {
+    const w = windows.find((win) => win.appId === 'webamp')
+    if (w) close(w)
+  }
+}
 
 const selected = ref<string | null>(null)
 const startOpen = ref(false)
@@ -275,6 +284,7 @@ onMounted(() => {
     requestAnimationFrame(() => placeCentered(w, 0, -8))
   }
   activityEvents.forEach((e) => window.addEventListener(e, resetIdle))
+  window.addEventListener('message', onWindowMessage)
   // Surveille l'apparition d'iframes (fenêtres de jeu) pour y brancher l'activité.
   const area = document.querySelector('.area')
   if (area) {
@@ -289,6 +299,7 @@ onBeforeUnmount(() => {
   clearTimeout(idleTimer)
   if (ssRaf) cancelAnimationFrame(ssRaf)
   activityEvents.forEach((e) => window.removeEventListener(e, resetIdle))
+  window.removeEventListener('message', onWindowMessage)
   frameObserver?.disconnect()
 })
 

@@ -14,7 +14,6 @@ import WelcomeApp from './apps/WelcomeApp.vue'
 import ControlPanelApp from './apps/ControlPanelApp.vue'
 import { icons } from './icons'
 import { games } from '../games/registry'
-import { iframeGame } from '../games/types'
 import { pdfViewer } from './pdfViewer'
 import GameFrame from './GameFrame.vue'
 import type { GameDef } from '../games/types'
@@ -43,6 +42,22 @@ function folderApp(start: string): Component {
   )
 }
 
+// Winamp (Webamp) : iframe à fond transparent — pas de chrome XP, le skin
+// Winamp « flotte » comme sur winamp.org.
+const WebampFrame = markRaw(
+  defineComponent({
+    name: 'WebampFrame',
+    setup:
+      () => () =>
+        h('iframe', {
+          src: '/apps/webamp/index.html',
+          style: 'width:100%;height:100%;border:0;display:block;background:transparent',
+          allow: 'autoplay',
+          allowtransparency: 'true',
+        }),
+  }),
+)
+
 export interface AppDef {
   id: string
   label: string // texte sous l'icône / dans le menu
@@ -51,6 +66,7 @@ export interface AppDef {
   component: Component
   w: number
   h: number
+  frameless?: boolean // fenêtre sans chrome XP (barre de titre / bordure bleue)
 }
 
 export const apps: AppDef[] = [
@@ -149,9 +165,10 @@ export const apps: AppDef[] = [
     label: 'Winamp',
     title: 'Winamp',
     icon: '/xp/winxp-icons/winamp.png',
-    component: iframeGame('/apps/webamp/index.html'),
-    w: 360,
-    h: 460,
+    component: WebampFrame,
+    frameless: true,
+    w: 290,
+    h: 620,
   },
   {
     id: 'mycomputer',
