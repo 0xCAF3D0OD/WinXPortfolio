@@ -139,13 +139,16 @@ async function send() {
           </div>
         </div>
 
-        <!-- Barre de mise en forme -->
+        <!-- Barre de mise en forme (icônes MSN authentiques) -->
         <div class="format">
-          <button class="fbtn font" title="Police"><b>A</b> Police</button>
+          <button class="fbtn" title="Police">
+            <img src="/xp/msn/chat/change_font.png" alt="" /> Police
+          </button>
           <span class="fsep"></span>
           <div class="emoji-wrap">
             <button class="fbtn" title="Émoticônes" @pointerdown.stop="showEmojis = !showEmojis">
-              <img :src="emoticonUrl(111)" alt="" /><span class="caret">▾</span>
+              <img src="/xp/msn/chat/select_emoticon.png" alt="" />
+              <img class="caret-ic" src="/xp/msn/chat/arrow.png" alt="" />
             </button>
             <div v-if="showEmojis" class="emoji-pop" @pointerdown.stop>
               <button
@@ -160,13 +163,19 @@ async function send() {
             </div>
           </div>
           <button class="fbtn" title="Clins d'œil">
-            <span class="wink">;-)</span> Clins d'œil <span class="caret">▾</span>
+            <img src="/xp/msn/chat/select_wink.png" alt="" /> Clins d'œil
+            <img class="caret-ic" src="/xp/msn/chat/arrow.png" alt="" />
           </button>
-          <button class="fbtn" title="Insérer une image"><span class="pic">🖼</span></button>
-          <button class="fbtn" title="Signal sonore"><span class="nudge">[!]</span></button>
+          <button class="fbtn" title="Fonds">
+            <img src="/xp/msn/chat/select_background.png" alt="" /> Fonds
+            <img class="caret-ic" src="/xp/msn/chat/arrow.png" alt="" />
+          </button>
+          <button class="fbtn" title="Signal sonore">
+            <img src="/xp/msn/chat/send_nudge.png" alt="" />
+          </button>
         </div>
 
-        <!-- Saisie + Envoyer -->
+        <!-- Saisie + boutons Envoyer / Rechercher + toggle Manuscrit/Clavier -->
         <div class="write">
           <textarea
             ref="editor"
@@ -174,17 +183,28 @@ async function send() {
             placeholder="Tapez un message… (les émoticônes :) (L) (Y) fonctionnent)"
             @keydown.enter.exact.prevent="send"
           ></textarea>
-          <button class="send" :disabled="isSending" @click="send">Envoyer</button>
-        </div>
-
-        <!-- Onglets bas (Manuscrit / Clavier) façon MSN -->
-        <div class="modes">
-          <button class="mode" :class="{ active: mode === 'hand' }" @click="mode = 'hand'">
-            Manuscrit
-          </button>
-          <button class="mode" :class="{ active: mode === 'type' }" @click="mode = 'type'">
-            Clavier
-          </button>
+          <div class="write-side">
+            <button class="send" :disabled="isSending" @click="send">Envoyer</button>
+            <button class="send search inert">Rechercher</button>
+            <div class="modes">
+              <button
+                class="mode"
+                :class="{ active: mode === 'hand' }"
+                title="Écriture manuscrite"
+                @click="mode = 'hand'"
+              >
+                <img src="/xp/msn/chat/editortab.png" alt="" />
+              </button>
+              <button
+                class="mode"
+                :class="{ active: mode === 'type' }"
+                title="Clavier"
+                @click="mode = 'type'"
+              >
+                <b>A</b>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -350,27 +370,14 @@ async function send() {
   border-color: #e5a420;
 }
 .fbtn img {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   image-rendering: pixelated;
 }
-.fbtn .caret {
-  font-size: 8px;
-  color: #555;
-}
-.fbtn.font b {
-  color: #000;
-  font-family: Arial, sans-serif;
-}
-.fbtn .wink {
-  color: #800080;
-}
-.fbtn .nudge {
-  color: #c00;
-  font-weight: bold;
-}
-.fbtn .pic {
-  font-size: 13px;
+.fbtn .caret-ic {
+  width: 7px;
+  height: 4px;
+  margin-left: 1px;
 }
 .fsep {
   width: 1px;
@@ -379,26 +386,37 @@ async function send() {
   margin: 0 2px;
 }
 
-/* Onglets Manuscrit / Clavier */
+/* Toggle Manuscrit / Clavier (coin bas droit, façon MSN) */
 .modes {
   display: flex;
-  justify-content: flex-end;
   gap: 2px;
-  flex-shrink: 0;
+  margin-top: auto;
+  justify-content: flex-end;
 }
 .mode {
-  padding: 2px 12px;
-  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 19px;
   color: #15317e;
   border: 1px solid #9cc0e9;
-  border-bottom: none;
-  border-radius: 3px 3px 0 0;
+  border-radius: 2px;
   background: #dbe8f7;
   cursor: pointer;
 }
+.mode img {
+  width: 16px;
+  height: 16px;
+  image-rendering: pixelated;
+}
+.mode b {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
 .mode.active {
   background: #fff;
-  font-weight: bold;
+  border-color: #4d7bbf;
 }
 
 /* Sélecteur d'émoticônes */
@@ -441,11 +459,11 @@ async function send() {
   image-rendering: pixelated;
 }
 
-/* Saisie + envoyer */
+/* Saisie + colonne de boutons (Envoyer / Rechercher) + toggle */
 .write {
   display: flex;
   gap: 6px;
-  height: 70px;
+  height: 74px;
   flex-shrink: 0;
 }
 .write textarea {
@@ -461,8 +479,15 @@ async function send() {
 .write textarea:focus {
   border-color: #4d7bbf;
 }
+.write-side {
+  width: 78px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .send {
-  width: 72px;
+  width: 100%;
+  padding: 4px 0;
   font-weight: bold;
   color: #15317e;
   border: 1px solid #7f9db9;
@@ -477,6 +502,9 @@ async function send() {
 .send:disabled {
   opacity: 0.6;
   cursor: default;
+}
+.send.search {
+  font-weight: normal;
 }
 
 /* Images d'affichage */
