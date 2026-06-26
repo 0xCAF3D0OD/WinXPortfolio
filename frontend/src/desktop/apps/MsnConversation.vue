@@ -95,28 +95,38 @@ async function send() {
     isSending.value = false
   }
 }
+const menus = ['Fichier', 'Edition', 'Affichage', 'Insertion', 'Format', 'Outils', 'Message', '?']
 </script>
 
 <template>
   <div ref="rootEl" class="conv">
     <!-- Barre de menus -->
     <div class="menubar">
-      <span>Fichier</span><span>Edition</span><span>Affichage</span><span>Insertion</span
-      ><span>Format</span><span>Outils</span><span>Message</span><span>?</span>
+      <div v-for="nom in menus" :key="nom" class="fb-btn inert">
+        <span>{{ nom }}</span>
+      </div>
     </div>
 
     <!-- Barre d'outils (icônes MSN authentiques) -->
     <div class="toolbar">
-      <button class="tbtn"><img src="/xp/msn/chat/tb_invite.png" alt="" /><span>Inviter</span></button>
-      <button class="tbtn">
+      <button class="tbtn go inert">
+        <img src="/xp/msn/chat/tb_invite.png" alt="" /><span>Inviter</span>
+      </button>
+      <button class="tbtn go inert">
         <img src="/xp/msn/chat/tb_sendfiles.png" alt="" /><span>Envoyer des fichiers</span>
       </button>
-      <button class="tbtn"><img src="/xp/msn/chat/tb_webcam.png" alt="" /><span>Webcam</span></button>
-      <button class="tbtn"><img src="/xp/msn/chat/tb_audio.png" alt="" /><span>Audio</span></button>
-      <button class="tbtn">
+      <button class="tbtn go inert">
+        <img src="/xp/msn/chat/tb_webcam.png" alt="" /><span>Webcam</span>
+      </button>
+      <button class="tbtn go inert">
+        <img src="/xp/msn/chat/tb_audio.png" alt="" /><span>Audio</span>
+      </button>
+      <button class="tbtn go inert">
         <img src="/xp/msn/chat/tb_activities.png" alt="" /><span>Activités</span>
       </button>
-      <button class="tbtn"><img src="/xp/msn/chat/tb_games.png" alt="" /><span>Jeux</span></button>
+      <button class="tbtn go inert">
+        <img src="/xp/msn/chat/tb_games.png" alt="" /><span>Jeux</span>
+      </button>
     </div>
 
     <!-- Destinataire -->
@@ -137,7 +147,9 @@ async function send() {
 
         <div ref="historyBox" class="history">
           <div v-for="(m, i) in history" :key="i" class="msg">
-            <span class="msg-meta" :class="{ mine: m.me }">{{ m.sender }} dit : ({{ m.time }})</span>
+            <span class="msg-meta" :class="{ mine: m.me }"
+              >{{ m.sender }} dit : ({{ m.time }})</span
+            >
             <p class="msg-text" v-html="renderEmoticons(m.text)"></p>
           </div>
         </div>
@@ -356,6 +368,7 @@ async function send() {
   flex-shrink: 0;
   padding: 2px 0;
 }
+
 .fbtn {
   display: inline-flex;
   align-items: center;
@@ -377,6 +390,13 @@ async function send() {
   height: 16px;
   image-rendering: pixelated;
 }
+/* Boutons inertes (visibles, cliquables, mais sans effet) : logo grisé */
+.fbtn.inert img,
+.go.inert img {
+  filter: grayscale(1);
+  opacity: 0.4;
+}
+
 .fbtn .caret-ic {
   width: 7px;
   height: 4px;
@@ -463,6 +483,13 @@ async function send() {
 }
 
 /* Saisie + colonne de boutons (Envoyer / Rechercher) + toggle */
+/* Boutons inertes (visibles, cliquables, mais sans effet) : logo grisé */
+.fb-btn.inert span,
+.go.inert img {
+  filter: grayscale(1);
+  opacity: 0.4;
+}
+
 .write {
   display: flex;
   gap: 6px;
