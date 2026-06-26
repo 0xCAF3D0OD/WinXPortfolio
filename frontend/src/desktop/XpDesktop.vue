@@ -54,6 +54,7 @@ const HIDDEN_DESKTOP = new Set([
   'msn',
   'messenger',
   'welcome',
+  'webamp',
   // 'controlpanel',
 ])
 const desktopApps = computed(() => apps.filter((a) => !HIDDEN_DESKTOP.has(a.id)))

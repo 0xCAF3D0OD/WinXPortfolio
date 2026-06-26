@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Winamp</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+      }
+      #app {
+        position: fixed;
+        inset: 0;
+      }
+      /* Centre la fenêtre Webamp dans l'iframe plutôt qu'en haut à gauche. */
+      #app #webamp {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- Webamp : clone de Winamp (MIT) — https://webamp.org -->
+    <script src="https://unpkg.com/webamp@1.5.0/built/webamp.bundle.min.js"></script>
+    <script>
+      const Webamp = window.Webamp
+      if (Webamp && Webamp.browserIsSupported()) {
+        const webamp = new Webamp({
+          initialTracks: [
+            {
+              metaData: { artist: 'DJ Mike Llama', title: "Llama Whippin' Intro" },
+              url: 'https://cdn.jsdelivr.net/gh/captbaritone/webamp@43434d82cfe9e37286806/mp3/llama-2.91.mp3',
+              duration: 5.322286,
+            },
+          ],
+        })
+        webamp.renderWhenReady(document.getElementById('app'))
+      } else {
+        document.getElementById('app').innerHTML =
+          '<p style="color:#fff;font-family:sans-serif;padding:16px">Ton navigateur ne supporte pas Webamp.</p>'
+      }
+    </script>
+  </body>
+</html>

@@ -14,6 +14,7 @@ import WelcomeApp from './apps/WelcomeApp.vue'
 import ControlPanelApp from './apps/ControlPanelApp.vue'
 import { icons } from './icons'
 import { games } from '../games/registry'
+import { iframeGame } from '../games/types'
 import { pdfViewer } from './pdfViewer'
 import GameFrame from './GameFrame.vue'
 import type { GameDef } from '../games/types'
@@ -142,6 +143,15 @@ export const apps: AppDef[] = [
     component: pdfViewer('/cv/candidate-folder-en.pdf'),
     w: 780,
     h: 580,
+  },
+  {
+    id: 'webamp',
+    label: 'Winamp',
+    title: 'Winamp',
+    icon: '/xp/winxp-icons/winamp.png',
+    component: iframeGame('/apps/webamp/index.html'),
+    w: 360,
+    h: 460,
   },
   {
     id: 'mycomputer',
