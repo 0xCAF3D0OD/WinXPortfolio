@@ -8,18 +8,14 @@ import StartMenu from './StartMenu.vue'
 import ClippyAssistant from './ClippyAssistant.vue'
 import ErrorDialog from './ErrorDialog.vue'
 import TrayBalloon from './TrayBalloon.vue'
+import WebampHost from './WebampHost.vue'
 
 const emit = defineEmits<{ logoff: [] }>()
-const { windows, open, close, taskbarToggle, reset } = useWindows()
+const { windows, open, taskbarToggle, reset } = useWindows()
 
-// Winamp (frameless) n'a pas de croix XP : sa propre croix poste un message
-// pour fermer la fenêtre parente.
-function onWindowMessage(e: MessageEvent) {
-  if (e.data === 'webamp-close') {
-    const w = windows.find((win) => win.appId === 'webamp')
-    if (w) close(w)
-  }
-}
+// Winamp (Webamp) est monté directement sur le bureau (pas une fenêtre XP) :
+// déplaçable / redimensionnable librement comme sur winamp.org.
+const webampOpen = ref(false)
 
 const selected = ref<string | null>(null)
 const startOpen = ref(false)
@@ -30,8 +26,12 @@ function toggleMute() {
 }
 
 function openApp(app: AppDef) {
-  open(app)
   startOpen.value = false
+  if (app.id === 'webamp') {
+    webampOpen.value = true
+    return
+  }
+  open(app)
 }
 
 // Popup d'erreur « Application not found » pour les apps non implémentées.
@@ -43,6 +43,10 @@ function showError(message = 'C:\\\nApplication not found') {
 provide('showError', showError)
 
 function openById(id: string) {
+  if (id === 'webamp') {
+    webampOpen.value = true
+    return
+  }
   const app = apps.find((a) => a.id === id)
   if (app) open(app)
   else showError()
@@ -284,7 +288,6 @@ onMounted(() => {
     requestAnimationFrame(() => placeCentered(w, 0, -8))
   }
   activityEvents.forEach((e) => window.addEventListener(e, resetIdle))
-  window.addEventListener('message', onWindowMessage)
   // Surveille l'apparition d'iframes (fenêtres de jeu) pour y brancher l'activité.
   const area = document.querySelector('.area')
   if (area) {
@@ -299,7 +302,6 @@ onBeforeUnmount(() => {
   clearTimeout(idleTimer)
   if (ssRaf) cancelAnimationFrame(ssRaf)
   activityEvents.forEach((e) => window.removeEventListener(e, resetIdle))
-  window.removeEventListener('message', onWindowMessage)
   frameObserver?.disconnect()
 })
 
@@ -333,6 +335,9 @@ function onDesktopClick() {
 
       <!-- Fenêtres -->
       <XpWindow v-for="win in windows" :key="win.id" :win="win" />
+
+      <!-- Winamp : monté à même le bureau (déplaçable / redimensionnable partout) -->
+      <WebampHost v-if="webampOpen" @close="webampOpen = false" />
     </div>
 
     <!-- Menu Démarrer -->

@@ -42,21 +42,10 @@ function folderApp(start: string): Component {
   )
 }
 
-// Winamp (Webamp) : iframe à fond transparent — pas de chrome XP, le skin
-// Winamp « flotte » comme sur winamp.org.
-const WebampFrame = markRaw(
-  defineComponent({
-    name: 'WebampFrame',
-    setup:
-      () => () =>
-        h('iframe', {
-          src: '/apps/webamp/index.html',
-          style: 'width:100%;height:100%;border:0;display:block;background:transparent',
-          allow: 'autoplay',
-          allowtransparency: 'true',
-        }),
-  }),
-)
+// Winamp (Webamp) n'ouvre pas une fenêtre XP : il est monté à même le bureau
+// par XpDesktop (cf. WebampHost). L'entrée existe ici pour le menu Démarrer
+// (libellé / icône) ; ce composant n'est jamais rendu.
+const WebampStub = markRaw(defineComponent({ name: 'WebampStub', render: () => null }))
 
 export interface AppDef {
   id: string
@@ -165,8 +154,7 @@ export const apps: AppDef[] = [
     label: 'Winamp',
     title: 'Winamp',
     icon: '/xp/winxp-icons/winamp.png',
-    component: WebampFrame,
-    frameless: true,
+    component: WebampStub,
     w: 290,
     h: 620,
   },
