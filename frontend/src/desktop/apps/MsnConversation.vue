@@ -73,6 +73,7 @@ async function send() {
   playDing()
   draft.value = ''
   scrollDown()
+
   try {
     await fetch(DISCORD_WEBHOOK_URL, {
       method: 'POST',

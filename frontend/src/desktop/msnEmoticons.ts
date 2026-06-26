@@ -65,7 +65,7 @@ const codeRegex = new RegExp(allCodes.map(escapeRegex).join('|'), 'g')
 // Transforme un message texte en HTML sûr, en remplaçant les raccourcis par les images.
 export function renderEmoticons(text: string): string {
   return escapeHtml(text).replace(codeRegex, (m) => {
-    const n = codeToN.get(m)
+    const n = codeToN.get(m)!
     return n
       ? `<img class="msn-emo" src="${emoticonUrl(n)}" alt="${m}" draggable="false">`
       : m
