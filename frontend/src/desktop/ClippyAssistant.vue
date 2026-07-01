@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import agentData from './clippyAgent.json'
 
+// Assistant « Clippy » animé via les données Microsoft Agent d'origine (sprite map
+// unique + durée exacte de chaque frame + branches aléatoires) — approche reprise
+// de Cyanoxide/react-xp, bien plus fluide qu'un PNG par frame. On garde nos astuces
+// et actions propres au portfolio.
 const emit = defineEmits<{ open: [string] }>()
 
 interface Tip {
@@ -10,98 +15,165 @@ interface Tip {
 const tips: Tip[] = [
   { text: 'On dirait que tu visites un portfolio ! Besoin d’un coup de main ?' },
   { text: 'Astuce : double-clique sur les icônes du bureau pour ouvrir les fenêtres.' },
-  { text: 'Envie de jouer ? Tente le Démineur (réponds à un quiz pour survivre).', action: { label: 'Ouvrir le Démineur', app: 'game-minesweeper' } },
-  { text: 'Curieux des projets de Kevin ? Ouvre Internet Explorer.', action: { label: 'Ouvrir Internet', app: 'iexplorer' } },
-  { text: 'Psst… le terminal cache des commandes secrètes. Essaie « help ».', action: { label: 'Ouvrir le terminal', app: 'terminal' } },
-  { text: 'Tu veux contacter Kevin ? Ouvre le formulaire (tu peux joindre un fichier).', action: { label: 'Me contacter', app: 'guestbook' } },
-  { text: 'Découvre le blog de Kevin dans Windows Messenger.', action: { label: 'Ouvrir Windows Messenger', app: 'messenger' } },
+  {
+    text: 'Envie de jouer ? Tente le Démineur (réponds à un quiz pour survivre).',
+    action: { label: 'Ouvrir le Démineur', app: 'game-minesweeper' },
+  },
+  {
+    text: 'Curieux des projets de Kevin ? Ouvre Internet Explorer.',
+    action: { label: 'Ouvrir Internet', app: 'iexplorer' },
+  },
+  {
+    text: 'Psst… le terminal cache des commandes secrètes. Essaie « help ».',
+    action: { label: 'Ouvrir le terminal', app: 'terminal' },
+  },
+  {
+    text: 'Tu veux contacter Kevin ? Ouvre le formulaire (tu peux joindre un fichier).',
+    action: { label: 'Me contacter', app: 'guestbook' },
+  },
+  {
+    text: 'Découvre le blog de Kevin dans Windows Messenger.',
+    action: { label: 'Ouvrir Windows Messenger', app: 'messenger' },
+  },
   { text: 'Rejoins le Discord de Kevin via MSN.', action: { label: 'Ouvrir MSN', app: 'msn' } },
 ]
 
-const seq = (dir: string, count: number) =>
-  Array.from({ length: count }, (_, i) => `/xp/clippy/${dir}/${String(i + 1).padStart(2, '0')}.png`)
+// --- Moteur d'animation (Microsoft Agent) ---
+interface Frame {
+  duration: number
+  images?: number[][]
+  branching?: { branches: { frameIndex: number; weight: number }[] }
+}
+interface Anim {
+  frames: Frame[]
+}
+const agent = agentData as unknown as {
+  framesize: [number, number]
+  animations: Record<string, Anim>
+}
+const [FRAME_W, FRAME_H] = agent.framesize
 
-const idle = seq('idle', 22)
-const greet = seq('greet', 19)
-const gestures = [seq('gest1', 4), seq('gest2', 22), seq('gest3', 22)]
+// Animations calmes jouées pendant l'inactivité (filtrées sur celles réellement présentes).
+const IDLE_ANIMATIONS = [
+  'IdleAtom',
+  'IdleFingerTap',
+  'IdleHeadScratch',
+  'IdleRopePile',
+  'IdleSideToSide',
+  'IdleSnooze',
+  'Idle1_1',
+  'LookUp',
+  'LookDown',
+  'LookLeft',
+  'LookRight',
+  'Searching',
+  'CheckingSomething',
+  'GetTechy',
+  'GetArtsy',
+  'GetWizardy',
+  'Writing',
+  'Print',
+].filter((name) => agent.animations[name])
 
-const FRAME_MS = 180 // cadence d'animation (plus lent qu'avant)
+const MAX_STEPS = 200
+const randomFrom = <T,>(pool: T[]) => pool[Math.floor(Math.random() * pool.length)]!
 
-const frame = ref(idle[0]!)
+const framePos = ref<[number, number]>([0, 0])
 const visible = ref(false)
 const i = ref(0)
-let showTimer: number
-let animTimer: number | null = null
-let gestureTimer: number | null = null
 
-function preload(list: string[]) {
-  list.forEach((src) => {
-    const im = new Image()
-    im.src = src
-  })
+let showTimer: number | undefined
+let animTimer: number | undefined
+let idleTimer: number | undefined
+
+function scheduleIdle() {
+  if (idleTimer) clearTimeout(idleTimer)
+  const delay = 4000 + Math.random() * 8000
+  idleTimer = window.setTimeout(() => {
+    if (IDLE_ANIMATIONS.length) playAnimation(randomFrom(IDLE_ANIMATIONS))
+  }, delay)
 }
 
-function play(frames: string[], loop: boolean, done?: () => void) {
-  if (animTimer) clearInterval(animTimer)
-  let f = 0
-  frame.value = frames[0]!
-  animTimer = window.setInterval(() => {
-    f++
-    if (f >= frames.length) {
-      if (loop) f = 0
-      else {
-        if (animTimer) clearInterval(animTimer)
-        animTimer = null
-        done?.()
+// Joue une animation frame par frame avec la cadence et les branches d'origine.
+function playAnimation(name: string) {
+  const anim = agent.animations[name]
+  if (!anim) return scheduleIdle()
+  if (animTimer) clearTimeout(animTimer)
+  if (idleTimer) clearTimeout(idleTimer)
+
+  let frameIndex = 0
+  let steps = 0
+
+  const playFrame = () => {
+    const frame = anim.frames[frameIndex]
+    if (!frame) return scheduleIdle()
+    if (frame.images?.[0]) framePos.value = frame.images[0] as [number, number]
+
+    animTimer = window.setTimeout(() => {
+      steps++
+      let next = frameIndex + 1
+
+      if (frame.branching && steps < MAX_STEPS) {
+        let roll = Math.random() * 100
+        for (const b of frame.branching.branches) {
+          if (roll < b.weight) {
+            next = b.frameIndex
+            break
+          }
+          roll -= b.weight
+        }
+      }
+
+      if (next >= anim.frames.length || steps >= MAX_STEPS) {
+        framePos.value = [0, 0]
+        scheduleIdle()
         return
       }
-    }
-    frame.value = frames[f]!
-  }, FRAME_MS)
+      frameIndex = next
+      playFrame()
+    }, frame.duration)
+  }
+
+  playFrame()
 }
 
-// Idle en boucle, avec un geste aléatoire toutes les ~11 s.
-function startIdle() {
-  play(idle, true)
-  if (gestureTimer) clearTimeout(gestureTimer)
-  gestureTimer = window.setTimeout(playGesture, 9000 + Math.random() * 5000)
-}
-function playGesture() {
-  const g = gestures[Math.floor(Math.random() * gestures.length)]!
-  play(g, false, startIdle)
-}
+const spriteStyle = computed(() => ({
+  width: FRAME_W + 'px',
+  height: FRAME_H + 'px',
+  backgroundPosition: `-${framePos.value[0]}px -${framePos.value[1]}px`,
+}))
 
+// --- Astuces / interactions ---
 function appear() {
   i.value = Math.floor(Math.random() * tips.length)
   visible.value = true
-  play(greet, false, startIdle)
+  playAnimation('Greeting')
 }
 function next() {
   i.value = (i.value + 1) % tips.length
 }
+function onClippyClick() {
+  next()
+  playAnimation('GetAttention')
+}
 function dismiss() {
   visible.value = false
-  if (animTimer) clearInterval(animTimer)
-  animTimer = null
-  if (gestureTimer) clearTimeout(gestureTimer)
-  gestureTimer = null
+  if (animTimer) clearTimeout(animTimer)
+  if (idleTimer) clearTimeout(idleTimer)
   clearTimeout(showTimer)
   showTimer = window.setTimeout(appear, 90000)
 }
 function doAction(app: string) {
-  // On ouvre l'app mais Clippy reste à l'écran (il ne disparaît que via ×).
   emit('open', app)
 }
 
 onMounted(() => {
-  preload(idle)
-  preload(greet)
   showTimer = window.setTimeout(appear, 9000)
 })
 onBeforeUnmount(() => {
   clearTimeout(showTimer)
-  if (animTimer) clearInterval(animTimer)
-  if (gestureTimer) clearTimeout(gestureTimer)
+  if (animTimer) clearTimeout(animTimer)
+  if (idleTimer) clearTimeout(idleTimer)
 })
 </script>
 
@@ -118,8 +190,8 @@ onBeforeUnmount(() => {
       </div>
     </div>
 
-    <div class="clippy" @click="next">
-      <img :src="frame" alt="Assistant" draggable="false" />
+    <div class="clippy" title="Clippy" @click="onClippyClick">
+      <div class="sprite" :style="spriteStyle"></div>
     </div>
   </div>
 </template>
@@ -190,16 +262,13 @@ onBeforeUnmount(() => {
   cursor: pointer;
 }
 .clippy {
-  width: 100px;
-  height: 96px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
-.clippy img {
-  max-width: 100%;
-  max-height: 96px;
+.sprite {
+  background-image: url('/xp/clippy/spritemap.png');
+  background-repeat: no-repeat;
   filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.35));
 }
 </style>
