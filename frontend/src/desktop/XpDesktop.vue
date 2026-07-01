@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted, onBeforeUnmount, nextTick, provide } from 'vue'
+import { ref, reactive, computed, onMounted, onBeforeUnmount, provide } from 'vue'
 import { apps, type AppDef } from './registry'
 import { useWindows, type WinState } from './useWindows'
 import { muted, playSound } from './sound'
@@ -172,11 +172,9 @@ function iconPointerUp() {
   window.removeEventListener('pointerup', iconPointerUp)
 }
 
-// --- Économiseur d'écran (logo windoors rebondissant après inactivité) ---
+// --- Économiseur d'écran : les « 3D Pipes » (1j01/pipes, Three.js) en iframe ---
 const screensaver = ref(false)
-const ssCanvas = ref<HTMLCanvasElement | null>(null)
 let idleTimer: number
-let ssRaf: number | null = null
 const IDLE_MS = 60000
 
 function resetIdle() {
@@ -210,40 +208,11 @@ function attachFrameActivity() {
 let frameObserver: MutationObserver | null = null
 
 function startScreensaver() {
+  // L'iframe /pipes/index.html s'anime seule (Three.js) ; on l'affiche simplement.
   screensaver.value = true
-  nextTick(() => {
-    const canvas = ssCanvas.value
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-    const img = new Image()
-    img.src = '/xp/windoors-2.svg'
-    const w = 150
-    const h = 136
-    let x = Math.random() * (canvas.width - w)
-    let y = Math.random() * (canvas.height - h)
-    let dx = 1.6
-    let dy = 1.3
-    function frame() {
-      if (!ctx) return
-      ctx.fillStyle = '#000'
-      ctx.fillRect(0, 0, canvas!.width, canvas!.height)
-      x += dx
-      y += dy
-      if (x <= 0 || x + w >= canvas!.width) dx = -dx
-      if (y <= 0 || y + h >= canvas!.height) dy = -dy
-      if (img.complete) ctx.drawImage(img, x, y, w, h)
-      ssRaf = requestAnimationFrame(frame)
-    }
-    frame()
-  })
 }
 
 function stopScreensaver() {
-  if (ssRaf) cancelAnimationFrame(ssRaf)
-  ssRaf = null
   screensaver.value = false
 }
 
@@ -301,7 +270,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   clearInterval(timer)
   clearTimeout(idleTimer)
-  if (ssRaf) cancelAnimationFrame(ssRaf)
   activityEvents.forEach((e) => window.removeEventListener(e, resetIdle))
   frameObserver?.disconnect()
 })
@@ -395,9 +363,10 @@ function onDesktopClick() {
     <!-- Assistant -->
     <ClippyAssistant @open="openById" />
 
-    <!-- Économiseur d'écran -->
+    <!-- Économiseur d'écran : « 3D Pipes » (Three.js). Tout mouvement/touche le ferme
+         (l'iframe est pointer-events:none pour laisser passer l'activité vers window). -->
     <div v-if="screensaver" class="screensaver">
-      <canvas ref="ssCanvas"></canvas>
+      <iframe src="/pipes/index.html" title="Économiseur d'écran — 3D Pipes"></iframe>
     </div>
   </div>
 </template>
@@ -606,7 +575,12 @@ function onDesktopClick() {
   background: #000;
   cursor: none;
 }
-.screensaver canvas {
+.screensaver iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
   display: block;
+  /* Laisse passer souris/molette vers window → resetIdle ferme l'économiseur. */
+  pointer-events: none;
 }
 </style>
