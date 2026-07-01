@@ -7,6 +7,10 @@ export interface Article {
   tags?: string[]
   // Corps de l'article : un paragraphe par entrée du tableau.
   body: string[]
+  // Photos (facultatif) : dépose tes images dans public/blog/photos/ puis
+  // référence-les ici, ex. ['/blog/photos/cluster.jpg']. Elles s'affichent sous
+  // le texte ; un clic ouvre la photo en grand.
+  images?: string[]
 }
 
 export const articles: Article[] = [

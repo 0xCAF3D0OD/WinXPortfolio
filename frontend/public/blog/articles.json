@@ -5,8 +5,10 @@
     "tags": ["intro"],
     "body": [
       "Ce portfolio est une recréation de Windows XP. Ce « MSN Messenger » me sert de blog : j'y publie des notes sur le DevOps, le cloud et mes projets.",
-      "Pour publier un article, j'édite ce fichier public/blog/articles.json (aucun rebuild nécessaire après déploiement)."
-    ]
+      "Pour publier un article, j'édite ce fichier public/blog/articles.json (aucun rebuild nécessaire après déploiement).",
+      "Nouveau : je peux aussi partager des photos. Je dépose mes images dans public/blog/photos/ et je les liste dans le champ \"images\" de l'article (un clic ouvre la photo en grand). La photo ci-dessous est un exemple à remplacer."
+    ],
+    "images": ["/blog/photos/exemple.jpg"]
   },
   {
     "title": "alloremplacant.ch en production",

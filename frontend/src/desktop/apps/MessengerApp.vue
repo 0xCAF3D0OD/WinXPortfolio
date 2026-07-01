@@ -118,6 +118,19 @@ const now = new Date().toLocaleString('fr-FR', {
               <p class="wm-sender">{{ profile.name }} a écrit&nbsp;:</p>
               <p class="wm-line wm-mtitle">{{ a.title }} <span class="wm-date">· {{ a.date }}</span></p>
               <p v-for="(p, k) in a.body" :key="k" class="wm-line">{{ p }}</p>
+              <div v-if="a.images?.length" class="wm-photos">
+                <a
+                  v-for="(src, k) in a.images"
+                  :key="k"
+                  class="wm-photo"
+                  :href="src"
+                  target="_blank"
+                  rel="noopener"
+                  title="Ouvrir la photo en grand"
+                >
+                  <img :src="src" alt="" loading="lazy" />
+                </a>
+              </div>
               <p v-if="a.tags?.length" class="wm-tags">
                 <span v-for="t in a.tags" :key="t">#{{ t }}</span>
               </p>
@@ -373,6 +386,31 @@ const now = new Date().toLocaleString('fr-FR', {
   font-weight: normal;
   color: #888;
   font-size: 11px;
+}
+.wm-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0 0 18px;
+}
+.wm-photo {
+  display: block;
+  border: 1px solid #9bb8d8;
+  background: #fff;
+  padding: 3px;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  line-height: 0;
+}
+.wm-photo:hover {
+  border-color: #2f6fd0;
+}
+.wm-photo img {
+  display: block;
+  max-width: 220px;
+  max-height: 165px;
+  object-fit: cover;
 }
 .wm-tags {
   margin: 4px 0 0 18px;
