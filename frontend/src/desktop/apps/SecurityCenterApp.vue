@@ -104,7 +104,11 @@ function toggle(k: 'fw' | 'au' | 'av') {
 
         <!-- Protection antivirus : INTROUVABLE (cliquable → simulateur) -->
         <div class="sec-item danger">
-          <div class="sec-item-bar red" title="Cliquez pour ouvrir les recommandations" @click="launch">
+          <div
+            class="sec-item-bar red"
+            title="Cliquez pour ouvrir les recommandations"
+            @click="launch"
+          >
             <img class="sec-item-ico" :src="SVG + 'Virus Protection.svg'" alt="" />
             <span class="sec-item-name">Protection antivirus</span>
             <span class="sec-status found"
@@ -122,9 +126,7 @@ function toggle(k: 'fw' | 'au' | 'av') {
               Recommandations pour connaître les actions suggérées.
               <a class="inert">Comment un logiciel antivirus protège-t-il mon ordinateur ?</a>
             </p>
-            <p class="sec-note">
-              Remarque : Windows ne détecte pas tous les programmes antivirus.
-            </p>
+            <p class="sec-note">Remarque : Windows ne détecte pas tous les programmes antivirus.</p>
             <div class="sec-detail-actions">
               <button class="sec-reco" @click="launch">Recommandations…</button>
             </div>
@@ -307,6 +309,7 @@ function toggle(k: 'fw' | 'au' | 'av') {
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 6px;
   font-size: 14px;
   font-weight: bold;
@@ -315,6 +318,7 @@ function toggle(k: 'fw' | 'au' | 'av') {
 .sec-status-txt {
   text-align: left;
   line-height: 1.05;
+  max-width: 115px;
 }
 .sec-status.on {
   color: #1f8a1f;
