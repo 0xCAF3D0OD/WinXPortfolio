@@ -20,6 +20,34 @@
     ]
   },
   {
+    "title": "Sortie photo de nuit",
+    "date": "29.06.2026",
+    "tags": ["Kubernetes", "CKA"],
+    "body": [
+      "photo de nuit avec les amis, moment de detente entre deux jours de revision pour la certification kubernetes CKA.",
+    ],
+    "images": ["/blog/photos/nuit/1.jpg",
+    "/blog/photos/nuit/2.jpg",
+    "/blog/photos/nuit/3.jpg",
+    "/blog/photos/nuit/4.jpg",
+    "/blog/photos/nuit/5.jpg",
+    "/blog/photos/nuit/6.jpg",
+    "/blog/photos/nuit/7.jpg",
+    "/blog/photos/nuit/8.jpg",
+    "/blog/photos/nuit/9.jpg",
+    "/blog/photos/nuit/10.jpg",
+    "/blog/photos/nuit/11.jpg",
+    "/blog/photos/nuit/12.jpg",
+    "/blog/photos/nuit/13.jpg",
+    "/blog/photos/nuit/14.jpg",
+    "/blog/photos/nuit/15.jpg",
+    "/blog/photos/nuit/16.jpg",
+    "/blog/photos/nuit/17.jpg",
+    "/blog/photos/nuit/18.jpg",
+    "/blog/photos/nuit/19.jpg"
+    ]
+  },
+  {
     "title": "Microcontroller Meshtastic ESP32 Heltec V3 loRA",
     "date": "29.06.2026",
     "tags": ["Grafana", "Prometheus", "Arduino"],
