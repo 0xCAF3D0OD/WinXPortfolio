@@ -14,6 +14,7 @@ import HelpSupportApp from './apps/HelpSupportApp.vue'
 import WelcomeApp from './apps/WelcomeApp.vue'
 import ControlPanelApp from './apps/ControlPanelApp.vue'
 import SecurityCenterApp from './apps/SecurityCenterApp.vue'
+import RunDialog from './apps/RunDialog.vue'
 import { icons } from './icons'
 import { games } from '../games/registry'
 import { pdfViewer } from './pdfViewer'
@@ -194,6 +195,15 @@ export const apps: AppDef[] = [
     component: WelcomeApp,
     w: 560,
     h: 360,
+  },
+  {
+    id: 'run',
+    label: 'Exécuter',
+    title: 'Exécuter',
+    icon: '/xp/start/run.png',
+    component: RunDialog,
+    w: 400,
+    h: 200,
   },
   {
     id: 'security',

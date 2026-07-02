@@ -34,7 +34,7 @@ const tools = [
   { label: 'Panneau de configuration', icon: '/xp/start/controll.png', app: 'controlpanel' },
   { label: 'Aide et support', icon: '/xp/start/help.png', app: 'help' },
   { label: 'Rechercher', icon: '/xp/start/search.png', app: null },
-  { label: 'Exécuter…', icon: '/xp/start/run.png', app: 'terminal' },
+  { label: 'Exécuter…', icon: '/xp/start/run.png', app: 'run' },
 ]
 
 function pick(appId: string | null) {

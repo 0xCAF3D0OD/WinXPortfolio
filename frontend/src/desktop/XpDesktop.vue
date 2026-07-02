@@ -21,6 +21,22 @@ const webampOpen = ref(false)
 const winErrorOpen = ref(false)
 provide('launchWinError', () => (winErrorOpen.value = true))
 
+// Écran bleu (easter egg de « Exécuter » : bsod / crash…). Se ferme au clic/touche.
+const bsodOpen = ref(false)
+provide('triggerBsod', () => {
+  bsodOpen.value = true
+  const off = () => {
+    bsodOpen.value = false
+    window.removeEventListener('keydown', off)
+    window.removeEventListener('pointerdown', off)
+  }
+  // Petit délai pour que le clic/entrée déclencheur ne referme pas aussitôt.
+  window.setTimeout(() => {
+    window.addEventListener('keydown', off)
+    window.addEventListener('pointerdown', off)
+  }, 150)
+})
+
 const selected = ref<string | null>(null)
 const startOpen = ref(false)
 const clock = ref('')
@@ -74,6 +90,7 @@ const HIDDEN_DESKTOP = new Set([
   'welcome',
   'webamp',
   'security',
+  'run',
   // 'controlpanel',
 ])
 const desktopApps = computed(() => apps.filter((a) => !HIDDEN_DESKTOP.has(a.id)))
@@ -368,6 +385,26 @@ function onDesktopClick() {
     <!-- Assistant -->
     <ClippyAssistant @open="openById" />
 
+    <!-- Écran bleu (BSOD) — easter egg ; un clic ou une touche le ferme (cf. triggerBsod) -->
+    <div v-if="bsodOpen" class="bsod">
+      <div class="bsod-inner">
+        <p>A problem has been detected and Windows has been shut down to prevent damage to your computer.</p>
+        <p>PAGE_FAULT_IN_NONPAGED_AREA</p>
+        <p>
+          If this is the first time you've seen this Stop error screen, restart your computer. If
+          this screen appears again, follow these steps:
+        </p>
+        <p>
+          Check to make sure any new hardware or software is properly installed. If this is a new
+          installation, ask your hardware or software manufacturer for any Windows updates you might
+          need.
+        </p>
+        <p>Technical information:</p>
+        <p>*** STOP: 0x00000050 (0xCAF3D00D, 0x00000001, 0x804F8D6A, 0x00000000)</p>
+        <p class="bsod-hint">(Cliquez ou appuyez sur une touche pour redémarrer…)</p>
+      </div>
+    </div>
+
     <!-- Simulateur d'erreurs XP (plein écran) + bouton Stop pour l'arrêter -->
     <div v-if="winErrorOpen" class="winerror">
       <iframe src="/winerror/index.html" title="Simulateur d'erreurs"></iframe>
@@ -577,6 +614,33 @@ function onDesktopClick() {
 .tray-clock {
   margin-left: 2px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+/* Écran bleu (BSOD) — plein écran, au-dessus de tout. */
+.bsod {
+  position: fixed;
+  inset: 0;
+  z-index: 100005;
+  background: #0827a3;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  font-family: 'Lucida Console', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.bsod-inner {
+  max-width: 640px;
+  padding: 20px;
+}
+.bsod-inner p {
+  margin: 0 0 14px;
+}
+.bsod-hint {
+  margin-top: 24px;
+  opacity: 0.85;
 }
 
 /* Simulateur d'erreurs XP : prend tout l'écran ; le bouton Stop reste au-dessus. */
