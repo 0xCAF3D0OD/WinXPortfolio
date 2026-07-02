@@ -4,6 +4,7 @@ import { inject, reactive } from 'vue'
 // Centre de sécurité Windows (reproduction fidèle de la fenêtre XP). Un clic sur
 // « Protection antivirus » (INTROUVABLE) lance le simulateur d'erreurs.
 const SVG = '/xp/WindowsXPIconsSVG/'
+const PNG = '/xp/windowsIcons/'
 const launchWinError = inject<() => void>('launchWinError', () => {})
 function launch() {
   launchWinError()
@@ -109,7 +110,7 @@ function toggle(k: 'fw' | 'au' | 'av') {
             title="Cliquez pour ouvrir les recommandations"
             @click="launch"
           >
-            <img class="sec-item-ico" :src="SVG + 'Virus_Protection.svg'" alt="" />
+            <img class="sec-item-ico" :src="PNG + 'virus_protection.png'" alt="" />
             <span class="sec-item-name">Protection antivirus</span>
             <span class="sec-status found"
               ><i class="orb red"></i><span class="sec-status-txt">INTROUVABLE</span></span
