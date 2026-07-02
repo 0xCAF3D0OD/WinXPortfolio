@@ -109,7 +109,7 @@ function toggle(k: 'fw' | 'au' | 'av') {
             title="Cliquez pour ouvrir les recommandations"
             @click="launch"
           >
-            <img class="sec-item-ico" :src="SVG + 'Virus Protection.svg'" alt="" />
+            <img class="sec-item-ico" :src="SVG + 'Virus_Protection.svg'" alt="" />
             <span class="sec-item-name">Protection antivirus</span>
             <span class="sec-status found"
               ><i class="orb red"></i><span class="sec-status-txt">INTROUVABLE</span></span
@@ -316,7 +316,7 @@ function toggle(k: 'fw' | 'au' | 'av') {
   letter-spacing: 0.3px;
 }
 .sec-status-txt {
-  text-align: left;
+  text-align: center;
   line-height: 1.05;
   max-width: 115px;
 }
