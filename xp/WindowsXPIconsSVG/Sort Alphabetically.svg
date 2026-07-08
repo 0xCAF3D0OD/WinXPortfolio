@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <rect id="gradientfill" width="100%" height="100%" fill="url(#gradient)" />
+    <linearGradient id="gradient" x2="100%" y2="0%" gradientTransform="translate(-0.19,-0.1) translate(0.5,0.5) scale(1 0.539) rotate(121) scale(0.7 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#00a2ff" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#00a2ff" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#0144af" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#0144af" stop-opacity="100%" />
+    </linearGradient>
+    <filter id="gradientoverlay" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <filter id="stroke">
+      <feMorphology operator="dilate" radius="8" in="SourceAlpha" result="DILATED" />
+      <feMorphology operator="erode" radius="8" in="SourceAlpha" result="ERODED" />
+      <feComposite operator="xor" in="DILATED" in2="ERODED" result="STROKEAREA" />
+      <feFlood flood-color="#032399" />
+      <feComposite operator="in" in2="STROKEAREA" />
+    </filter>
+    <rect x="582" y="53" width="389" height="893" mask="url(#mask)" id="shape" />
+    <mask id="mask">
+      <path d="M 776.66,944.7 C 776.66,944.7 583.33,736.67 583.33,736.67 583.33,736.67 969.99,736.67 969.99,736.67 969.99,736.67 776.66,944.7 776.66,944.7 Z" fill="#ffffff" />
+      <path d="M 776.5,54.06 C 776.5,54.06 862,774.94 862,774.94 862,774.94 691,774.94 691,774.94 691,774.94 776.5,54.06 776.5,54.06 Z" fill="#ffffff" />
+    </mask>
+    <linearGradient id="gradient_2" x2="100%" y2="0%" gradientTransform="scale(1 0.4356) rotate(-90)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_3" x2="100%" y2="0%" gradientTransform="translate(0.18,0.14) translate(0.5,0.5) scale(1 0.4356) rotate(55) scale(0.55 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#61b33f" stop-opacity="100%" />
+      <stop offset="49%" stop-color="#6bc12d" stop-opacity="100%" />
+      <stop offset="97%" stop-color="#33b715" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#33b715" stop-opacity="100%" />
+    </linearGradient>
+  </defs>
+  <g id="group">
+    <text text-anchor="middle" font-size="575" font-family="Garamond" fill="#e22701" letter-spacing="-14.38" transform-origin="298.55 464.69" x="298.55" y="464.69" transform="scale(1.13,1)" font-weight="700">A</text>
+    <text text-anchor="middle" font-size="575" font-family="Garamond" fill="#e22701" letter-spacing="-14.38" transform-origin="298.55 926.69" x="298.55" y="926.69" transform="scale(1.13,1)" font-weight="700">Z</text>
+  </g>
+  <use href="#group" filter="url(#gradientoverlay)" />
+  <use href="#group" filter="url(#stroke)" />
+  <use href="#shape" fill="url(#gradient_2)" />
+  <use href="#shape" fill="url(#gradient_3)" />
+  <use href="#shape" fill="none" stroke="#006500" stroke-width="29" />
+</svg>

@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <rect x="398.06" y="-40" width="688" height="459" id="shape" transform="matrix(1,0,0,1,-28,0) translate(-125.0634,203)" />
+    <linearGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(-0.04,0.13) translate(0.5,0.5) scale(0.6696 1) rotate(-224) scale(1 0.95) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#abc9e1" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="translate(0,0) translate(0.5,0.5) scale(0.6696 1) rotate(-193) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#5b5b8f" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#83abe1" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#83abe1" stop-opacity="100%" />
+    </linearGradient>
+    <rect x="1027" y="17" width="79" height="79" id="shape_2" transform="matrix(1,0,0,1,-28,0) translate(-201,203)" />
+    <linearGradient id="gradient_3" x2="0%" y2="100%" gradientTransform="translate(-0.04,0.13) translate(0.5,0.5) rotate(-138) scale(1 0.51) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#936545" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#d96b21" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#d96b21" stop-opacity="100%" />
+    </linearGradient>
+    <image x="82" y="247" width="559" height="669" id="image" href="data:image/webp;base64,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" />
+    <linearGradient id="gradient_4" x2="100%" y2="0%" gradientTransform="translate(0.25,0.07) translate(0.5,0.5) scale(1 0.8356) rotate(-135) scale(0.99 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#a9d3ff" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#ffffff" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill" width="559" height="669" fill="url(#gradient_4)" />
+    <filter id="gradientoverlay" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <image x="82" y="247" width="559" height="669" id="image_2" href="data:image/webp;base64,UklGRmIEAABXRUJQVlA4WAoAAAAQAAAALgIAnAIAQUxQSFgBAAABgLNt2/Em7WS7o21O3GyvPfqjenSzbdv/wrb5ruF35P2+JFdETMDVjTS8PWvRKWEhE9sU0Z9EeGtWRL8S4aUJ/+E/x+qe1RZvLSoL0aro/o+n+8dGrepjQ0WK7qcrPCDI2u6i6L47vHWqRAN0huI//If/8B/+w3/4D//hP/yH//Af/sN/+A//4T/856CGk7P+1QmeuVXlZXotralXJyTO/z3p9/FHqBPiloT+1QnRoyqLmAn8h//wH/7Df/gP/+E//If/8B/+w3/4D//hP/yH//Af/sN/+A//4T/8h//wH/7Df/gP/+E//If/8B/+w3/4D//hP/yH//Af/sN/+A//4T/8h//wH/7Df/gP/+E//If/8B/+w3/4D//hP5VXmMSLmzSBr3YviRc2YAI/E3nxGWmSPq541QT+r/fX93bl/M760YMJCPEv84VJqBTxH/6DO6rLt0+VJVZQOCDkAgAA0FIAnQEqLwKdAj5tNplJpCMioSAIAIANiWlu4XdhHtwH4AAAE9gHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtkxAAA/v+0b///+N24w34Lv//yC5YXXF2XbDq04FC0lU4EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" />
+    <linearGradient id="gradient_5" x2="100%" y2="0%" gradientTransform="translate(0.22,-0.3) translate(0.5,0.5) scale(1 0.8356) rotate(39) scale(0.84 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#93bff1" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#93bff1" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#5b5b8b" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#5b5b8b" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill_2" width="559" height="669" fill="url(#gradient_5)" />
+    <filter id="gradientoverlay_2" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill_2" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <image x="108" y="273" width="27" height="618" id="image_3" href="data:image/webp;base64,UklGRsIAAABXRUJQVlA4WAoAAAAQAAAAGgAAaQIAQUxQSDYAAAABYBtJcqL8o1IpC2aWJR/dR/siYgKYlhfrgM+Nfd0gxw3kDgr+A/+B/8B//8TPjU1GLq/1BQFWUDggZgAAALAHAJ0BKhsAagI+bTaZSaQjIqEgaACADYlpbuF1SXAfgAAA7odVSbJiHVUmyYh1VJsmIdVSbJiHVUmyYh1VJsmIdVSbIIAA/v7Rv///jduMN+C7//5BcsLri7LIg6JVKEAAAAAAAA==" />
+    <linearGradient id="gradient_6" x2="100%" y2="0%" gradientTransform="translate(-0.18,-0.03) translate(0.5,0.5) scale(1 0.0437) rotate(270) scale(0.37 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#d1d5dd" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#d1d5dd" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#e3f1ff" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill_3" width="27" height="618" fill="url(#gradient_6)" />
+    <filter id="gradientoverlay_3" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill_3" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <image x="133" y="863" width="483" height="28" id="image_4" href="data:image/webp;base64,UklGRsQAAABXRUJQVlA4WAoAAAAQAAAA4gEAGwAAQUxQSD4AAAABd6CgbRuJP+H9d6YREeHdf98G1IOaSLaaH8v/feKBDjdggxJvOUT0fwJq6+3o0N/YYdJhenr7/qNUcmcHA1ZQOCBgAAAA0AYAnQEq4wEcAD5tNplJpCMioSCIAIANiWlu4XSZcB+AAAE9tiLxBUc9sReIKjntiLxBUc9sReIKjntiLw0AAP7+e2///43bjDfgu//+QXLC64uyyK20oQdIlUoQAAAA" />
+    <linearGradient id="gradient_7" x2="0%" y2="100%" gradientTransform="translate(-0.18,-0.03) translate(0.5,0.5) scale(0.058 1) rotate(-90) scale(1 0.37) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#c1cfff" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#c1cfff" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#c1cfff" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#c1cfff" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill_4" width="483" height="28" fill="url(#gradient_7)" />
+    <filter id="gradientoverlay_4" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill_4" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <image x="588" y="413" width="28" height="478" id="image_5" href="data:image/webp;base64,UklGRrwAAABXRUJQVlA4WAoAAAAQAAAAGwAA3QEAQUxQSDcAAAABZ6CgbRuGP+L9mUZEhOHH5hJAENmGVCGBCCKIIoYMItBDtK/BXUT/J4AFDsLt4G8933+a02AtAFZQOCBeAAAAsAYAnQEqHADeAT5tNplJpCMioSCIAIANiWlu4XSZcB+AAAE9tiLxBUc9sReIKjntiLxBUc9sReIKjntiLYAA/v57b///jduMN+C7//5BcsLri7LIg6JVKEAAAAAAAA==" />
+    <linearGradient id="gradient_8" x2="100%" y2="0%" gradientTransform="translate(-0.18,-0.03) translate(0.5,0.5) scale(1 0.0586) rotate(90) scale(0.37 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#b1bdef" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#a7b5e7" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#a7b5e7" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill_5" width="28" height="478" fill="url(#gradient_8)" />
+    <filter id="gradientoverlay_5" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill_5" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <image x="500" y="413" width="116" height="27" id="image_6" href="data:image/webp;base64,UklGRqQAAABXRUJQVlA4WAoAAAAQAAAAcwAAGgAAQUxQSDYAAAABV6AgbQPGv+ad2IiIEBhlUBNJUnQfoIEUCyAESZ8R/E5KFNH/CagN+1ywM3PWD6aABDw69gJWUDggSAAAADAEAJ0BKnQAGwA+bTaYSSQjIqEiCACADYlpANT2gH4AABA3U1AFeIW5AAD+784f/+N24w34Lv/8guWF1xbKH2goiCNvsgAAAA==" />
+    <linearGradient id="gradient_9" x2="0%" y2="100%" gradientTransform="translate(0.02,-0.4) translate(0.5,0.5) scale(0.2328 1) rotate(90) scale(1 0.84) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#9da5f1" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#cfe1f5" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#cfe1f5" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill_6" width="116" height="27" fill="url(#gradient_9)" />
+    <filter id="gradientoverlay_6" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill_6" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <image x="476" y="247" width="167" height="166" id="image_7" href="data:image/webp;base64,UklGRsIDAABXRUJQVlA4WAoAAAAQAAAApgAApQAAQUxQSJECAAABoFxt2/NGmf/TECqhACeFP0ly9pI13VAErTj8WcHpHAqYFRkayOj77w7udURMwLfffHD886eZoz9ozhT9CJvM0A9AdyIpPh474tCljojtmSPi/dQRsVs6YhyyRBE8ToMjmnVwxL5MHFHPgyPaVXDE81IS7VQSbSGJ50IS/Zkk6lQS21QSw4kkqjNJ4yZzBP2RpLGaOiL2C0fE9tQRsZo7IvalI8ZukSiCKg2OGNbBEUMaHFFlE0cM6+CIbS6JeiaJYSWJbS6J6lQSTSmJXS6J+ljSWC0cMe4XjqA5kRSr1BFxlzsitieOiHXqiLgpHDF2s0QR1HlwxO48OGLIgyPacuKI3UVwxCaTRJ0njhjWkhgWkqhmkmhLSXQzSTyeSBr7whEMM0nj06kjDn3piLhPHTG2U0fEdumI8bV0BO0scUS3Co54XQdHbBbBEf164ojXy8QR24UkmiI4YreWxJBKok4l0S0l0U0l8TSTNPa5I+imkmIzd0TcLB0xbueOiE3qiLg7d8T4skwUQZcHR+yvgyPel8ERm2ziiO3FxBFva0n0aeKI4SJxxMtKEt1CElUhiW0hiWoqKT5ljhg3S0fQnkmKT5kjDpulI+KQOiI2uSPi7soR426ZKIJ+FRyxv/noiLeL4Ijt6qMjXm6CI16XiSOGIjhidxkcsV9KollIoltJYsgl8XgmKTalI+hzSePj1BGHp8IRh93KEbFeOOLQrB0RX24SRYz7ZaII+quJI97vJo54u5g4Ynvx0RFvdxNHvK2DIzbnwREvl4kj9qUk2lwSw1oSXSqJp5mksSocMXZzR8SHqSMOTemI2GWOiE9zRxy6i0QR8eXcEWO/Ch9+FwTff/3lp3/++lPvP3999xUAVlA4IAoBAABwDgCdASqnAKYAPm02lUgkIyIhKZMoGIANiWVu4XSg8IOk+q06H6gutbwBhj/NVU6Tq2q9vo9ctdgY6X+s8kfnE1EGrijKdyMkWw1bhmfF+li2A4zg1oX0rs+hnc4dC52/Y6kEsLKtIoFAvAthI+YIiguo1Ruli2GrigwAAOn/7g/UH8QVL/SXS4vC9zGqhoBz6FGu1njtpkq/OduuntD109oeunxEliOhzH1BMsi08ZnU64HsULoFuIW6RO9gZ5RUE0XHgJgUsf4PgJgUsf4PgJgUsgjcT0a1PoFazhK+OjtHJpZ+6RlMTCRdpHeX7Aw4CV0AI3ABZbCCqEhiK/FFSS3AEhWykAAAAA==" />
+    <filter id="innershadow">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="0" />
+      <feOffset dx="-23.17" dy="11.8" result="SHADOW" />
+      <feFlood flood-color="#568fd9" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <filter id="innershadow_2">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="0" />
+      <feOffset dx="24.75" dy="-24.75" result="SHADOW" />
+      <feFlood flood-color="#737fb1" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+  </defs>
+  <use href="#shape" fill="#ffffff" />
+  <use href="#shape" fill="url(#gradient)" />
+  <use href="#shape" fill="none" stroke-width="26.52" stroke="url(#gradient_2)" />
+  <rect x="685" y="191" width="248" height="26" transform="matrix(1,0,0,1,-28,55) translate(-184,148)" fill="#9f9fa1" />
+  <rect x="685" y="345" width="248" height="26" transform="matrix(1,0,0,1,-28,55) translate(-184,71)" fill="#9f9fa1" />
+  <use href="#shape_2" fill="#ffffff" />
+  <use href="#shape_2" fill="url(#gradient_3)" />
+  <use href="#image" />
+  <use href="#image" filter="url(#gradientoverlay)" />
+  <use href="#image_2" />
+  <use href="#image_2" filter="url(#gradientoverlay_2)" />
+  <use href="#image_3" />
+  <use href="#image_3" filter="url(#gradientoverlay_3)" />
+  <use href="#image_4" />
+  <use href="#image_4" filter="url(#gradientoverlay_4)" />
+  <use href="#image_5" />
+  <use href="#image_5" filter="url(#gradientoverlay_5)" />
+  <use href="#image_6" />
+  <use href="#image_6" filter="url(#gradientoverlay_6)" />
+  <use href="#image_7" />
+  <use href="#image_7" filter="url(#innershadow)" style="mix-blend-mode: darken" />
+  <use href="#image_7" filter="url(#innershadow_2)" />
+</svg>

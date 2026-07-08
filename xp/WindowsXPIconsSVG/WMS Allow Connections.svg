@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="dropshadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feMorphology operator="dilate" radius="8.4" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="15.8" />
+      <feOffset dx="5.9" dy="11.58" result="SHADOW" />
+      <feFlood flood-color="#000000" />
+      <feComposite operator="in" in2="SHADOW" />
+    </filter>
+    <rect x="51" y="135" width="902" height="752" id="shape" transform="matrix(1,0,0,0.8763,0,55.6955)" />
+    <linearGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(-0.11,0.01) translate(0.5,0.5) scale(0.7312 1) scale(1 1.07) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#007100" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#89f55b" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#89f55b" stop-opacity="100%" />
+    </linearGradient>
+    <mask id="mask">
+      <rect x="376" y="364" width="77" height="297" fill="#ffffff" transform="matrix(-0.7071,0.7071,0.8747,0.8747,111.9134,-135.2106)" />
+      <rect x="376" y="364" width="77" height="297" fill="#ffffff" transform="matrix(-0.7071,-0.7071,0.8747,-0.8747,111.9134,1142.6331)" />
+    </mask>
+    <mask id="mask_2">
+      <rect x="376" y="364" width="77" height="297" fill="#ffffff" transform="matrix(0.7071,0.7071,-0.8747,0.8747,893.8545,-135.2106)" />
+      <rect x="376" y="364" width="77" height="297" fill="#ffffff" transform="matrix(0.7071,-0.7071,-0.8747,-0.8747,893.8545,1142.6331)" />
+    </mask>
+    <mask id="mask_3">
+      <rect x="51" y="65" width="902" height="121" fill="#ffffff" transform="matrix(1,0,0,1,0,1) translate(1,756)" />
+      <rect x="51" y="65" width="902" height="121" fill="#ffffff" />
+    </mask>
+    <mask id="mask_4">
+      <rect x="836" y="851" width="60" height="63" fill="#ffffff" transform="translate(-726,-758)" />
+      <rect x="836" y="851" width="60" height="63" fill="#ffffff" transform="matrix(1,0,0,1,121,0) translate(-726,-758)" />
+      <rect x="836" y="851" width="60" height="63" fill="#ffffff" transform="matrix(1,0,0,1,242,0) translate(-726,-758)" />
+      <rect x="836" y="851" width="60" height="63" fill="#ffffff" transform="matrix(1,0,0,1,363,0) translate(-726,-758)" />
+      <rect x="836" y="851" width="60" height="63" fill="#ffffff" transform="matrix(1,0,0,1,484,0) translate(-726,-758)" />
+      <rect x="836" y="851" width="60" height="63" fill="#ffffff" transform="matrix(1,0,0,1,605,0) translate(-726,-758)" />
+      <rect x="836" y="851" width="60" height="63" fill="#ffffff" transform="matrix(1,0,0,1,726,0) translate(-726,-758)" />
+      <rect x="836" y="851" width="60" height="63" fill="#ffffff" transform="matrix(1,0,0,1,0,758) translate(-726,-758)" />
+      <rect x="836" y="851" width="60" height="63" fill="#ffffff" transform="matrix(1,0,0,1,121,758) translate(-726,-758)" />
+      <rect x="836" y="851" width="60" height="63" fill="#ffffff" transform="matrix(1,0,0,1,242,758) translate(-726,-758)" />
+      <rect x="836" y="851" width="60" height="63" fill="#ffffff" transform="matrix(1,0,0,1,363,758) translate(-726,-758)" />
+      <rect x="836" y="851" width="60" height="63" fill="#ffffff" transform="matrix(1,0,0,1,484,758) translate(-726,-758)" />
+      <rect x="836" y="851" width="60" height="63" fill="#ffffff" transform="matrix(1,0,0,1,605,758) translate(-726,-758)" />
+      <rect x="836" y="851" width="60" height="63" fill="#ffffff" />
+    </mask>
+  </defs>
+  <use href="#group" filter="url(#dropshadow)" opacity="0.82" />
+  <g id="group">
+    <use href="#shape" fill="#010101" />
+    <use href="#shape" fill="url(#gradient)" />
+    <rect x="108" y="243" width="318" height="522" mask="url(#mask)" fill="#ffffff" />
+    <rect x="580" y="243" width="317" height="522" mask="url(#mask_2)" fill="#ffffff" />
+    <rect x="480" y="218" width="46" height="567" fill="#ffffff" />
+    <rect x="50" y="64" width="905" height="880" mask="url(#mask_3)" fill="#010101" />
+    <rect x="109" y="92" width="788" height="823" mask="url(#mask_4)" fill="#ffffff" />
+  </g>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <rect x="69" y="189" width="876" height="632" id="shape" />
+    <linearGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(0.12,-0.09) translate(0.5,0.5) scale(0.7221 1) rotate(87) scale(1 0.9) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#487fe1" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#477dde" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#477dde" stop-opacity="100%" />
+    </linearGradient>
+    <rect x="69" y="232" width="876" height="632" id="shape_2" />
+    <linearGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="translate(0.2,-0.03) translate(0.5,0.5) scale(0.7221 1) rotate(-35) scale(1 0.67) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#b7d5fc" stop-opacity="100%" />
+    </linearGradient>
+  </defs>
+  <rect x="29" y="109" width="960" height="797" rx="25" ry="50" fill="#3a67c7" />
+  <use href="#shape" fill="#ffffff" />
+  <use href="#shape" fill="url(#gradient)" />
+  <use href="#shape_2" fill="#ffffff" />
+  <use href="#shape_2" fill="url(#gradient_2)" />
+  <rect x="740" y="873.21" width="121" height="39" transform="matrix(1,0,0,1,543,9) translate(-543,-389.2149)" fill="#959597" />
+  <rect x="408" y="322" width="121" height="121" transform="matrix(1,0,0,1,-293,0) translate(41,0)" fill="#477dde" />
+  <rect x="570" y="743.21" width="121" height="39" transform="matrix(1,0,0,1,-131,-121) translate(-121,-259.2149)" fill="#959597" />
+  <rect x="1071" y="452" width="121" height="121" transform="matrix(1,0,0,1,-134,130) translate(-370,-130)" fill="#569824" />
+  <rect x="156" y="871" width="121" height="121" transform="matrix(1,0,0,1,-41,47) translate(41,-298)" fill="#d77f67" stroke-width="37.43" stroke="#dd7048" />
+  <rect x="318" y="1292.21" width="121" height="39" transform="matrix(1,0,0,1,121,-74) translate(-121,-557.2149)" fill="#959497" />
+</svg>

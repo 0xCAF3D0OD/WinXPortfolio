@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solitaire</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Bouton conservé (caché) : déclenché depuis le bandeau « New game » du cadre XP parent. -->
+    <button type="button" id="js-reset" class="new-game" hidden>New game</button>
+    <div class="solitaire" id="js-solitaire">
+        <div id="js-finish" class="finish-deck"></div>
+        <div id="js-board" class="board-deck"></div>
+
+        <div class="deck">
+            <div id="js-deck-pile" class="deck__pile"></div>
+            <div id="js-deck-deal" class="deck__deal"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>

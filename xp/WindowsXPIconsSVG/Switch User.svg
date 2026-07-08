@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <rect x="-1" y="-1" width="1025" height="1024" rx="125" ry="125" id="shape" />
+    <radialGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(0.25,0.26) translate(0.5,0.5) scale(0.999 1) rotate(2) scale(1 0.87) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#01db00" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#01cf05" stop-opacity="0%" />
+    </radialGradient>
+    <radialGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="translate(-0.38,-0.38) translate(0.5,0.5) scale(0.999 1) rotate(2) scale(1 0.87) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0%" />
+    </radialGradient>
+    <filter id="innershadow">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="58.5" />
+      <feOffset dx="-78.04" dy="-96.37" result="SHADOW" />
+      <feFlood flood-color="#006700" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <filter id="innerglow">
+      <feMorphology operator="erode" radius="70" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="24" result="GLOW" />
+      <feFlood flood-color="#33c539" />
+      <feComposite operator="out" in2="GLOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <mask id="mask">
+      <rect x="221" y="658" width="470" height="83" fill="#ffffff" />
+      <path d="M 729.88,658.62 C 729.88,658.62 769.48,698.21 769.48,698.21 769.48,698.21 602.32,865.37 602.32,865.37 602.32,865.37 562.73,825.77 562.73,825.77 562.73,825.77 729.88,658.62 729.88,658.62 Z" fill="#ffffff" />
+      <path d="M 729.37,737.01 C 729.37,737.01 769.01,697.36 769.01,697.36 769.01,697.36 601.65,530 601.65,530 601.65,530 562.01,569.65 562.01,569.65 562.01,569.65 729.37,737.01 729.37,737.01 Z" fill="#ffffff" />
+      <rect x="299.4" y="278.86" width="469.6" height="82.91" fill="#ffffff" />
+      <path d="M 260.55,279.47 C 260.55,279.47 220.99,319.03 220.99,319.03 220.99,319.03 388,486 388,486 388,486 427.57,446.44 427.57,446.44 427.57,446.44 260.55,279.47 260.55,279.47 Z" fill="#ffffff" />
+      <path d="M 261.07,357.78 C 261.07,357.78 221.46,318.18 221.46,318.18 221.46,318.18 388.67,151 388.67,151 388.67,151 428.28,190.6 428.28,190.6 428.28,190.6 261.07,357.78 261.07,357.78 Z" fill="#ffffff" />
+    </mask>
+  </defs>
+  <use href="#shape" fill="#47c54d" />
+  <use href="#shape" fill="url(#gradient)" />
+  <use href="#shape" fill="url(#gradient_2)" opacity="0.76" />
+  <use href="#shape" filter="url(#innershadow)" />
+  <use href="#shape" filter="url(#innerglow)" />
+  <rect x="219" y="150" width="552" height="717" mask="url(#mask)" fill="#ffffff" />
+  <rect x="-1" y="-1" width="1025" height="1024" rx="125" ry="125" fill="none" stroke-width="34.7" stroke="#ffffff" />
+</svg>

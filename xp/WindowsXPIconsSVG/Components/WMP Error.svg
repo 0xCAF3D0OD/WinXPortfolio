@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <circle cx="512" cy="493" r="319" id="shape" />
+    <radialGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(-0.12,-0.15) translate(0.5,0.5) rotate(-20) scale(1 1.33) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="100%" />
+      <stop offset="29%" stop-color="#ffffff" stop-opacity="100%" />
+      <stop offset="55%" stop-color="#e3e5f3" stop-opacity="100%" />
+      <stop offset="84%" stop-color="#c7e9f9" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#6f8595" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#6f8595" stop-opacity="100%" />
+    </radialGradient>
+    <linearGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="rotate(-232) scale(1 1.09)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#85888f" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#85888f" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#e0e3e6" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#e0e3e6" stop-opacity="100%" />
+    </linearGradient>
+    <path d="M 436,302 C 436,302 543,302 543,302 543,302 534.05,553 534.05,553 534.05,553 444.95,553 444.95,553 444.95,553 436,302 436,302 Z" id="shape_2" />
+    <linearGradient id="gradient_3" x2="100%" y2="0%" gradientTransform="translate(-0.16,-0.1) translate(0.5,0.5) scale(1 0.4308) rotate(215) scale(1.31 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#4e86a7" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#4e86a7" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#0d395b" stop-opacity="100%" />
+    </linearGradient>
+    <rect x="441.32" y="617" width="97.36" height="72" id="shape_3" />
+    <linearGradient id="gradient_4" x2="0%" y2="100%" gradientTransform="translate(-0.16,-0.1) translate(0.5,0.5) scale(0.74 1) rotate(125) scale(1 1.31) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#4e86a7" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#4e86a7" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#0d395b" stop-opacity="100%" />
+    </linearGradient>
+  </defs>
+  <use href="#shape" fill="#75c1ff" />
+  <use href="#shape" fill="url(#gradient)" />
+  <use href="#shape" fill="none" stroke="url(#gradient_2)" stroke-width="29" />
+  <use href="#shape_2" fill="#75c1ff" />
+  <use href="#shape_2" fill="url(#gradient_3)" />
+  <use href="#shape_3" fill="#75c1ff" />
+  <use href="#shape_3" fill="url(#gradient_4)" />
+</svg>

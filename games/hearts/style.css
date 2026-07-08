@@ -1,0 +1,985 @@
+@keyframes "pulsing" {
+	from {
+	       box-shadow: 0 0 0 black, inset 0 0 0 lightblue, 0 0 0 0 lightblue;
+	}
+	to {
+	       box-shadow: 0 0 0 black, inset 0 0 10px lightblue, 0 0 10px 10px lightblue;
+	}
+}
+
+@-webkit-keyframes "pulsing" {
+	from {
+	       box-shadow: 0 0 0 black, inset 0 0 0 lightblue, 0 0 0 0 lightblue;
+	}
+	to {
+	       box-shadow: 0 0 0 black, inset 0 0 10px lightblue, 0 0 10px 10px lightblue;
+	}
+}
+
+
+@-moz-keyframes "pulsing" {
+	from {
+	       box-shadow: 0 0 0 black, inset 0 0 0 lightblue, 0 0 0 0 lightblue;
+	}
+	to {
+	       box-shadow: 0 0 0 black, inset 0 0 10px lightblue, 0 0 10px 10px lightblue;
+	}
+}
+
+
+@-ms-keyframes "pulsing" {
+	from {
+	       box-shadow: 0 0 0 black, inset 0 0 0 lightblue, 0 0 0 0 lightblue;
+	}
+	to {
+	       box-shadow: 0 0 0 black, inset 0 0 10px lightblue, 0 0 10px 10px lightblue;
+	}
+}
+
+html, body{
+	padding: 0;
+	margin: 0;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	font-family: Arial;
+}
+
+td[contentEditable]{
+	-webkit-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	-o-user-select: text;
+	user-select: text;
+}
+
+#control-region{
+	display: block;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 1000;
+	text-align: center;
+	background-image:-webkit-linear-gradient(top, rgba(10,10,10,0.8), rgba(0,0,0,0.5));
+	background-image:-moz-linear-gradient(top, rgba(10,10,10,0.8), rgba(0,0,0,0.5));
+	background-image:-ms-linear-gradient(top, rgba(10,10,10,0.8), rgba(0,0,0,0.5));
+	background-image:-o-linear-gradient(top, rgba(10,10,10,0.8), rgba(0,0,0,0.5));
+	background-image:linear-gradient(top, rgba(10,10,10,0.8), rgba(0,0,0,0.5));
+	-webkit-transition-duration: 0.5s;
+	-moz-transition-duration: 0.5s;
+	-ms-transition-duration: 0.5s;
+	-o-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+	-webkit-transform-origin: top center;
+	-moz-transform-origin: top center;
+	-ms-transform-origin: top center;
+	-o-transform-origin: top center;
+	transform-origin: top center;
+	-webkit-transform: perspective(1000px);
+	-moz-transform: perspective(1000px);
+	-ms-transform: perspective(1000px);
+	-o-transform: perspective(1000px);
+	transform: perspective(1000px);
+
+	-webkit-transform: translateZ(999px);
+	-moz-transform: translateZ(999px);
+	-ms-transform: translateZ(999px);
+	transform: translateZ(999px);
+
+	z-index: 999;
+}
+
+#control-region[hidden]{
+	-webkit-transform: perspective(1000px) translateY(-200px) rotateX(90deg);
+	-moz-transform: perspective(1000px) translateY(-200px) rotateX(-90deg);
+	-ms-transform: perspective(1000px) translateY(-200px) rotateX(-90deg);
+	-o-transform: perspective(1000px) translateY(-200px) rotateX(-90deg);
+	transform: perspective(1000px) translateY(-200px) rotateX(-90deg);
+	opacity: 0;
+}
+
+#control-region>div{
+	color: white;
+	font-size: 2em;
+	text-align: center;
+}
+
+#control-region table{
+	margin: 0 auto;
+	text-align: left;
+	background: rgba(0,0,0,0.7);
+	padding: 15px;
+	border-radius: 10px;
+	box-shadow: inset 0 1px 10px 5px black, 0 1px 1px rgba(255, 255, 255, 0.5);
+	text-shadow: -1px -1px 1px black;
+}
+
+#control-region td, #control-region th{
+	padding: 5px 10px;
+}
+
+.player-set-name{
+	word-wrap: normal;
+	overflow: hidden;
+}
+
+#control-region h3{
+	background-image:-webkit-linear-gradient(left, rgba(0,0,0,0.5), #000, rgba(0,0,0,0.5));
+	background-image:-moz-linear-gradient(left, rgba(0,0,0,0.5), #000, rgba(0,0,0,0.5));
+	background-image:-ms-linear-gradient(left, rgba(0,0,0,0.5), #000, rgba(0,0,0,0.5));
+	background-image:-o-linear-gradient(left, rgba(0,0,0,0.5), #000, rgba(0,0,0,0.5));
+	background-image:linear-gradient(left, rgba(0,0,0,0.5), #000, rgba(0,0,0,0.5));
+	box-shadow: 0 0 10px black;
+	padding: 5px;
+	text-shadow: 0 0 8px white;
+}
+
+#control-region>button{
+	font-size: 2em;
+	margin: 0 auto;
+	padding: 5px 15px;
+	margin-top: 1em;
+	border-radius: 10px;
+	border: none;
+	background-color: transparent;
+	background-image: -webkit-linear-gradient(top, rgba(60,60,60,0.7), rgba(0,0,0,0.7));
+	background-image: -moz-linear-gradient(top, rgba(60,60,60,0.7), rgba(0,0,0,0.7));
+	background-image: -ms-linear-gradient(top, rgba(60,60,60,0.7), rgba(0,0,0,0.7));
+	background-image: -o-linear-gradient(top, rgba(60,60,60,0.7), rgba(0,0,0,0.7));
+	background-image: linear-gradient(top, rgba(60,60,60,0.7), rgba(0,0,0,0.7));
+	color: white;
+	box-shadow: 0 0 0 1px black, inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 1px 3px rgba(255, 255, 255, 0.8);
+	cursor: pointer;
+	vertical-align: bottom;
+}
+
+#control-region>button:hover{
+	background-image: -webkit-linear-gradient(top, rgba(90,90,90,0.7), rgba(30,30,30,0.7));
+	background-image: -moz-linear-gradient(top, rgba(90,90,90,0.7), rgba(30,30,30,0.7));
+	background-image: -ms-linear-gradient(top, rgba(90,90,90,0.7), rgba(30,30,30,0.7));
+	background-image: -o-linear-gradient(top, rgba(90,90,90,0.7), rgba(30,30,30,0.7));
+	background-image: linear-gradient(top, rgba(90,90,90,0.7), rgba(30,30,30,0.7));
+}
+
+#control-region>button:active{
+	background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.7), rgba(50,50,50,0.7));
+	background-image: -moz-linear-gradient(top, rgba(0,0,0,0.7), rgba(50,50,50,0.7));
+	background-image: -ms-linear-gradient(top, rgba(0,0,0,0.7), rgba(50,50,50,0.7));
+	background-image: -o-linear-gradient(top, rgba(0,0,0,0.7), rgba(50,50,50,0.7));
+	background-image: linear-gradient(top, rgba(0,0,0,0.7), rgba(50,50,50,0.7));
+	box-shadow: 0 0 0 1px black, inset 0 1px 1px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(255, 255, 255, 0.8);
+	padding-top: 6px;
+	padding-bottom: 4px;
+	text-shadow: -1px -1px 1px black;
+}
+
+#main-button-group{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 10;
+}
+
+#main-button-group>button{
+	-webkit-appearance: none;
+	font-size: 17px;
+	cursor: pointer;
+	color: white;
+	text-align: center;
+	padding: 5px;
+	background: #111;
+	background-image:-webkit-linear-gradient(top, #222, #000);
+	background-image:-moz-linear-gradient(top, #222, #000);
+	background-image:-ms-linear-gradient(top, #222, #000);
+	background-image:-o-linear-gradient(top, #222, #000);
+	background-image:linear-gradient(top, #222, #000);
+	box-shadow: 0 0 5px #111;
+    margin: 0;
+    float: left;
+    border: none;
+}
+
+#main-button-group>button:last-child{
+	border-top-right-radius: 10px;
+}
+
+#main-button-group>button:hover{
+	background-image:-webkit-linear-gradient(top, #444, #222);
+	background-image:-moz-linear-gradient(top, #444, #222);
+	background-image:-ms-linear-gradient(top, #444, #222);
+	background-image:-o-linear-gradient(top, #444, #222);
+	background-image:linear-gradient(top, #444, #222);
+	box-shadow: 0 0 5px #333;
+}
+
+#main-button-group>button:active{
+	padding-top: 6px;
+	padding-bottom: 4px;
+	background: #111;
+}
+
+#newgame-but{
+
+}
+
+#game-region{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: lightblue;
+	-webkit-perspective: 8000px;
+	-moz-perspective: 8000px;
+	-ms-perspective: 8000px;
+	-o-perspective: 8000px;
+	perspective: 8000px;
+	background-image:-webkit-radial-gradient(
+		50% 38%, #53c230, #138300);
+	background-image:-moz-radial-gradient(
+		50% 38%, #53c230, #138300);
+	background-image:-o-radial-gradient(
+		50% 38%, #53c230, #138300);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	overflow: hidden;
+}
+
+#pass-arrow{
+	display: none;
+	position: absolute;
+	font-size: 200px;
+	color: white;
+	font-family: Arial;
+	left: 50%;
+	top: 50%;
+	margin-top: -100px;
+	margin-left: -100px;
+	text-shadow: 0 0 10px white;
+	opacity: 0;
+	font-weight: bold;
+	cursor: pointer;
+	z-index: 1;
+	-webkit-transition-duration: 0.2s;
+	-moz-transition-duration: 0.2s;
+	-ms-transition-duration: 0.2s;
+	-o-transition-duration: 0.2s;
+	transition-duration: 0.2s;
+}
+
+#pass-arrow.show{
+	display: block;
+	opacity: 1;
+}
+
+#pass-arrow:hover{
+	text-shadow: 0 0 15px black;
+}
+
+#pass-arrow:active{
+	text-shadow: 0 0 1px black;
+}
+
+#play-button{
+	position: absolute;
+	-webkit-appearance: none;
+	font-size: 40px;
+	line-height: 60px;
+	font-family: Arial;
+	bottom: 20px;
+	right: 20px;
+	width: 200px;
+	text-shadow: 0 0 -1px black, 0 0 1px white;
+	opacity: 0;
+	cursor: pointer;
+	height: 60px;
+	border-radius: 15px;
+	color: white;
+	text-align: center;
+	padding: 0;
+	background-image:-webkit-linear-gradient(top, #222, #000);
+	background-image:-moz-linear-gradient(top, #222, #000);
+	background-image:-ms-linear-gradient(top, #222, #000);
+	background-image:-o-linear-gradient(top, #222, #000);
+	background-image:linear-gradient(top, #222, #000);
+	border:1px solid #111;
+	box-shadow:
+        0 2px 8px rgba(0,0,0,0.5),
+        inset 0 1px rgba(255,255,255,0.3),
+        inset 0 10px rgba(255,255,255,0.2),
+        inset 0 10px 20px rgba(255,255,255,0.25),
+        inset 0 -15px 30px rgba(0,0,0,0.3);
+    -webkit-transition-duration: 0.1s;
+    -moz-transition-duration: 0.1s;
+    -ms-transition-duration: 0.1s;
+    -o-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+
+    -webkit-transform: translate3d(0, 90px, 0);
+    -moz-transform: translate3d(0, 90px, 0);
+    -ms-transform: translate3d(0, 90px, 0);
+    -o-transform: translate3d(0, 90px, 0);
+    transform: translate3d(0, 90px, 0);
+}
+
+#play-button.show{
+	opacity: 1;
+	-webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+#play-button:hover{
+	background-image:-webkit-linear-gradient(top, #333, #111);
+	background-image:-moz-linear-gradient(top, #333, #111);
+	background-image:-ms-linear-gradient(top, #333, #111);
+	background-image:-o-linear-gradient(top, #333, #111);
+	background-image:linear-gradient(top, #333, #111);
+}
+
+#play-button:active{
+	line-height: 63px;
+	background-image:-webkit-linear-gradient(top, #000, #222);
+	background-image:-moz-linear-gradient(top, #000, #222);
+	background-image:-ms-linear-gradient(top, #000, #222);
+	background-image:-o-linear-gradient(top, #000, #222);
+	background-image:linear-gradient(top, #000, #222);
+	box-shadow:
+        inset 0 1px rgba(255,255,255,0.4),
+        inset 0 10px rgba(255,255,255,0.01),
+        inset 0 10px 20px rgba(255,255,255,0.1),
+        inset 0 -15px 30px rgba(0,0,0,0.2);
+}
+
+#game-message{
+	position: absolute;
+	margin-left: -210px;
+	margin-top: -60px;
+	top: 50%;
+	left: 50%;
+	width: 380px;
+	padding: 20px;
+	color: white;
+	background: rgba(0,0,0,0.8);
+	box-shadow: 0 0 20px 1px black;
+	border-radius: 10px;
+	font-size: 2em;
+	font-family: Arial;
+	display: none;
+	z-index: 0;
+}
+
+#end-message{
+	position: absolute;
+	font-size: 4em;
+	width: 400px;
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	margin-left: -200px;
+	margin-top: -40px;
+	font-family: Impact;
+	z-index: 1000;
+	color: white;
+	text-shadow: 0 1px 1px #bbb,
+			   0 2px 0 #999,
+			   0 3px 0 #888,
+			   0 4px 0 #777,
+			   0 5px 0 #666,
+			   0 6px 0 #555,
+			   0 7px 0 #444,
+			   0 8px 0 #333,
+			   0 9px 7px #302314;
+
+	-webkit-transform: scale3d(0, 0, 0);
+	-moz-transform: scale3d(0, 0, 0);
+	-ms-transform: scale3d(0, 0, 0);
+	-o-transform: scale3d(0, 0, 0);
+	transform: scale3d(0, 0, 0);
+}
+
+#end-message.show{
+	-webkit-transform: scale3d(1, 1, 0);
+	-moz-transform: scale3d(1, 1, 0);
+	-ms-transform: scale3d(1, 1, 0);
+	-o-transform: scale3d(1, 1, 0);
+	transform: scale3d(1, 1, 0);
+
+	-webkit-transition: -webkit-transform 1s;
+	-moz-transition: -moz-transform 1s;
+	-ms-transition: -ms-transform 1s;
+	-o-transition: -o-transform 1s;
+	transition: transform 1s;
+}
+
+.info-board{
+	position: absolute;
+	z-index: 200;
+	display: inline-block;
+	background: rgba(0, 0, 0, 0.8);
+	box-shadow: 0 0 10px black;
+	-webkit-transition-duration: 0.3s;
+	-moz-transition-duration: 0.3s;
+	-ms-transition-duration: 0.3s;
+	-o-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	-webkit-transform: translateZ(300px);
+	border-radius: 5px;
+	background-image:-webkit-linear-gradient(top, rgba(30, 30, 30, 0.8), rgba(0,0,0, 0.8));
+	background-image:-moz-linear-gradient(top, rgba(30, 30, 30, 0.8), rgba(0,0,0, 0.8));
+	background-image:-ms-linear-gradient(top, rgba(30, 30, 30, 0.8), rgba(0,0,0, 0.8));
+	background-image:-o-linear-gradient(top, rgba(30, 30, 30, 0.8), rgba(0,0,0, 0.8));
+	background-image:linear-gradient(top, rgba(30, 30, 30, 0.8), rgba(0,0,0, 0.8));
+}
+
+.info-board.highlight{
+	-webkit-animation: pulsing 1s alternate infinite;
+	-moz-animation: pulsing 1s alternate infinite;
+	-ms-animation: pulsing 1s alternate infinite;
+	animation: pulsing 1s alternate infinite;
+}
+
+.info-board.board-0{
+	top: 70%;
+	left: 50%;
+}
+
+.info-board.board-1{
+	left: 15%;
+	top: 50%;
+}
+
+.info-board.board-2{
+	top: 30%;
+	left: 50%;
+}
+
+.info-board.board-3{
+	left: 85%;
+	top: 50%;
+}
+
+.info-board:not(.table):hover{
+	opacity: 0.1;
+}
+
+.info-board.table.human{
+	background-image: -webkit-linear-gradient( top, rgba(190, 190, 40, 0.8), rgba(100, 100, 40, 0.8));
+	background-image: -moz-linear-gradient( top, rgba(190, 190, 40, 0.8), rgba(100, 100, 40, 0.8));
+	background-image: -ms-linear-gradient( top, rgba(190, 190, 40, 0.8), rgba(100, 100, 40, 0.8));
+	background-image: -o-linear-gradient( top, rgba(190, 190, 40, 0.8), rgba(100, 100, 40, 0.8));
+	background-image: linear-gradient( top, rgba(190, 190, 40, 0.8), rgba(100, 100, 40, 0.8));
+}
+
+.player-name, .player-score, .final-score{
+	padding: 10px;
+	float: left;
+	padding-bottom: 8px;
+	margin: 10px;
+	margin-top: 8px;
+	display: inline-block;
+	width: 90px;
+	box-shadow: inset 0 2px 2px black, 0 1px 1px white;
+	border-radius: 4px;
+	text-align: center;
+	font-family: Arial;
+	background-image:-webkit-linear-gradient(top, rgba(220, 220, 220, 0.7), rgba(255,255,255, 0.7));
+	background-image:-moz-linear-gradient(top, rgba(220, 220, 220, 0.7), rgba(255,255,255, 0.7));
+	background-image:-ms-linear-gradient(top, rgba(220, 220, 220, 0.7), rgba(255,255,255, 0.7));
+	background-image:-o-linear-gradient(top, rgba(220, 220, 220, 0.7), rgba(255,255,255, 0.7));
+	background-image:linear-gradient(top, rgba(220, 220, 220, 0.7), rgba(255,255,255, 0.7));
+}
+
+.final-score{
+	width: 0;
+	padding-left: 0;
+	padding-right: 0;
+	overflow: hidden;
+	margin-right: 0;
+	margin-left: 0;
+	-webkit-transition-duration: 0.3s;
+	-moz-transition-duration: 0.3s;
+	-ms-transition-duration: 0.3s;
+	-o-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+}
+
+.final-score.show{
+	width: 90px;
+	padding: 10px;
+	padding-bottom: 8px;
+	margin-right: 10px;
+}
+
+.player-score{
+	margin-left: 0;
+	-webkit-transition: background 5s;
+	-moz-transition: background 5s;
+	-ms-transition: background 5s;
+	-o-transition: background 5s;
+	transition: background 5s;
+}
+
+.player-score.highlight{
+	-webkit-transition-duration: 0s;
+	-moz-transition-duration: 0s;
+	-ms-transition-duration: 0s;
+	-o-transition-duration: 0s;
+	transition-duration: 0s;
+	background-color: red;
+}
+
+.card>.front, .card>.back{
+	border-radius: 8px;
+	position:absolute;
+	top:0;
+	left:0;
+	width:85px;
+	height:130px;
+	background-color:white;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.card{
+	width:85px;
+	height:130px;
+	border-radius:8px;
+	position:absolute;
+	margin-left: -42px;
+	margin-top: -65px;
+	top: 50%;
+	left: 50%;
+	-webkit-transition: -webkit-transform 0.2s, box-shadow 0.2s;
+	-moz-transition: -moz-transform 0.2s, box-shadow 0.2s;
+	-ms-transition: -ms-transform 0.2s, box-shadow 0.2s;
+	-o-transition: -o-transform 0.2s, box-shadow 0.2s;
+	transition: transform 0.2s, box-shadow 0.2s;
+	z-index: 1000;
+	cursor:default;
+	border-radius: 8px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+
+.card>.front{
+	background-color:white;
+	background-repeat:no-repeat;
+	background-position:50% 75%;
+	background-size:70px;
+}
+
+.card>.back{
+	background-image:url('img/flip.png');
+	background-repeat:repeat;
+	box-sizing: border-box;
+	moz-box-sizing: border-box;
+	border: 6px solid white;
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	-ms-transform: rotateY(180deg);
+	-o-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+
+.card.heart, .card.diamond{
+	color:red;
+}
+
+.card.noShadow .front, .card.noShadow .back{
+	box-shadow:none;
+	border:1px solid #777777;
+}
+
+.card.movable .front{
+	box-shadow: 0 0 25px lightblue;
+}
+
+.card.movable:hover .front{
+	box-shadow:0 0 20px 5px lightblue;
+}
+
+.card.noShadow .front, .card.noShadow .back{
+	box-shadow:none;
+}
+
+.card.heart .front, .card.heart .icon{
+	background-image:url('img/heart.png');
+}
+
+.card.club .front, .card.club .icon{
+	background-image:url('img/club.png');
+}
+
+.card.spade .front, .card.spade .icon{
+	background-image:url('img/spade.png');
+}
+
+.card.diamond .front, .card.diamond .icon{
+	background-image:url('img/diamond.png');
+}
+
+.card .icon{
+	background-size:contain;
+	background-position:center;
+	background-repeat:no-repeat;
+	width:15px;
+	height:15px;
+	position:absolute;
+	left:4px;
+	top:19px;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.card .num{
+	position:absolute;
+	left:7px;
+	top:4px;
+	font-size: 15px;
+	font-family: Arial;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+input[type="number"]{
+	background: transparent;
+	font-size: inherit;
+	padding: 0 0.5em;
+	color: white;
+}
+
+/* =====================================================================
+   Habillage rétro Windows XP/Classic — SURCOUCHE uniquement.
+   Ne modifie que des couleurs/bordures ; la géométrie des cartes
+   (.card, .info-board, perspective de #game-region) reste intacte,
+   sinon le placement JS des cartes casse.
+   ===================================================================== */
+
+/* Tapis vert uni au lieu du dégradé radial moderne */
+#game-region {
+	background: #008000;
+	background-image: none;
+}
+
+/* Barre de boutons du bas : gris Windows à biseau 3D */
+#main-button-group {
+	display: flex;
+	width: 100%;
+	background: #d4d0c8;
+	border-top: 2px solid #fff;
+	padding: 2px;
+}
+#main-button-group > button {
+	-webkit-appearance: none;
+	font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+	font-size: 13px;
+	color: #000;
+	background: #d4d0c8;
+	background-image: none;
+	padding: 4px 12px;
+	margin-right: 2px;
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	border-radius: 0;
+	box-shadow: inset 1px 1px 0 #fff, 1px 1px 0 #000;
+}
+#main-button-group > button:last-child { border-top-right-radius: 0; }
+#main-button-group > button:hover {
+	background: #e4e0d8;
+	background-image: none;
+	box-shadow: inset 1px 1px 0 #fff, 1px 1px 0 #000;
+}
+#main-button-group > button:active {
+	border-top: 1px solid #808080;
+	border-left: 1px solid #808080;
+	border-right: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	box-shadow: inset 1px 1px 0 #808080;
+	background: #d4d0c8;
+}
+
+/* Boîte de dialogue Réglages : fenêtre grise + barre de titre bleue */
+#control-region table {
+	background: #d4d0c8;
+	border-radius: 0;
+	border-top: 2px solid #fff;
+	border-left: 2px solid #fff;
+	border-right: 2px solid #808080;
+	border-bottom: 2px solid #808080;
+	box-shadow: 1px 1px 0 #000;
+	text-shadow: none;
+}
+#control-region td, #control-region th { color: #000; }
+#control-region h3 {
+	background: #0a246a;
+	background-image: none;
+	color: #fff;
+	text-shadow: none;
+	box-shadow: none;
+	text-align: left;
+}
+#control-region > button {
+	font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+	font-size: 14px;
+	color: #000;
+	background: #d4d0c8;
+	background-image: none;
+	border-radius: 0;
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	box-shadow: inset 1px 1px 0 #fff, 1px 1px 0 #000;
+	text-shadow: none;
+}
+#control-region > button:hover {
+	background: #e4e0d8;
+	background-image: none;
+}
+#control-region > button:active {
+	border-top: 1px solid #808080;
+	border-left: 1px solid #808080;
+	border-right: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	box-shadow: inset 1px 1px 0 #808080;
+	background-image: none;
+}
+input[type="number"] { color: #000; }
+
+/* --- Infos joueurs façon « Microsoft Hearts » : libellés noirs sur le tapis --- */
+.info-board {
+	background: transparent !important;
+	background-image: none !important;
+	box-shadow: none !important;
+	border-radius: 0;
+}
+.info-board.table.human {
+	background: transparent !important;
+	background-image: none !important;
+}
+/* Noms des joueurs masqués (simplifie le plateau) */
+.player-name { display: none !important; }
+/* Score courant masqué pendant la partie (comme l'original) ; le bilan de fin reste */
+.player-score { display: none !important; }
+/* Joueur actif : léger surlignage du nom au lieu du halo bleu pulsant */
+.info-board.highlight { animation: none !important; }
+.info-board.highlight .player-name {
+	background: #fffb9d !important;
+	box-shadow: inset 0 0 0 1px #808000 !important;
+}
+
+/* Message central (ex. « Pass three cards… ») en boîte grise Windows */
+#game-message {
+	background: #d4d0c8 !important;
+	color: #000 !important;
+	border-radius: 0 !important;
+	border-top: 2px solid #fff;
+	border-left: 2px solid #fff;
+	border-right: 2px solid #808080;
+	border-bottom: 2px solid #808080;
+	box-shadow: 1px 1px 0 #000 !important;
+	font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif !important;
+	font-size: 14px !important;
+	text-shadow: none !important;
+}
+
+/* === Cartes complètes façon Windows (jeu SVG domaine public) === */
+.card.full > .front {
+	background-color: #fff;
+	background-size: 100% 100% !important;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+}
+/* L'image SVG porte déjà rang + couleur : on masque l'ancien rendu minimaliste */
+.card.full .num,
+.card.full .icon { display: none !important; }
+/* Dos de carte bleu */
+.card > .back {
+	background-image: url('cards/blueBack.svg') !important;
+	background-size: 100% 100% !important;
+	background-repeat: no-repeat !important;
+	background-position: center !important;
+	border: none !important;
+}
+
+/* === Boîte Settings + bouton d'action (Go!/Confirm/Continue) en Windows classique === */
+#control-region > div {
+	font-size: 13px !important;
+	color: #000 !important;
+}
+/* Titre « Settings » : petite barre bleue au lieu du gros texte blanc */
+#control-region h3 {
+	display: inline-block;
+	background: #0a246a !important;
+	background-image: none !important;
+	color: #fff !important;
+	font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif !important;
+	font-size: 14px !important;
+	font-weight: bold;
+	padding: 4px 16px !important;
+	margin: 0 0 8px !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+}
+/* Champs de niveau : aspect enfoncé classique */
+#control-region input[type="number"] {
+	background: #fff !important;
+	color: #000 !important;
+	border-top: 1px solid #808080;
+	border-left: 1px solid #808080;
+	border-right: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	width: 42px;
+	font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+}
+/* Bouton d'action en bas à droite (« Go! », « Confirm », « Continue »…) */
+#play-button {
+	background: #d4d0c8 !important;
+	background-image: none !important;
+	color: #000 !important;
+	font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	border-top: 2px solid #fff !important;
+	border-left: 2px solid #fff !important;
+	border-right: 2px solid #808080 !important;
+	border-bottom: 2px solid #808080 !important;
+	box-shadow: 1px 1px 0 #000 !important;
+	text-shadow: none !important;
+}
+#play-button:hover {
+	background: #e4e0d8 !important;
+	background-image: none !important;
+}
+#play-button:active {
+	border-top: 2px solid #808080 !important;
+	border-left: 2px solid #808080 !important;
+	border-right: 2px solid #fff !important;
+	border-bottom: 2px solid #fff !important;
+	background-image: none !important;
+	box-shadow: inset 1px 1px 0 #808080 !important;
+}
+
+/* =====================================================================
+   Réorganisation du footer (barre du bas) + noms des joueurs
+   ===================================================================== */
+
+/* Barre du bas pleine largeur, gauche = New Game / Settings */
+#main-button-group {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 28px;
+	background: #d4d0c8;
+	border-top: 2px solid #fff;
+	padding: 0 4px;
+	z-index: 50;
+}
+
+/* Bandeau « Pass three cards… » : centré dans le footer */
+#game-message {
+	position: absolute !important;
+	top: auto !important;
+	bottom: 6px !important;
+	left: 50% !important;
+	margin: 0 !important;
+	transform: translateX(-50%) !important;
+	width: auto !important;
+	max-width: 46% !important;
+	height: auto !important;
+	line-height: 13px !important;
+	padding: 2px 8px !important;
+	font-size: 11px !important;
+	white-space: nowrap;
+	z-index: 60 !important;
+}
+
+/* Bouton Confirm / Go : à droite du footer, niveau New Game/Settings */
+#play-button {
+	position: absolute !important;
+	top: auto !important;
+	left: auto !important;
+	bottom: 3px !important;
+	right: 8px !important;
+	width: auto !important;
+	min-width: 72px;
+	height: 22px !important;
+	line-height: 16px !important;
+	font-size: 13px !important;
+	padding: 0 12px !important;
+	transform: none !important;
+	z-index: 60 !important;
+}
+#play-button.show { transform: none !important; }
+
+/* Flèche de passe : petit bouton gris, à gauche du bouton Confirm */
+#pass-arrow {
+	position: absolute !important;
+	top: auto !important;
+	left: auto !important;
+	bottom: 3px !important;
+	right: 92px !important;
+	margin: 0 !important;
+	width: auto !important;
+	min-width: 34px;
+	height: 22px !important;
+	line-height: 18px !important;
+	font-size: 16px !important;
+	font-weight: bold;
+	text-align: center;
+	color: #000 !important;
+	text-shadow: none !important;
+	padding: 0 10px !important;
+	background: #d4d0c8 !important;
+	border-top: 2px solid #fff !important;
+	border-left: 2px solid #fff !important;
+	border-right: 2px solid #808080 !important;
+	border-bottom: 2px solid #808080 !important;
+	box-shadow: 1px 1px 0 #000 !important;
+	border-radius: 0 !important;
+	z-index: 60 !important;
+}
+#pass-arrow.show { transform: none !important; opacity: 1 !important; }
+#pass-arrow:active {
+	border-top: 2px solid #808080 !important;
+	border-left: 2px solid #808080 !important;
+	border-right: 2px solid #fff !important;
+	border-bottom: 2px solid #fff !important;
+}
+
+/* Noms des joueurs : à côté de chaque joueur (pas sur les cartes).
+   :not(.table) pour ne pas perturber le tableau des scores de fin. */
+.info-board.board-0:not(.table) { top: 64% !important; left: 14% !important; }  /* vous (bas) */
+.info-board.board-1:not(.table) { top: 16% !important; left: 9% !important; }   /* gauche */
+.info-board.board-2:not(.table) { top: 7% !important;  left: 74% !important; }   /* haut */
+.info-board.board-3:not(.table) { top: 84% !important; left: 90% !important; }   /* droite */

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <rect x="69" y="189" width="876" height="632" id="shape" />
+    <linearGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(0.12,-0.09) translate(0.5,0.5) scale(0.7221 1) rotate(87) scale(1 0.9) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#487fe1" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#477dde" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#477dde" stop-opacity="100%" />
+    </linearGradient>
+    <rect x="69" y="232" width="876" height="632" id="shape_2" />
+    <linearGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="translate(0.2,-0.03) translate(0.5,0.5) scale(0.7221 1) rotate(-35) scale(1 0.67) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#b7d5fc" stop-opacity="100%" />
+    </linearGradient>
+    <text text-anchor="middle" font-size="520.83" font-family="Garamond" font-weight="700" fill="#c32c0b" letter-spacing="39.06" transform-origin="522.46 708.79" x="522.46" y="708.79" transform="scale(1.03,1)" id="text">AB</text>
+    <linearGradient id="gradient_3" x2="0%" y2="100%" gradientTransform="translate(-0.13,0.06) translate(0.5,0.5) scale(0.4614 1) rotate(-16) scale(1 0.86) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#5ba1fb" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#5ba1fb" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#2745ab" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#2745ab" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill" width="100%" height="100%" fill="url(#gradient_3)" />
+    <filter id="gradientoverlay" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+  </defs>
+  <rect x="29" y="109" width="960" height="797" rx="25" ry="50" fill="#3a67c7" />
+  <use href="#shape" fill="#ffffff" />
+  <use href="#shape" fill="url(#gradient)" />
+  <use href="#shape_2" fill="#ffffff" />
+  <use href="#shape_2" fill="url(#gradient_2)" />
+  <use href="#text" />
+  <use href="#text" filter="url(#gradientoverlay)" />
+</svg>

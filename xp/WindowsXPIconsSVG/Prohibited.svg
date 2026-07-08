@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="dropshadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feMorphology operator="dilate" radius="7.36" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="12.32" />
+      <feOffset dx="18.84" dy="13.19" result="SHADOW" />
+      <feFlood flood-color="#000000" />
+      <feComposite operator="in" in2="SHADOW" />
+    </filter>
+    <path d="M 219.62,287.32 C 219.62,287.32 310.84,196.1 310.84,196.1 310.84,196.1 804.38,689.68 804.38,689.68 804.38,689.68 713.16,780.9 713.16,780.9 713.16,780.9 219.62,287.32 219.62,287.32 Z" id="shape" />
+  </defs>
+  <use href="#group" filter="url(#dropshadow)" style="mix-blend-mode: multiply" opacity="0.84" />
+  <g id="group">
+    <circle cx="513" cy="515" r="458.5" fill="none" stroke-width="127.49" stroke="#a11907" />
+    <circle cx="494" cy="488" r="458.5" fill="none" stroke-width="127.49" stroke="#ff0000" />
+    <use href="#shape" fill="#f52d13" />
+    <use href="#shape" fill="#ff0000" />
+  </g>
+</svg>

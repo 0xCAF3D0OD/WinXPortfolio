@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <rect x="693" y="449" width="224" height="280" rx="112" ry="112" id="shape_3" fill="none" stroke-width="45.62" stroke="#8e92ed" />
+    <rect x="36.73" y="-252.69" width="742" height="572.57" id="shape" transform="matrix(1.1752,0,0,1.1422,-117.6891,-35.1991) translate(104.2741,401.6876)" />
+    <linearGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(-0.04,0.13) translate(0.5,0.5) scale(0.752 1) rotate(-224) scale(1 0.95) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#abc9e1" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="translate(0,0) translate(0.5,0.5) scale(0.752 1) rotate(-193) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#5b5b8f" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#83abe1" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#83abe1" stop-opacity="100%" />
+    </linearGradient>
+    <rect x="632.41" y="-181.58" width="92.9" height="98.55" id="shape_2" transform="matrix(1.1752,0,0,1.1752,-117.9644,-40.2593) translate(91.8372,401.6876)" />
+    <linearGradient id="gradient_3" x2="100%" y2="0%" gradientTransform="translate(-0.04,0.13) translate(0.5,0.5) scale(1 0.9412) rotate(-48) scale(0.51 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#936545" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#d96b21" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#d96b21" stop-opacity="100%" />
+    </linearGradient>
+    <rect x="644" y="586" width="316" height="314" rx="25.5" ry="51" id="shape_4" />
+    <linearGradient id="gradient_4" x2="0%" y2="100%" gradientTransform="scale(0.9937 1) rotate(-180)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_5" x2="0%" y2="100%" gradientTransform="translate(-0.11,-0.03) translate(0.5,0.5) scale(0.9937 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#f3e5bf" stop-opacity="100%" />
+      <stop offset="61%" stop-color="#ebc985" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#c3930f" stop-opacity="100%" />
+    </linearGradient>
+    <rect x="765" y="655" width="80" height="167" mask="url(#mask)" id="shape_5" />
+    <mask id="mask">
+      <rect x="782" y="651" width="47" height="165" fill="#ffffff" transform="matrix(1,0,0,1,0,-4) translate(0,9)" />
+      <circle cx="805" cy="734" r="39" fill="#ffffff" />
+    </mask>
+    <linearGradient id="gradient_6" x2="100%" y2="0%" gradientTransform="scale(1 0.479) rotate(-90)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_7" x2="100%" y2="0%" gradientTransform="translate(-0.11,-0.03) translate(0.5,0.5) scale(1 0.479) rotate(90) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#955f00" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#9f6b09" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#9f6b09" stop-opacity="100%" />
+    </linearGradient>
+  </defs>
+  <use href="#shape" fill="#ffffff" />
+  <use href="#shape" fill="url(#gradient)" />
+  <use href="#shape" fill="none" stroke-width="31.97" stroke="url(#gradient_2)" />
+  <rect x="226.75" y="-33.14" width="291.63" height="32.43" transform="matrix(1.1752,0,0,1.1752,-117.9644,-40.2593) translate(115.3292,401.6876)" fill="#9f9fa1" />
+  <rect x="226.75" y="175.79" width="291.63" height="32.43" transform="matrix(1.1752,0,0,1.1752,-117.9644,-40.2593) translate(115.3292,288.8117)" fill="#9f9fa1" />
+  <use href="#shape_2" fill="#ffffff" />
+  <use href="#shape_2" fill="url(#gradient_3)" />
+  <use href="#shape_3" fill="#976500" />
+  <use href="#shape_3" fill="none" stroke-width="45.62" stroke="#8e92ed" />
+  <use href="#shape_4" fill="url(#gradient_4)" />
+  <use href="#shape_4" fill="url(#gradient_5)" />
+  <use href="#shape_4" fill="none" stroke="#c3930f" stroke-width="32" />
+  <use href="#shape_5" fill="url(#gradient_6)" />
+  <use href="#shape_5" fill="url(#gradient_7)" />
+</svg>

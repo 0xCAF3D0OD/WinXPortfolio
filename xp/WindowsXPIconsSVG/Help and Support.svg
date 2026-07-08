@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <circle cx="494" cy="498" r="477.5" id="shape" />
+    <filter id="dropshadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feMorphology operator="dilate" radius="5.6" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="14.7" />
+      <feOffset dx="14.34" dy="12.47" result="SHADOW" />
+      <feFlood flood-color="#000000" />
+      <feComposite operator="in" in2="SHADOW" />
+    </filter>
+    <filter id="innershadow">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="19" />
+      <feOffset dx="-10.07" dy="-9.73" result="SHADOW" />
+      <feFlood flood-color="#010202" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <circle cx="492" cy="497" r="363.5" id="shape_2" />
+    <radialGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(-0.15,-0.51) translate(0.5,0.5) rotate(70) scale(1 0.62) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#3365cf" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ebfdff" stop-opacity="100%" />
+    </radialGradient>
+    <filter id="innershadow_2">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="19" />
+      <feOffset dx="-18.7" dy="-18.06" result="SHADOW" />
+      <feFlood flood-color="#010202" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <text text-anchor="middle" font-size="850" font-family="Avenir" fill="#ffffff" letter-spacing="-21.25" x="483.54" y="809.77" id="text" font-weight="700">?</text>
+    <filter id="innershadow_3">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="9" />
+      <feOffset dx="7.21" dy="12" result="SHADOW" />
+      <feFlood flood-color="#010202" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+  </defs>
+  <use href="#shape" filter="url(#dropshadow)" opacity="0.81" />
+  <use href="#shape" fill="#ffffff" />
+  <use href="#shape" filter="url(#innershadow)" style="mix-blend-mode: multiply" opacity="0.42" />
+  <use href="#shape_2" fill="#3365cf" />
+  <use href="#shape_2" fill="url(#gradient)" opacity="0.91" />
+  <use href="#shape_2" filter="url(#innershadow_2)" style="mix-blend-mode: multiply" opacity="0.25" />
+  <use href="#text" />
+  <use href="#text" filter="url(#innershadow_3)" style="mix-blend-mode: multiply" opacity="0.38" />
+</svg>

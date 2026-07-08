@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <rect x="-1" y="-1" width="1025" height="1024" rx="125" ry="125" id="shape" />
+    <radialGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(0.25,0.26) translate(0.5,0.5) scale(0.999 1) rotate(2) scale(1 0.87) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#0059f5" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#0059f5" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#0945ab" stop-opacity="0%" />
+    </radialGradient>
+    <radialGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="translate(-0.37,-0.35) translate(0.5,0.5) scale(0.999 1) rotate(2) scale(1 1.11) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0%" />
+    </radialGradient>
+    <filter id="innershadow">
+      <feMorphology operator="erode" radius="24.57" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="46.22" />
+      <feOffset dx="-56.01" dy="-69.17" result="SHADOW" />
+      <feFlood flood-color="#0035c1" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <filter id="innerglow">
+      <feMorphology operator="erode" radius="55.5" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="37.35" result="GLOW" />
+      <feFlood flood-color="#1955f3" />
+      <feComposite operator="out" in2="GLOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+  </defs>
+  <use href="#shape" fill="#316ff9" />
+  <use href="#shape" fill="url(#gradient)" />
+  <use href="#shape" fill="url(#gradient_2)" opacity="0.61" />
+  <use href="#shape" filter="url(#innershadow)" />
+  <use href="#shape" filter="url(#innerglow)" />
+  <image id="image" x="246" y="401" width="343" height="339" href="data:image/webp;base64,UklGRk4BAABXRUJQVlA4WAoAAAAQAAAAVgEAUgEAQUxQSCEAAAABDzD/ERHCbMAyPne6PTNtRP8nIGB/ckR8/73/Sh213wAAVlA4IAYBAAAwHQCdASpXAVMBPm02mUmkIyKhICgAgA2JaW7hd2EbQAnsA99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych6wAD+/+jQAAAAAAAAAAAAAAAAAAAA" />
+  <image id="image_2" x="385" y="255" width="343" height="339" href="data:image/webp;base64,UklGRlIBAABXRUJQVlA4WAoAAAAQAAAAVgEAUgEAQUxQSCUAAAABDzD/ERFCadtIzG3+az879BW3iP5PABvLFwdd33/vv4lPac43AFZQOCAGAQAAMB0AnQEqVwFTAT5tNplJpCMioSAoAIANiWlu4XdhG0AJ7APfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32ych77ZOQ99snIesAA/v/o0AAAAAAAAAAAAAAAAAAAAA==" />
+  <rect x="-1" y="-1" width="1025" height="1024" rx="125" ry="125" fill="none" stroke-width="34.7" stroke="#ffffff" />
+</svg>

@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="dropshadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feMorphology operator="dilate" radius="6.3" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="7.35" />
+      <feOffset dx="-0" dy="12" result="SHADOW" />
+      <feFlood flood-color="#000000" />
+      <feComposite operator="in" in2="SHADOW" />
+    </filter>
+    <image x="110" y="103" width="506" height="303" id="image" href="data:image/webp;base64,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" />
+    <linearGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(-0.02,-0.14) translate(0.5,0.5) scale(0.5988 1) rotate(-90) scale(1 0.82) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#b53100" stop-opacity="100%" />
+      <stop offset="21%" stop-color="#ff0000" stop-opacity="100%" />
+      <stop offset="38%" stop-color="#af2b00" stop-opacity="100%" />
+      <stop offset="51%" stop-color="#ff6561" stop-opacity="100%" />
+      <stop offset="72%" stop-color="#ff0b00" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ff0000" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill" width="506" height="303" fill="url(#gradient)" />
+    <filter id="gradientoverlay" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <filter id="innershadow">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="17.5" />
+      <feOffset dx="-0.73" dy="5.96" result="SHADOW" />
+      <feFlood flood-color="#000000" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <rect x="55" y="100" width="55" height="869" id="shape" />
+    <linearGradient id="gradient_2" x2="100%" y2="0%" gradientTransform="translate(-0.17,-0.2) translate(0.5,0.5) scale(1 0.0654) rotate(180) scale(1.12 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ececec" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#878787" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#878787" stop-opacity="100%" />
+    </linearGradient>
+    <filter id="innershadow_2">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="0" />
+      <feOffset dx="-12.63" dy="-11.38" result="SHADOW" />
+      <feFlood flood-color="#000000" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <filter id="innershadow_3">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="0" />
+      <feOffset dx="11.98" dy="-9.03" result="SHADOW" />
+      <feFlood flood-color="#616161" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <circle cx="84" cy="66" r="48" id="shape_2" />
+    <radialGradient id="gradient_3" x2="0%" y2="100%" gradientTransform="translate(-0.17,-0.2) translate(0.5,0.5) rotate(-90) scale(1 1.12) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ececec" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#878787" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#878787" stop-opacity="100%" />
+    </radialGradient>
+    <rect x="417" y="166" width="55" height="803" id="shape_3" />
+    <linearGradient id="gradient_4" x2="100%" y2="0%" gradientTransform="translate(-0.17,-0.2) translate(0.5,0.5) scale(1 0.0708) rotate(180) scale(1.12 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ececec" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#878787" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#878787" stop-opacity="100%" />
+    </linearGradient>
+    <circle cx="446" cy="132" r="48" id="shape_4" />
+    <rect x="175" y="319" width="55" height="650" id="shape_5" />
+    <linearGradient id="gradient_6" x2="100%" y2="0%" gradientTransform="translate(-0.17,-0.2) translate(0.5,0.5) scale(1 0.0874) rotate(180) scale(1.12 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ececec" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#878787" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#878787" stop-opacity="100%" />
+    </linearGradient>
+    <circle cx="204" cy="285" r="48" id="shape_6" />
+    <image x="472" y="162" width="506" height="303" id="image_2" href="data:image/webp;base64,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" />
+    <linearGradient id="gradient_8" x2="0%" y2="100%" gradientTransform="translate(-0.02,-0.14) translate(0.5,0.5) scale(0.5988 1) rotate(-90) scale(1 0.82) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ff9f00" stop-opacity="100%" />
+      <stop offset="25%" stop-color="#eb6f2b" stop-opacity="100%" />
+      <stop offset="52%" stop-color="#fff300" stop-opacity="100%" />
+      <stop offset="72%" stop-color="#f38327" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#f1e900" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill_2" width="506" height="303" fill="url(#gradient_8)" />
+    <filter id="gradientoverlay_2" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill_2" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <filter id="innershadow_8">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="10.5" />
+      <feOffset dx="-1.68" dy="2.49" result="SHADOW" />
+      <feFlood flood-color="#000000" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <image x="230" y="322" width="506" height="303" id="image_3" href="data:image/webp;base64,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" />
+    <linearGradient id="gradient_9" x2="0%" y2="100%" gradientTransform="translate(-0.02,-0.14) translate(0.5,0.5) scale(0.5988 1) rotate(-90) scale(1 0.82) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#0003b3" stop-opacity="100%" />
+      <stop offset="25%" stop-color="#0001ff" stop-opacity="100%" />
+      <stop offset="52%" stop-color="#00e3ff" stop-opacity="100%" />
+      <stop offset="72%" stop-color="#19098b" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#0503cb" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill_3" width="506" height="303" fill="url(#gradient_9)" />
+    <filter id="gradientoverlay_3" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill_3" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <image x="230" y="322" width="506" height="181" id="image_4" href="data:image/webp;base64,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" />
+    <linearGradient id="gradient_10" x2="0%" y2="100%" gradientTransform="translate(0,-0.15) translate(0.5,0.5) scale(0.3577 1) rotate(-90) scale(1 0.9) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#d2cfcf" stop-opacity="100%" />
+      <stop offset="6%" stop-color="#fbfbfd" stop-opacity="100%" />
+      <stop offset="27%" stop-color="#9b9b9d" stop-opacity="100%" />
+      <stop offset="52%" stop-color="#ffffff" stop-opacity="100%" />
+      <stop offset="72%" stop-color="#b5b5b3" stop-opacity="100%" />
+      <stop offset="86%" stop-color="#fdffff" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#fdffff" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill_4" width="506" height="181" fill="url(#gradient_10)" />
+    <filter id="gradientoverlay_4" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill_4" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <filter id="innershadow_9">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="8" />
+      <feOffset dx="3.54" dy="3.54" result="SHADOW" />
+      <feFlood flood-color="#000000" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+  </defs>
+  <use href="#group" filter="url(#dropshadow)" opacity="0.79" />
+  <g id="group">
+    <use href="#image" />
+    <use href="#image" filter="url(#gradientoverlay)" />
+    <use href="#image" filter="url(#innershadow)" opacity="0.59" />
+    <use href="#shape" fill="#ffffff" />
+    <use href="#shape" fill="url(#gradient_2)" />
+    <use href="#shape" filter="url(#innershadow_2)" opacity="0.82" />
+    <use href="#shape" filter="url(#innershadow_3)" opacity="0.31" />
+    <use href="#shape_2" fill="#ffffff" />
+    <use href="#shape_2" fill="url(#gradient_3)" />
+    <use href="#shape_2" fill="none" stroke="#626262" stroke-width="13" />
+    <use href="#shape_3" fill="#ffffff" />
+    <use href="#shape_3" fill="url(#gradient_4)" />
+    <use href="#shape_3" filter="url(#innershadow_2)" opacity="0.82" />
+    <use href="#shape_3" filter="url(#innershadow_3)" opacity="0.31" />
+    <use href="#shape_4" fill="#ffffff" />
+    <use href="#shape_4" fill="url(#gradient_3)" />
+    <use href="#shape_4" fill="none" stroke="#626262" stroke-width="13" />
+    <use href="#shape_5" fill="#ffffff" />
+    <use href="#shape_5" fill="url(#gradient_6)" />
+    <use href="#shape_5" filter="url(#innershadow_2)" opacity="0.82" />
+    <use href="#shape_5" filter="url(#innershadow_3)" opacity="0.31" />
+    <use href="#shape_6" fill="#ffffff" />
+    <use href="#shape_6" fill="url(#gradient_3)" />
+    <use href="#shape_6" fill="none" stroke="#626262" stroke-width="13" />
+    <use href="#image_2" />
+    <use href="#image_2" filter="url(#gradientoverlay_2)" />
+    <use href="#image_2" filter="url(#innershadow_8)" opacity="0.59" />
+    <use href="#image_3" />
+    <use href="#image_3" filter="url(#gradientoverlay_3)" />
+    <use href="#image_4" />
+    <use href="#image_4" filter="url(#gradientoverlay_4)" />
+    <use href="#image_4" filter="url(#innershadow_9)" opacity="0.41" />
+  </g>
+</svg>

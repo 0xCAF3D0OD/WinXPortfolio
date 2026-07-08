@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <text transform="matrix(-0.67,0,0,0.67,623.97,504.34)" text-anchor="middle" font-size="745.83" font-family="Arial" fill="#c32c0b" letter-spacing="-18.65" id="text" font-weight="700">R</text>
+    <linearGradient id="gradient" x2="100%" y2="0%" gradientTransform="translate(-0.2,-0.08) translate(0.5,0.5) scale(1 0.902) rotate(89) scale(0.7 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#4981e5" stop-opacity="100%" />
+      <stop offset="98%" stop-color="#2b49ab" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#2b49ab" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill" width="100%" height="100%" fill="url(#gradient)" />
+    <filter id="gradientoverlay" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <filter id="stroke">
+      <feMorphology operator="dilate" radius="8" in="SourceAlpha" result="DILATED" />
+      <feMorphology operator="erode" radius="8" in="SourceAlpha" result="ERODED" />
+      <feComposite operator="xor" in="DILATED" in2="ERODED" result="STROKEAREA" />
+      <feFlood flood-color="#355bbd" />
+      <feComposite operator="in" in2="STROKEAREA" />
+    </filter>
+    <text text-anchor="middle" font-size="870.83" font-family="Athelas" fill="#c32c0b" letter-spacing="-21.77" x="272.5" y="731.49" id="text_2">á</text>
+    <linearGradient id="gradient_2" x2="100%" y2="0%" gradientTransform="translate(0.01,-0.06) translate(0.5,0.5) scale(1 0.6252) rotate(29) scale(0.86 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#e3a353" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#d74b17" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#d74b17" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill_2" width="100%" height="100%" fill="url(#gradient_2)" />
+    <filter id="gradientoverlay_2" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill_2" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <filter id="stroke_2">
+      <feMorphology operator="dilate" radius="8" in="SourceAlpha" result="DILATED" />
+      <feMorphology operator="erode" radius="8" in="SourceAlpha" result="ERODED" />
+      <feComposite operator="xor" in="DILATED" in2="ERODED" result="STROKEAREA" />
+      <feFlood flood-color="#c75b35" />
+      <feComposite operator="in" in2="STROKEAREA" />
+    </filter>
+  </defs>
+  <use href="#text" />
+  <use href="#text" filter="url(#gradientoverlay)" />
+  <use href="#text" filter="url(#stroke)" />
+  <use href="#text_2" />
+  <use href="#text_2" filter="url(#gradientoverlay_2)" />
+  <use href="#text_2" filter="url(#stroke_2)" />
+  <text text-anchor="middle" font-size="404.21" font-family="Kozuka Gothic Pr6N" fill="#569823" letter-spacing="70.74" x="705.79" y="879.07" font-weight="700">安</text>
+</svg>

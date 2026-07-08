@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <rect x="-1" y="-1" width="1025" height="1024" rx="125" ry="125" id="shape" />
+    <radialGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(0.25,0.26) translate(0.5,0.5) scale(0.999 1) rotate(2) scale(1 0.87) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#e55529" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#d73701" stop-opacity="0%" />
+    </radialGradient>
+    <radialGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="translate(-0.37,-0.35) translate(0.5,0.5) scale(0.999 1) rotate(2) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0%" />
+    </radialGradient>
+    <filter id="innershadow">
+      <feMorphology operator="erode" radius="17.55" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="49.73" />
+      <feOffset dx="-78.04" dy="-96.37" result="SHADOW" />
+      <feFlood flood-color="#a71700" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <filter id="innerglow">
+      <feMorphology operator="erode" radius="55.69" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="32.19" result="GLOW" />
+      <feFlood flood-color="#e75d35" />
+      <feComposite operator="out" in2="GLOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+  </defs>
+  <use href="#shape" fill="#e75319" />
+  <use href="#shape" fill="url(#gradient)" />
+  <use href="#shape" fill="url(#gradient_2)" opacity="0.77" />
+  <use href="#shape" filter="url(#innershadow)" />
+  <use href="#shape" filter="url(#innerglow)" opacity="0.99" />
+  <path d="M 721.3,239.86 C 721.3,239.86 785.64,304.2 785.64,304.2 785.64,304.2 302.7,787.14 302.7,787.14 302.7,787.14 238.36,722.8 238.36,722.8 238.36,722.8 721.3,239.86 721.3,239.86 Z" fill="#ffffff" />
+  <path d="M 303.32,240.01 C 303.32,240.01 239.01,304.32 239.01,304.32 239.01,304.32 721.68,786.99 721.68,786.99 721.68,786.99 785.99,722.68 785.99,722.68 785.99,722.68 303.32,240.01 303.32,240.01 Z" fill="#ffffff" />
+  <rect x="-1" y="-1" width="1025" height="1024" rx="125" ry="125" fill="none" stroke-width="34.7" stroke="#ffffff" />
+</svg>

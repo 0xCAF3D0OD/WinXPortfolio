@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <ellipse cx="185" cy="795" rx="158.5" ry="158.5" id="shape" />
+    <filter id="dropshadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feMorphology operator="dilate" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="13.5" />
+      <feOffset dx="7.76" dy="13.99" result="SHADOW" />
+      <feFlood flood-color="#000000" />
+      <feComposite operator="in" in2="SHADOW" />
+    </filter>
+    <radialGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(-0.14,-0.19) translate(0.5,0.5) rotate(-10) scale(1 0.83) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#a04247" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#e9b1d4" stop-opacity="100%" />
+    </radialGradient>
+    <filter id="innershadow">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="38" />
+      <feOffset dx="-13.78" dy="-22.05" result="SHADOW" />
+      <feFlood flood-color="#000000" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <ellipse cx="213" cy="173" rx="130.5" ry="130.5" id="shape_2" />
+    <radialGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="translate(-0.14,-0.19) translate(0.5,0.5) rotate(-10) scale(1 0.83) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#080ef6" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#a8a9e5" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#a8a9e5" stop-opacity="100%" />
+    </radialGradient>
+    <filter id="innershadow_2">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="38" />
+      <feOffset dx="-16.25" dy="-21.56" result="SHADOW" />
+      <feFlood flood-color="#17154b" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <ellipse cx="513" cy="467" rx="250.5" ry="250.5" id="shape_3" />
+    <radialGradient id="gradient_3" x2="0%" y2="100%" gradientTransform="translate(-0.14,-0.19) translate(0.5,0.5) rotate(-10) scale(1 0.83) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#c9a521" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#fbfbc9" stop-opacity="100%" />
+    </radialGradient>
+    <filter id="innershadow_3">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="51.5" />
+      <feOffset dx="-16.02" dy="-37.74" result="SHADOW" />
+      <feFlood flood-color="#150b03" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <rect x="338" y="289" width="348" height="350" mask="url(#mask)" id="shape_4" opacity="0.66" />
+    <mask id="mask">
+      <path d="M 544.87,291.04 C 544.87,291.04 544.62,637.01 544.62,637.01 544.62,637.01 480.12,636.96 480.12,636.96 480.12,636.96 480.37,290.99 480.37,290.99 480.37,290.99 544.87,291.04 544.87,291.04 Z" fill="#ffffff" />
+      <path d="M 684.95,496.29 C 684.95,496.29 339.01,496.04 339.01,496.04 339.01,496.04 339.05,431.44 339.05,431.44 339.05,431.44 685,431.69 685,431.69 685,431.69 684.95,496.29 684.95,496.29 Z" fill="#ffffff" />
+    </mask>
+    <filter id="innershadow_4">
+      <feMorphology operator="erode" radius="3.43" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="22.79" />
+      <feOffset dx="15.89" dy="31.19" result="SHADOW" />
+      <feFlood flood-color="#913b21" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <filter id="innershadow_5">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="36.5" />
+      <feOffset dx="-0" dy="16" result="SHADOW" />
+      <feFlood flood-color="#000000" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <circle cx="862" cy="387" r="98" id="shape_5" />
+    <radialGradient id="gradient_4" x2="0%" y2="100%" gradientTransform="translate(-0.14,-0.19) translate(0.5,0.5) rotate(-10) scale(1 0.83) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#539b19" stop-opacity="100%" />
+      <stop offset="1%" stop-color="#539b19" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#b6f579" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#b6f579" stop-opacity="100%" />
+    </radialGradient>
+    <filter id="innershadow_6">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="31" />
+      <feOffset dx="-10.89" dy="-16.77" result="SHADOW" />
+      <feFlood flood-color="#000000" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+  </defs>
+  <circle cx="477" cy="509" r="437" fill="none" stroke-width="40.16" stroke="#000000" />
+  <use href="#shape" filter="url(#dropshadow)" />
+  <use href="#shape" fill="#a04247" />
+  <use href="#shape" fill="url(#gradient)" />
+  <use href="#shape" filter="url(#innershadow)" />
+  <use href="#shape_2" filter="url(#dropshadow)" />
+  <use href="#shape_2" fill="#a04247" />
+  <use href="#shape_2" fill="url(#gradient_2)" />
+  <use href="#shape_2" filter="url(#innershadow_2)" />
+  <use href="#shape_3" filter="url(#dropshadow)" />
+  <use href="#shape_3" fill="#a04247" />
+  <use href="#shape_3" fill="url(#gradient_3)" />
+  <use href="#shape_3" filter="url(#innershadow_3)" />
+  <use href="#shape_4" fill="#ffffff" style="mix-blend-mode: darken" />
+  <use href="#shape_4" fill="#edc993" />
+  <use href="#shape_4" filter="url(#innershadow_4)" />
+  <use href="#shape_4" filter="url(#innershadow_5)" />
+  <use href="#shape_5" filter="url(#dropshadow)" />
+  <use href="#shape_5" fill="#ffffff" />
+  <use href="#shape_5" fill="url(#gradient_4)" />
+  <use href="#shape_5" filter="url(#innershadow_6)" opacity="0.93" />
+</svg>

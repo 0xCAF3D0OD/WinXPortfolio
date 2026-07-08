@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <mask id="mask" mask-type="alpha">
+      <defs>
+        <image x="58" y="57" width="912" height="912" id="image" href="data:image/webp;base64,UklGRoYTAABXRUJQVlA4WAoAAAAQAAAAjwMAjwMAQUxQSIMCAAANkGZb27E33/znESe/zBqfUcT259qYQ6++2RHByG0kRV7K0g/4+rcUx4H/+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+I//+O/+Hh/j6CCMRqfjMDptNtPYTf43/5v/zf+WZH+67Faz2N0321ns7nghjL0zmcaeDGO/DWPf9Way2Ne1pSjWh4urx2G8GqhSi2KNT3vtLPZJs1V0vJOE/83/5n/zv8PZ749HYezzWiuMb12+6GSxbyrVNL45az2N3yQwV2x86/LORBp7gv/9H2uPJrPYt+25KNbHy4v1LPZRuRHGZ/QM20XHJ9jxv/nfmeyPl91aFru3s5XGZ/TMFR2fYMf/5n/zv/nf/G/+N/+b/83/5n/zv/nfxdP+2B1NZbHPm4th/G/I7tMs9kH1bRTrbq97l8XeLX/IYu++/xjGrnwMY48/p/GML2nsL27sy864VIqip0+zWCfln2Hsco3/zf/mf/O/73ft05dp7Jf1LNblyx9h7OaLMHbrUxi7VeZ/y6Oj6Kaext55lsW62x2HsXfL3wqO39Gaxam7U2zs0WH3fRifKFm9DeO/Xw13w9iNdhq7zf/+B9olAFZQOCDcEAAAEBoBnQEqkAOQAz5tNptJpCOioSFQ6DiADYlpbuF1L7yl9f2gLZkO+gv+B0b5APQEm39AL7r7dTb+pucZ4iO4A/8nSo/9u+AegB0qv3AezNq4H6n+W/oBkci4H4g97H6BsgHv/YAEwL/no/8js9L3xf4YClpi4w9V1gCYpi4w9V1gCYpi4w9Vz62eYpi4ivUaY6wBMUxcYeq6wBMUxcYeq6wBM5Mv8tfIdnUKr7FzfiW69i5vxLdexc34luvYub8S3XsXN+Jbr2Lm/Et17FzfiW69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" />
+      </defs>
+      <use href="#image" />
+      <filter id="stroke">
+        <feMorphology operator="erode" radius="32" in="SourceAlpha" />
+        <feComposite operator="xor" in2="SourceAlpha" result="STROKEAREA" />
+        <linearGradient id="gradient" x2="0%" y2="100%" gradientTransform="rotate(-219) scale(1 0.34)" transform-origin="0.5 0.5">
+          <stop offset="0%" stop-color="#cd9900" stop-opacity="100%" />
+          <stop offset="0%" stop-color="#cd9900" stop-opacity="100%" />
+          <stop offset="99%" stop-color="#d9b335" stop-opacity="100%" />
+          <stop offset="100%" stop-color="#d9b335" stop-opacity="100%" />
+        </linearGradient>
+        <defs>
+          <rect id="gradientstroke" width="100%" height="100%" fill="url(#gradient)" />
+        </defs>
+        <feImage href="#gradientstroke" />
+        <feComposite operator="in" in2="STROKEAREA" />
+      </filter>
+      <use href="#image" filter="url(#stroke)" />
+    </mask>
+    <rect x="718" y="722" width="262" height="278" id="shape" transform="matrix(0.9733,0,0,0.8885,19.1832,80.5108)" />
+    <use href="#shape" mask="url(#mask)" id="use" />
+    <linearGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="scale(0.9689 1) rotate(-180)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_3" x2="0%" y2="100%" gradientTransform="translate(-0.04,-0.14) translate(0.5,0.5) scale(0.9689 1) scale(1 0.73) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ffd165" stop-opacity="100%" />
+      <stop offset="50%" stop-color="#fff589" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#fffff5" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_4" x2="0%" y2="100%" gradientTransform="translate(-0.12,-0.4) translate(0.5,0.5) scale(0.9689 1) rotate(-219) scale(1 0.51) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#cd9900" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#cd9900" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#d9b335" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#d9b335" stop-opacity="100%" />
+    </linearGradient>
+    <filter id="stroke_2">
+      <feMorphology operator="erode" radius="32" in="SourceAlpha" />
+      <feComposite operator="xor" in2="SourceAlpha" result="STROKEAREA" />
+      <feImage href="#gradientstroke_2" />
+      <feComposite operator="in" in2="STROKEAREA" />
+    </filter>
+    <linearGradient id="gradient_5" x2="0%" y2="100%" gradientTransform="rotate(-219) scale(1 0.34)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#cd9900" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#cd9900" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#d9b335" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#d9b335" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientstroke_2" width="100%" height="100%" fill="url(#gradient_5)" />
+    <rect x="89" y="89" width="33" height="275" id="shape_2" transform="matrix(0.9711,0,0,3.0846,34.6209,-188.6139) translate(-32,1)" />
+    <linearGradient id="gradient_6" x2="100%" y2="0%" gradientTransform="scale(1 0.0423) rotate(-90)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_7" x2="100%" y2="0%" gradientTransform="translate(0.48,0.14) translate(0.5,0.5) scale(1 0.0423) rotate(-90) scale(0.61 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ffcf61" stop-opacity="100%" />
+      <stop offset="49%" stop-color="#fff19f" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#fffbe5" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#fffbe5" stop-opacity="100%" />
+    </linearGradient>
+    <image x="750" y="754" width="32" height="172" id="image_2" href="data:image/webp;base64,UklGRnQBAABXRUJQVlA4WAoAAAAQAAAAHwAAqwAAQUxQSJUAAAANcGrbtqpcHSS+/8qTyCe5Q3KJfts7YzUaEcFAbSNHXgyGLVdfURQef//5eflSypg6bKCjWjOnGTpJBnZSVLyDzapJY1jPac+DZT2DXRZZw9kMZ5f0tIXUWuyV2EVilSycrSy8agN7TXsdYW+Dg7OZztZwdlM71pvGwG4dtBHURWLXiH+KxL7ygu4heB/0VCemf1LdKABWUDgguAAAAJAJAJ0BKiAArAA+bSySRiQ0MSErtA2ygA2JaS2AJQzb0CZ0uDtKsik3H6RxAUWkVdWDH2sqa6nfxibk+tx9atMIYLjhXcI4L03yyDhjJ5NfF802QAAA/vqUkxEiWrvsxp/5upPER9PrNuU/vgSYg86vtQ5qbwrJI1JsvuMm2L3Rd2uEC2x+Q+XdERJeksiP+VGLPgbRtfl7fIQ7lXtw/WHXN3243jD8Bj/7EJ//kFf/47I/+OIAAAA=" />
+    <linearGradient id="gradient_8" x2="100%" y2="0%" gradientTransform="translate(0.59,0.17) translate(0.5,0.5) scale(1 0.186) rotate(-90) scale(1.28 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#e3c331" stop-opacity="100%" />
+      <stop offset="1%" stop-color="#e3c331" stop-opacity="100%" />
+      <stop offset="50%" stop-color="#fbf9ab" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#d9b32b" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#d9b32b" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill" width="32" height="172" fill="url(#gradient_8)" />
+    <filter id="gradientoverlay" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <image x="750" y="754" width="172" height="32" id="image_3" href="data:image/webp;base64,UklGRlQBAABXRUJQVlA4WAoAAAAQAAAAqwAAHwAAQUxQSJYAAAANcGLbttq8/0Mq4/+URHZIzK1ikPzlc0dHhAKzkaBZpez1jyyg9STlOALNITWc2fUVpuVdX4D6UJI6J7LtLCmg3X0sQN1xkre+5PRVKkDpQbsbUt8EBYvmK+2racmyjlahvID5UnV5kXU1l5zBuosI+nUZjWBm6Synz0i7896CEkkJpBvBkLpwMiHdGHec3f+0VzBZiwBWUDggmAAAABAKAJ0BKqwAIAA+bS6TRyQ5saEqMk1TMA2JaQZwZoC+Afxr7AHuA/wGF/Ft0AXjbLSToLxHFQhbcHdn0neeVJ8KGmjnFUb0KcN5T2UaVyoITwLp+hFhftmAAP76lP1rfUG9LSG5XNvWsgX/f09fjoETP0g90I6w3bk3n/zYVdsfTCpEY2wdkhelmDaBGJFvn3/+Rf6rImAA" />
+    <linearGradient id="gradient_9" x2="0%" y2="100%" gradientTransform="translate(-0.06,-0.09) translate(0.5,0.5) scale(0.186 1) rotate(-91) scale(1 0.93) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#d9b32d" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#d9b32d" stop-opacity="100%" />
+      <stop offset="49%" stop-color="#e7cd6f" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#e3c75d" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill_2" width="172" height="32" fill="url(#gradient_9)" />
+    <filter id="gradientoverlay_2" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill_2" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+  </defs>
+  <use href="#image" />
+  <use href="#use" fill="url(#gradient_2)" />
+  <use href="#use" fill="url(#gradient_3)" />
+  <use href="#use" fill="none" stroke="url(#gradient_4)" stroke-width="32" />
+  <use href="#image" filter="url(#stroke_2)" />
+  <use href="#shape_2" fill="url(#gradient_6)" />
+  <use href="#shape_2" fill="url(#gradient_7)" />
+  <use href="#image_2" />
+  <use href="#image_2" filter="url(#gradientoverlay)" />
+  <use href="#image_3" />
+  <use href="#image_3" filter="url(#gradientoverlay_2)" />
+</svg>

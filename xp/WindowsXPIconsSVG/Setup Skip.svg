@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <rect x="-1" y="-1" width="1025" height="1024" rx="125" ry="125" id="shape" />
+    <radialGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(0.25,0.26) translate(0.5,0.5) scale(0.999 1) rotate(2) scale(1 0.87) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#01b300" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#00b700" stop-opacity="0%" />
+    </radialGradient>
+    <radialGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="translate(-0.37,-0.35) translate(0.5,0.5) scale(0.999 1) rotate(2) scale(1 0.87) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0%" />
+    </radialGradient>
+    <filter id="innershadow">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="58.5" />
+      <feOffset dx="-78.04" dy="-96.37" result="SHADOW" />
+      <feFlood flood-color="#005b00" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <filter id="innerglow">
+      <feMorphology operator="erode" radius="75.95" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="21.31" result="GLOW" />
+      <feFlood flood-color="#39a13f" />
+      <feComposite operator="out" in2="GLOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+  </defs>
+  <use href="#shape" fill="#35a137" />
+  <use href="#shape" fill="url(#gradient)" />
+  <use href="#shape" fill="url(#gradient_2)" opacity="0.65" />
+  <use href="#shape" filter="url(#innershadow)" />
+  <use href="#shape" filter="url(#innerglow)" />
+  <rect x="-1" y="-1" width="1025" height="1024" rx="125" ry="125" fill="none" stroke-width="34.7" stroke="#ffffff" />
+  <path d="M 845.2,517.61 C 845.2,517.61 569.25,800.28 569.25,800.28 569.25,800.28 569.25,234.94 569.25,234.94 569.25,234.94 845.2,517.61 845.2,517.61 Z" fill="none" stroke-width="51.08" stroke="#ffffff" />
+  <path d="M 492.2,517.61 C 492.2,517.61 216.25,800.28 216.25,800.28 216.25,800.28 216.25,234.94 216.25,234.94 216.25,234.94 492.2,517.61 492.2,517.61 Z" fill="none" stroke-width="51.08" stroke="#ffffff" />
+</svg>

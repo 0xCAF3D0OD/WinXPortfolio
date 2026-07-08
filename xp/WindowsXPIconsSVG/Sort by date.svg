@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <path d="M 225.22,776.77 C 225.22,776.77 554.39,721.56 554.39,721.56 554.39,721.56 551.62,852.53 551.62,852.53 551.62,852.53 222.46,907.74 222.46,907.74 222.46,907.74 225.22,776.77 225.22,776.77 Z" id="shape" />
+    <linearGradient id="gradient" x2="0%" y2="100%" gradientTransform="scale(0.5642 1) rotate(-180)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="translate(0.56,-0.15) translate(0.5,0.5) scale(0.5642 1) rotate(145) scale(1 0.33) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#a7b9cf" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#b9d1dd" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_3" x2="0%" y2="100%" gradientTransform="scale(0.5642 1) rotate(-219)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#7169a1" stop-opacity="100%" />
+      <stop offset="35%" stop-color="#7169a1" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#cfcbc7" stop-opacity="100%" />
+    </linearGradient>
+    <path d="M 20.22,258.37 C 20.22,258.37 467.51,197.45 467.51,197.45 467.51,197.45 543.96,226.34 543.96,226.34 543.96,226.34 66.25,297.02 66.25,297.02 66.25,297.02 20.22,258.37 20.22,258.37 Z" id="shape_2" />
+    <linearGradient id="gradient_4" x2="0%" y2="100%" gradientTransform="scale(0.1958 1) rotate(-180)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_5" x2="0%" y2="100%" gradientTransform="translate(-0.1,-0.35) translate(0.5,0.5) scale(0.1958 1) rotate(94) scale(1 0.65) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ff8f37" stop-opacity="100%" />
+      <stop offset="50%" stop-color="#ffc753" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#fdf3a1" stop-opacity="100%" />
+    </linearGradient>
+    <image x="19" y="258" width="59" height="153" id="image" href="data:image/webp;base64,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" />
+    <linearGradient id="gradient_6" x2="100%" y2="0%" gradientTransform="translate(0.43,-0.05) translate(0.5,0.5) scale(1 0.3856) rotate(268) scale(0.54 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#fbb759" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ff8d3d" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill" width="59" height="153" fill="url(#gradient_6)" />
+    <filter id="gradientoverlay" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <image x="24" y="347" width="75" height="594" id="image_2" href="data:image/webp;base64,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" />
+    <linearGradient id="gradient_7" x2="100%" y2="0%" gradientTransform="translate(0.61,0.14) translate(0.5,0.5) scale(1 0.1263) rotate(292) scale(1.27 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#c1d3d3" stop-opacity="100%" />
+      <stop offset="25%" stop-color="#cbe1e5" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#fffbf1" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientfill_2" width="75" height="594" fill="url(#gradient_7)" />
+    <filter id="gradientoverlay_2" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feImage href="#gradientfill_2" />
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+    <path d="M 71.27,383.36 C 240.62,356.84 397.46,332.27 543.12,309.46 549.32,475.61 543.17,616.1 650.86,648.35 401.84,897.84 261.11,892.87 92.85,940.71 85.67,755.13 78.47,569.35 71.27,383.36 Z" id="shape_3" />
+    <linearGradient id="gradient_8" x2="100%" y2="0%" gradientTransform="scale(1 0.918) rotate(-90)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_9" x2="100%" y2="0%" gradientTransform="translate(-0.16,-0.29) translate(0.5,0.5) scale(1 0.918) rotate(34) scale(0.47 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#b3d7e3" stop-opacity="100%" />
+      <stop offset="98%" stop-color="#ffffff" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <path d="M 67.57,293.59 C 67.57,293.59 543.58,226.17 543.58,226.17 543.58,226.17 543.07,310.24 543.07,310.24 543.07,310.24 71.91,384.29 71.91,384.29 71.91,384.29 67.57,293.59 67.57,293.59 Z" id="shape_4" />
+    <linearGradient id="gradient_10" x2="0%" y2="100%" gradientTransform="scale(0.3361 1) rotate(-180)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_11" x2="0%" y2="100%" gradientTransform="translate(-0.12,0.28) translate(0.5,0.5) scale(0.3361 1) rotate(147) scale(1 0.95) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ff9f1b" stop-opacity="100%" />
+      <stop offset="50%" stop-color="#ff6d19" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ff2d00" stop-opacity="100%" />
+    </linearGradient>
+    <filter id="stroke">
+      <feMorphology operator="dilate" radius="18" in="SourceAlpha" />
+      <feComposite operator="xor" in2="SourceAlpha" result="STROKEAREA" />
+      <feImage href="#gradientstroke" />
+      <feComposite operator="in" in2="STROKEAREA" />
+    </filter>
+    <linearGradient id="gradient_12" x2="100%" y2="0%" gradientTransform="scale(1 0.8485) rotate(-129)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#7169a1" stop-opacity="100%" />
+      <stop offset="35%" stop-color="#7169a1" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#cfcbc7" stop-opacity="100%" />
+    </linearGradient>
+    <rect id="gradientstroke" width="100%" height="100%" fill="url(#gradient_12)" />
+    <rect x="611" y="53" width="389" height="893" mask="url(#mask)" id="shape_5" />
+    <mask id="mask">
+      <path d="M 805.66,944.7 C 805.66,944.7 612.34,736.66 612.34,736.66 612.34,736.66 998.99,736.66 998.99,736.66 998.99,736.66 805.66,944.7 805.66,944.7 Z" fill="#ffffff" />
+      <path d="M 805.5,54.05 C 805.5,54.05 891,774.94 891,774.94 891,774.94 720,774.94 720,774.94 720,774.94 805.5,54.05 805.5,54.05 Z" fill="#ffffff" />
+    </mask>
+    <linearGradient id="gradient_13" x2="100%" y2="0%" gradientTransform="scale(1 0.4356) rotate(-90)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_14" x2="100%" y2="0%" gradientTransform="translate(0.18,0.14) translate(0.5,0.5) scale(1 0.4356) rotate(55) scale(0.55 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#61b33f" stop-opacity="100%" />
+      <stop offset="49%" stop-color="#6bc12d" stop-opacity="100%" />
+      <stop offset="97%" stop-color="#33b715" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#33b715" stop-opacity="100%" />
+    </linearGradient>
+  </defs>
+  <use href="#shape" fill="url(#gradient)" />
+  <use href="#shape" fill="url(#gradient_2)" />
+  <use href="#shape" fill="none" stroke="url(#gradient_3)" stroke-width="18" />
+  <g id="group">
+    <use href="#shape_2" fill="url(#gradient_4)" />
+    <use href="#shape_2" fill="url(#gradient_5)" />
+    <use href="#image" />
+    <use href="#image" filter="url(#gradientoverlay)" />
+    <use href="#image_2" />
+    <use href="#image_2" filter="url(#gradientoverlay_2)" />
+    <use href="#shape_3" fill="url(#gradient_8)" />
+    <use href="#shape_3" fill="url(#gradient_9)" />
+    <use href="#shape_4" fill="url(#gradient_10)" />
+    <use href="#shape_4" fill="url(#gradient_11)" />
+    <text xml:space="preserve" transform="matrix(0.93,-0.21,0.01,0.98,122.54,765.61)" font-size="387.5" font-family="Times" font-weight="700" fill="#131f70" letter-spacing="-3.88">1<tspan style="font-variant-ligatures: none">2 </tspan></text>
+  </g>
+  <use href="#group" filter="url(#stroke)" />
+  <use href="#shape_5" fill="url(#gradient_13)" />
+  <use href="#shape_5" fill="url(#gradient_14)" />
+  <use href="#shape_5" fill="none" stroke="#006500" stroke-width="29" />
+</svg>

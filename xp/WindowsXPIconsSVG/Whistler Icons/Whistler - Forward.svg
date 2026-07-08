@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <ellipse cx="503" cy="503" rx="483.77" ry="482.83" id="shape" />
+    <filter id="dropshadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feMorphology operator="dilate" radius="7.22" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="15.39" />
+      <feOffset dx="7.83" dy="11.61" result="SHADOW" />
+      <feFlood flood-color="#000000" />
+      <feComposite operator="in" in2="SHADOW" />
+    </filter>
+    <linearGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(0.32,0.02) translate(0.5,0.5) scale(0.9979 1) rotate(-42) scale(1 0.53) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#119107" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#39b719" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#39b719" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="translate(-0.03,-0.09) translate(0.5,0.5) scale(0.9979 1) rotate(-35) scale(1 0.6) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#7fd94d" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#119107" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_3" x2="0%" y2="100%" gradientTransform="scale(0.9979 1) rotate(-43) scale(1 0.6)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#006300" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#006300" stop-opacity="100%" />
+    </linearGradient>
+    <image x="225" y="237" width="608" height="574" id="image" href="data:image/webp;base64,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" />
+    <filter id="coloroverlay">
+      <feFlood flood-color="#006b00" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+  </defs>
+  <use href="#shape" filter="url(#dropshadow)" />
+  <use href="#shape" fill="#6dc12d" />
+  <use href="#shape" fill="url(#gradient)" />
+  <use href="#shape" fill="none" stroke="url(#gradient_2)" stroke-width="106" />
+  <use href="#shape" fill="none" stroke="url(#gradient_3)" stroke-width="29" />
+  <use href="#image" />
+  <use href="#image" filter="url(#coloroverlay)" />
+  <rect x="205.94" y="442" width="444" height="119" fill="#ffffff" />
+  <path d="M 543.28,231.62 C 543.28,231.62 813.61,501.94 813.61,501.94 813.61,501.94 728.84,586.71 728.84,586.71 728.84,586.71 458.51,316.38 458.51,316.38 436.39,294.27 436.39,258.41 458.51,236.29 458.51,236.29 463.19,231.62 463.19,231.62 485.3,209.5 521.16,209.5 543.28,231.62 Z" fill="#ffffff" />
+  <path d="M 543.47,772.79 C 543.47,772.79 813.99,502.29 813.99,502.29 813.99,502.29 729.16,417.47 729.16,417.47 729.16,417.47 458.64,687.97 458.64,687.97 436.51,710.1 436.51,745.98 458.64,768.11 458.64,768.11 463.32,772.79 463.32,772.79 485.45,794.92 521.34,794.92 543.47,772.79 Z" fill="#ffffff" />
+</svg>

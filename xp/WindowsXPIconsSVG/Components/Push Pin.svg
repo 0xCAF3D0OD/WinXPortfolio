@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <ellipse cx="102" cy="667" rx="121.5" ry="193" id="shape" transform="matrix(0.9787,-0.7088,0.7088,0.9787,-321.8336,426.0955) translate(288,-203)" />
+    <linearGradient id="gradient" x2="0%" y2="100%" gradientTransform="scale(0.7527 1) rotate(62)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="36%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#b7c1cb" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_2" x2="100%" y2="0%" gradientTransform="scale(1 0.8571) rotate(-90)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <radialGradient id="gradient_3" x2="100%" y2="0%" gradientTransform="translate(-0.17,-0.21) translate(0.5,0.5) scale(1 0.8571) rotate(25) scale(1.5 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#f3110b" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#f3110b" stop-opacity="100%" />
+      <stop offset="50%" stop-color="#f99581" stop-opacity="100%" />
+      <stop offset="90%" stop-color="#fffffb" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#fffffb" stop-opacity="100%" />
+    </radialGradient>
+    <rect x="323" y="319" width="400" height="388" mask="url(#mask)" id="shape_2" />
+    <mask id="mask">
+      <ellipse cx="390" cy="464" rx="121.5" ry="193" fill="#ffffff" transform="matrix(0.5509,-0.399,0.399,0.5509,37.7731,472.91)" />
+      <rect x="519" y="440" width="138" height="204" fill="#ffffff" transform="matrix(1.0808,1.563,-1.042,0.7206,469.6486,-807.6151)" />
+    </mask>
+    <linearGradient id="gradient_4" x2="0%" y2="100%" gradientTransform="scale(0.97 1) rotate(-180)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_5" x2="0%" y2="100%" gradientTransform="translate(-0.05,-0.17) translate(0.5,0.5) scale(0.97 1) rotate(-213) scale(1 0.88) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#f3110b" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#f3110b" stop-opacity="100%" />
+      <stop offset="28%" stop-color="#f57d5f" stop-opacity="100%" />
+      <stop offset="64%" stop-color="#f9bba1" stop-opacity="100%" />
+      <stop offset="88%" stop-color="#fffffb" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#fffffb" stop-opacity="100%" />
+    </linearGradient>
+    <ellipse cx="390" cy="464" rx="121.5" ry="193" id="shape_3" transform="matrix(0.9787,-0.7088,0.7088,0.9787,-33.8336,223.0955)" />
+    <radialGradient id="gradient_7" x2="100%" y2="0%" gradientTransform="translate(-0.16,-0.18) translate(0.5,0.5) scale(1 0.8571) rotate(25) scale(1.5 1) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#f3110b" stop-opacity="100%" />
+      <stop offset="0%" stop-color="#f3110b" stop-opacity="100%" />
+      <stop offset="28%" stop-color="#f57d5f" stop-opacity="100%" />
+      <stop offset="64%" stop-color="#f9bba1" stop-opacity="100%" />
+      <stop offset="88%" stop-color="#fffffb" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#fffffb" stop-opacity="100%" />
+    </radialGradient>
+  </defs>
+  <rect x="65" y="769" width="40" height="322" rx="20" ry="20" transform="matrix(0.5757,0.8177,-0.8177,0.5757,950.9184,97.1323)" fill="url(#gradient)" />
+  <use href="#shape" fill="url(#gradient_2)" />
+  <use href="#shape" fill="url(#gradient_3)" />
+  <use href="#shape" fill="none" stroke="#f50f19" stroke-width="40" />
+  <use href="#shape_2" fill="url(#gradient_4)" />
+  <use href="#shape_2" fill="url(#gradient_5)" />
+  <use href="#shape_2" fill="none" stroke="#f50f19" stroke-width="40" />
+  <use href="#shape_3" fill="url(#gradient_2)" />
+  <use href="#shape_3" fill="url(#gradient_7)" />
+  <use href="#shape_3" fill="none" stroke="#f50f19" stroke-width="40" />
+</svg>

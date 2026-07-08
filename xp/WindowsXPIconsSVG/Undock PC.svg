@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <rect x="-1" y="-1" width="1025" height="1024" rx="125" ry="125" id="shape" />
+    <radialGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(0.25,0.26) translate(0.5,0.5) scale(0.999 1) rotate(2) scale(1 0.87) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#dfa500" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#e1a900" stop-opacity="0%" />
+    </radialGradient>
+    <radialGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="translate(-0.37,-0.35) translate(0.5,0.5) scale(0.999 1) rotate(2) scale(1 0.87) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0%" />
+    </radialGradient>
+    <filter id="innershadow">
+      <feMorphology operator="erode" radius="0" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="58.5" />
+      <feOffset dx="-78.04" dy="-96.37" result="SHADOW" />
+      <feFlood flood-color="#a35f00" />
+      <feComposite operator="out" in2="SHADOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <filter id="innerglow">
+      <feMorphology operator="erode" radius="87.15" in="SourceAlpha" />
+      <feGaussianBlur stdDeviation="23.65" result="GLOW" />
+      <feFlood flood-color="#ffffff" />
+      <feComposite operator="out" in2="GLOW" />
+      <feComposite operator="in" in2="SourceAlpha" />
+    </filter>
+    <mask id="mask">
+      <path d="M 512.55,156 C 512.55,156 800.99,389.37 800.99,389.37 800.99,389.37 761.94,436.53 761.94,436.53 761.94,436.53 473.5,203.16 473.5,203.16 473.5,203.16 512.55,156 512.55,156 Z" fill="#ffffff" />
+      <path d="M 512.42,156.29 C 512.42,156.29 224.01,389.81 224.01,389.81 224.01,389.81 263.06,437 263.06,437 263.06,437 551.47,203.47 551.47,203.47 551.47,203.47 512.42,156.29 512.42,156.29 Z" fill="#ffffff" />
+    </mask>
+  </defs>
+  <use href="#shape" fill="#dfa123" />
+  <use href="#shape" fill="url(#gradient)" />
+  <use href="#shape" fill="url(#gradient_2)" opacity="0.76" />
+  <use href="#shape" filter="url(#innershadow)" />
+  <use href="#shape" filter="url(#innerglow)" opacity="0.19" />
+  <rect x="223" y="706" width="577" height="61" fill="#ffffff" />
+  <rect x="223" y="548" width="577" height="61" fill="#ffffff" />
+  <rect x="224" y="390" width="577" height="61" fill="#ffffff" />
+  <rect x="223" y="155" width="579" height="283" mask="url(#mask)" fill="#ffffff" />
+  <rect x="-1" y="-1" width="1025" height="1024" rx="125" ry="125" fill="none" stroke-width="34.7" stroke="#ffffff" />
+</svg>

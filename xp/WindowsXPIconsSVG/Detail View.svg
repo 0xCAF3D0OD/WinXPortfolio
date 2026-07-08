@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <rect x="69" y="189" width="876" height="632" id="shape" />
+    <linearGradient id="gradient" x2="0%" y2="100%" gradientTransform="translate(0.12,-0.09) translate(0.5,0.5) scale(0.7221 1) rotate(87) scale(1 0.9) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#487fe1" stop-opacity="100%" />
+      <stop offset="99%" stop-color="#477dde" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#477dde" stop-opacity="100%" />
+    </linearGradient>
+    <rect x="69" y="232" width="876" height="632" id="shape_2" />
+    <linearGradient id="gradient_2" x2="0%" y2="100%" gradientTransform="translate(0.2,-0.03) translate(0.5,0.5) scale(0.7221 1) rotate(-35) scale(1 0.67) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#b7d5fc" stop-opacity="100%" />
+    </linearGradient>
+    <rect x="150" y="445" width="717" height="42" id="shape_3" />
+    <linearGradient id="gradient_3" x2="0%" y2="100%" gradientTransform="scale(0.0612 1) rotate(-180)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_4" x2="0%" y2="100%" gradientTransform="translate(-0.11,-0.16) translate(0.5,0.5) scale(0.0612 1) rotate(-90) scale(1 0.88) translate(-0.5,-0.5)">
+      <stop offset="0%" stop-color="#a7cbfd" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#477ddd" stop-opacity="100%" />
+    </linearGradient>
+    <rect x="148" y="360" width="720" height="377" mask="url(#mask)" id="shape_4" />
+    <mask id="mask">
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.1702,0,0,1,719.477,-84) translate(336,-332)" />
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.1702,0,0,1,719.477,82) translate(336,-332)" />
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.1702,0,0,1,719.477,166) translate(336,-332)" />
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.1702,0,0,1,719.477,248) translate(336,-332)" />
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.2343,0,0,1,114.8536,83) translate(336,-332)" />
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.2343,0,0,1,114.8536,167) translate(336,-332)" />
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.2343,0,0,1,114.8536,249) translate(336,-332)" />
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.1702,0,0,1,551.477,-84) translate(336,-332)" />
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.1702,0,0,1,551.477,82) translate(336,-332)" />
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.1702,0,0,1,551.477,166) translate(336,-332)" />
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.1702,0,0,1,551.477,248) translate(336,-332)" />
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.1702,0,0,1,383.477,-84) translate(336,-332)" />
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.1702,0,0,1,383.477,82) translate(336,-332)" />
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.1702,0,0,1,383.477,166) translate(336,-332)" />
+      <rect x="-186" y="777" width="717" height="42" fill="#ffffff" transform="matrix(0.1702,0,0,1,383.477,248) translate(336,-332)" />
+    </mask>
+    <linearGradient id="gradient_5" x2="0%" y2="100%" gradientTransform="scale(0.5236 1) rotate(-180)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#000000" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="100%" />
+    </linearGradient>
+    <linearGradient id="gradient_6" x2="0%" y2="100%" gradientTransform="scale(0.5236 1) rotate(-180)" transform-origin="0.5 0.5">
+      <stop offset="0%" stop-color="#979797" stop-opacity="100%" />
+      <stop offset="100%" stop-color="#979797" stop-opacity="100%" />
+    </linearGradient>
+  </defs>
+  <rect x="29" y="109" width="960" height="797" rx="25" ry="50" fill="#3a67c7" />
+  <use href="#shape" fill="#ffffff" />
+  <use href="#shape" fill="url(#gradient)" />
+  <use href="#shape_2" fill="#ffffff" />
+  <use href="#shape_2" fill="url(#gradient_2)" />
+  <use href="#shape_3" fill="url(#gradient_3)" />
+  <use href="#shape_3" fill="url(#gradient_4)" />
+  <use href="#shape_4" fill="url(#gradient_5)" />
+  <use href="#shape_4" fill="url(#gradient_6)" />
+</svg>
