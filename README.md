@@ -35,6 +35,7 @@ choses marchent. Le principe :
 | MSN / Windows Messenger | Chat relié à un webhook Discord + blog avec photos |
 | Invite de commandes | Terminal interactif (`help`, easter eggs…) |
 | Exécuter… | Lance les apps par leur vrai nom (`cmd`, `winmine`, `desk.cpl`…) |
+| Rechercher (Rover 🐕) | Recherche globale : compétences, projets, blog, parcours, apps |
 | Démineur, Solitaire, Hearts, Pinball… | Vrais jeux jouables |
 | Winamp | Webamp + visualiseur Milkdrop |
 
