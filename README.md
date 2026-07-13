@@ -35,6 +35,7 @@ choses marchent. Le principe :
 | MSN / Windows Messenger | Chat relié à un webhook Discord + blog avec photos |
 | MSN → SmarterChild | Bot de chat local façon 2003 (règles maison, zéro API) qui connaît mon parcours |
 | eMulet | Client P2P parodique façon eMule : CV et projets « à télécharger » à 48 Ko/s |
+| Poste de travail → CD-ROM (D:) | Autorun d'un assistant InstallShield qui « installe » le dossier de candidature |
 | Invite de commandes | Terminal interactif (`help`, easter eggs…) |
 | Exécuter… | Lance les apps par leur vrai nom (`cmd`, `winmine`, `desk.cpl`…) |
 | Rechercher (Rover 🐕) | Recherche globale : compétences, projets, blog, parcours, apps |
