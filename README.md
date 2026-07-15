@@ -28,7 +28,7 @@ principle:
   Clippy animated from Microsoft Agent data, blue screen, `desk.cpl` in Run… The goal
   is that anyone who lived through XP feels at home immediately.
 - **Everything is homemade except where an open source project does it better** — in
-  which case I integrate it and credit it ([CREDITS.md](CREDITS.md) lists everything,
+  which case I integrate it and credit it ([CREDITS.md](docs/CREDITS.md) lists everything,
   distinguishing what is reused from what only served as reference).
 
 ### What's inside
@@ -146,7 +146,7 @@ npm run build        # type-check + build → frontend/dist/
 ### Deployment
 
 `npm run build` produces a fully static `dist/` folder. Two options documented in
-[DEPLOY.md](DEPLOY.md):
+[DEPLOY.md](docs/DEPLOY.md):
 
 - **OpenStack object storage (Swift)** in static website mode — no server;
 - **Docker + nginx** (the root [Dockerfile](Dockerfile) does the multi-stage build),
