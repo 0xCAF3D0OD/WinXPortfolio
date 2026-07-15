@@ -155,7 +155,7 @@ npm run build        # type-check + build → frontend/dist/
 ### Credits & licenses
 
 All sources (reused repositories, references, icon packs, libraries) are detailed in
-[CREDITS.md](CREDITS.md). Microsoft assets (icons, sounds, emoticons) are used in a
+[CREDITS.md](docs/CREDITS.md). Microsoft assets (icons, sounds, emoticons) are used in a
 nostalgic / educational spirit; the integrated libraries (Webamp, Butterchurn,
 Three.js, classic-stylesheets…) are MIT-licensed.
 
@@ -183,7 +183,7 @@ choses marchent. Le principe :
   `desk.cpl` dans Exécuter… Le but est que quelqu'un qui a connu XP s'y retrouve
   immédiatement.
 - **Tout est fait maison sauf quand un projet open source fait mieux** — dans ce cas
-  je l'intègre et je le crédite ([CREDITS.md](CREDITS.md) recense tout, en distinguant
+  je l'intègre et je le crédite ([CREDITS.md](docs/CREDITS.md) recense tout, en distinguant
   ce qui est réutilisé de ce qui n'a servi que de référence).
 
 ### Ce qu'on y trouve
@@ -310,6 +310,6 @@ documentées dans [DEPLOY.md](DEPLOY.md) :
 ### Crédits & licences
 
 Toutes les sources (dépôts réutilisés, références, packs d'icônes, bibliothèques) sont
-détaillées dans [CREDITS.md](CREDITS.md). Les assets Microsoft (icônes, sons,
+détaillées dans [CREDITS.md](docs/CREDITS.md). Les assets Microsoft (icônes, sons,
 émoticônes) sont utilisés dans un cadre nostalgique / éducatif ; les bibliothèques
 intégrées (Webamp, Butterchurn, Three.js, classic-stylesheets…) sont sous MIT.
