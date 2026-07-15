@@ -28,7 +28,7 @@ principle:
   Clippy animated from Microsoft Agent data, blue screen, `desk.cpl` in Run… The goal
   is that anyone who lived through XP feels at home immediately.
 - **Everything is homemade except where an open source project does it better** — in
-  which case I integrate it and credit it ([CREDITS.md](docs/CREDITS.md) lists everything,
+  which case I integrate it and credit it ([CREDITS.md](CREDITS.md) lists everything,
   distinguishing what is reused from what only served as reference).
 
 ### What's inside
@@ -66,8 +66,8 @@ principle:
   </tr>
   <tr>
     <td width="50%">
-      <img src="docs/screenshots/about-ie.png" alt="About Internet Explorer window" width="100%" /><br />
-      <sub><b>About Internet Explorer</b> — IE6 SP2, Kevin build.</sub>
+      <img src="docs/screenshots/start-menu.png" alt="Start menu with All Programs cascade" width="100%" /><br />
+      <sub><b>Start menu</b> — every app in its place, "All Programs" cascade included (the greyed-out entries are period-authentic).</sub>
     </td>
     <td width="50%">
       <img src="docs/screenshots/ie-portal.png" alt="windoors.com portal in Internet Explorer" width="100%" /><br />
@@ -92,6 +92,10 @@ The desktop ships the **three Luna color schemes** of XP — **Blue (default)**,
 **Olive Green** and **Silver** — plus the wallpaper choice (Bliss, Windoors, none),
 through a reproduction of the "Display Properties" dialog (Control Panel → Appearance
 and Themes, or `desk.cpl` in Run).
+
+<p align="center">
+  <img src="docs/screenshots/display-properties.png" alt="Display Properties dialog, Appearance tab" width="75%" />
+</p>
 
 The implementation follows the approach of
 [classic-stylesheets](https://github.com/nielssp/classic-stylesheets) (nielssp, MIT):
@@ -146,7 +150,7 @@ npm run build        # type-check + build → frontend/dist/
 ### Deployment
 
 `npm run build` produces a fully static `dist/` folder. Two options documented in
-[DEPLOY.md](docs/DEPLOY.md):
+[DEPLOY.md](DEPLOY.md):
 
 - **OpenStack object storage (Swift)** in static website mode — no server;
 - **Docker + nginx** (the root [Dockerfile](Dockerfile) does the multi-stage build),
@@ -155,7 +159,7 @@ npm run build        # type-check + build → frontend/dist/
 ### Credits & licenses
 
 All sources (reused repositories, references, icon packs, libraries) are detailed in
-[CREDITS.md](docs/CREDITS.md). Microsoft assets (icons, sounds, emoticons) are used in a
+[CREDITS.md](CREDITS.md). Microsoft assets (icons, sounds, emoticons) are used in a
 nostalgic / educational spirit; the integrated libraries (Webamp, Butterchurn,
 Three.js, classic-stylesheets…) are MIT-licensed.
 
@@ -183,7 +187,7 @@ choses marchent. Le principe :
   `desk.cpl` dans Exécuter… Le but est que quelqu'un qui a connu XP s'y retrouve
   immédiatement.
 - **Tout est fait maison sauf quand un projet open source fait mieux** — dans ce cas
-  je l'intègre et je le crédite ([CREDITS.md](docs/CREDITS.md) recense tout, en distinguant
+  je l'intègre et je le crédite ([CREDITS.md](CREDITS.md) recense tout, en distinguant
   ce qui est réutilisé de ce qui n'a servi que de référence).
 
 ### Ce qu'on y trouve
@@ -221,8 +225,8 @@ choses marchent. Le principe :
   </tr>
   <tr>
     <td width="50%">
-      <img src="docs/screenshots/about-ie.png" alt="Fenêtre À propos de Internet Explorer" width="100%" /><br />
-      <sub><b>À propos de Internet Explorer</b> — IE6 SP2, build Kevin.</sub>
+      <img src="docs/screenshots/start-menu.png" alt="Menu Démarrer avec la cascade Tous les programmes" width="100%" /><br />
+      <sub><b>Menu Démarrer</b> — chaque app à sa place, cascade « Tous les programmes » comprise (les entrées grisées sont d'époque).</sub>
     </td>
     <td width="50%">
       <img src="docs/screenshots/ie-portal.png" alt="Portail windoors.com dans Internet Explorer" width="100%" /><br />
@@ -247,6 +251,10 @@ Le bureau propose les **trois jeux de couleurs Luna** de XP — **Bleu (par déf
 **Vert olive** et **Argent** — plus le choix du papier peint (Bliss, Windoors, aucun),
 via une reproduction de la boîte de dialogue « Propriétés d'affichage » (Panneau de
 configuration → Apparence et thèmes, ou `desk.cpl` dans Exécuter).
+
+<p align="center">
+  <img src="docs/screenshots/display-properties.png" alt="Boîte de dialogue Propriétés d'affichage, onglet Apparence" width="75%" />
+</p>
 
 L'implémentation reprend la démarche de
 [classic-stylesheets](https://github.com/nielssp/classic-stylesheets) (nielssp, MIT) :
@@ -310,6 +318,6 @@ documentées dans [DEPLOY.md](DEPLOY.md) :
 ### Crédits & licences
 
 Toutes les sources (dépôts réutilisés, références, packs d'icônes, bibliothèques) sont
-détaillées dans [CREDITS.md](docs/CREDITS.md). Les assets Microsoft (icônes, sons,
+détaillées dans [CREDITS.md](CREDITS.md). Les assets Microsoft (icônes, sons,
 émoticônes) sont utilisés dans un cadre nostalgique / éducatif ; les bibliothèques
 intégrées (Webamp, Butterchurn, Three.js, classic-stylesheets…) sont sous MIT.
