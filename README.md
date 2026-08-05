@@ -28,7 +28,7 @@ principle:
   Clippy animated from Microsoft Agent data, blue screen, `desk.cpl` in Run… The goal
   is that anyone who lived through XP feels at home immediately.
 - **Everything is homemade except where an open source project does it better** — in
-  which case I integrate it and credit it ([CREDITS.md](docs/CREDITS.md) lists everything,
+  which case I integrate it and credit it ([CREDITS.md](CREDITS.md) lists everything,
   distinguishing what is reused from what only served as reference).
 
 ### What's inside
@@ -150,7 +150,7 @@ npm run build        # type-check + build → frontend/dist/
 ### Deployment
 
 `npm run build` produces a fully static `dist/` folder. Two options documented in
-[DEPLOY.md](docs/DEPLOY.md):
+[DEPLOY.md](DEPLOY.md):
 
 - **OpenStack object storage (Swift)** in static website mode — no server;
 - **Docker + nginx** (the root [Dockerfile](Dockerfile) does the multi-stage build),
@@ -159,7 +159,7 @@ npm run build        # type-check + build → frontend/dist/
 ### Credits & licenses
 
 All sources (reused repositories, references, icon packs, libraries) are detailed in
-[CREDITS.md](docs/CREDITS.md). Microsoft assets (icons, sounds, emoticons) are used in a
+[CREDITS.md](CREDITS.md). Microsoft assets (icons, sounds, emoticons) are used in a
 nostalgic / educational spirit; the integrated libraries (Webamp, Butterchurn,
 Three.js, classic-stylesheets…) are MIT-licensed.
 
@@ -187,7 +187,7 @@ choses marchent. Le principe :
   `desk.cpl` dans Exécuter… Le but est que quelqu'un qui a connu XP s'y retrouve
   immédiatement.
 - **Tout est fait maison sauf quand un projet open source fait mieux** — dans ce cas
-  je l'intègre et je le crédite ([CREDITS.md](docs/CREDITS.md) recense tout, en distinguant
+  je l'intègre et je le crédite ([CREDITS.md](CREDITS.md) recense tout, en distinguant
   ce qui est réutilisé de ce qui n'a servi que de référence).
 
 ### Ce qu'on y trouve
@@ -309,7 +309,7 @@ npm run build        # type-check + build → frontend/dist/
 ### Déploiement
 
 `npm run build` produit un dossier `dist/` entièrement statique. Deux options
-documentées dans [DEPLOY.md](docs/DEPLOY.md) :
+documentées dans [DEPLOY.md](DEPLOY.md) :
 
 - **Stockage objet OpenStack (Swift)** en mode site statique — pas de serveur ;
 - **Docker + nginx** (le [Dockerfile](Dockerfile) à la racine fait le build multi-stage),
@@ -318,6 +318,6 @@ documentées dans [DEPLOY.md](docs/DEPLOY.md) :
 ### Crédits & licences
 
 Toutes les sources (dépôts réutilisés, références, packs d'icônes, bibliothèques) sont
-détaillées dans [CREDITS.md](docs/CREDITS.md). Les assets Microsoft (icônes, sons,
+détaillées dans [CREDITS.md](CREDITS.md). Les assets Microsoft (icônes, sons,
 émoticônes) sont utilisés dans un cadre nostalgique / éducatif ; les bibliothèques
 intégrées (Webamp, Butterchurn, Three.js, classic-stylesheets…) sont sous MIT.
