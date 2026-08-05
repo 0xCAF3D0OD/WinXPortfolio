@@ -1,0 +1,835 @@
+{
+ "headspace": {
+  "id": "headspace",
+  "w": 342,
+  "h": 394,
+  "layers": [
+   {
+    "img": "l2.png",
+    "x": 0,
+    "y": 86
+   },
+   {
+    "img": "l3.png",
+    "x": 255,
+    "y": 86
+   },
+   {
+    "img": "l0.png",
+    "x": 54,
+    "y": 0
+   },
+   {
+    "img": "l1.png",
+    "x": 63,
+    "y": 59
+   },
+   {
+    "img": "l4.png",
+    "x": 155,
+    "y": 4
+   },
+   {
+    "img": "l9.png",
+    "x": 102,
+    "y": 31
+   },
+   {
+    "img": "l21.png",
+    "x": 69,
+    "y": 214
+   },
+   {
+    "img": "l22.png",
+    "x": 258,
+    "y": 214
+   },
+   {
+    "img": "l26.png",
+    "x": 8,
+    "y": 152
+   },
+   {
+    "img": "l27.png",
+    "x": 316,
+    "y": 151
+   }
+  ],
+  "buttons": [
+   {
+    "action": "minimize",
+    "x": 155,
+    "y": 4,
+    "w": 14,
+    "h": 16,
+    "hover": "b5.png",
+    "down": "b6.png"
+   },
+   {
+    "action": "close",
+    "x": 170,
+    "y": 4,
+    "w": 14,
+    "h": 16,
+    "hover": "b7.png",
+    "down": "b8.png"
+   },
+   {
+    "action": "play",
+    "x": 128,
+    "y": 32,
+    "w": 23,
+    "h": 23,
+    "hover": "b10.png",
+    "down": "b11.png"
+   },
+   {
+    "action": "stop",
+    "x": 154,
+    "y": 32,
+    "w": 23,
+    "h": 23,
+    "hover": "b12.png",
+    "down": "b13.png"
+   },
+   {
+    "action": "prev",
+    "x": 103,
+    "y": 32,
+    "w": 23,
+    "h": 23,
+    "hover": "b14.png",
+    "down": "b15.png"
+   },
+   {
+    "action": "next",
+    "x": 179,
+    "y": 32,
+    "w": 23,
+    "h": 23,
+    "hover": "b16.png",
+    "down": "b17.png"
+   },
+   {
+    "action": "pause",
+    "x": 128,
+    "y": 32,
+    "w": 23,
+    "h": 23,
+    "img": "b18.png",
+    "hover": "b19.png",
+    "down": "b20.png"
+   },
+   {
+    "action": "fullmode",
+    "x": 155,
+    "y": 232,
+    "w": 35,
+    "h": 31,
+    "img": "b23.png",
+    "hover": "b24.png",
+    "down": "b25.png"
+   }
+  ],
+  "sliders": [
+   {
+    "kind": "seek",
+    "x": 93,
+    "y": 223,
+    "w": 163,
+    "h": 9,
+    "dir": "horizontal",
+    "bg": "s28.png",
+    "fg": "s29.png",
+    "thumb": "s30.png"
+   }
+  ],
+  "texts": [
+   {
+    "x": -177,
+    "y": 6,
+    "w": 105,
+    "color": "#00FF00",
+    "size": 8
+   }
+  ],
+  "screen": {
+   "x": 75,
+   "y": 70,
+   "w": 193,
+   "h": 135
+  }
+ },
+ "main-street": {
+  "id": "main-street",
+  "w": 336,
+  "h": 405,
+  "layers": [
+   {
+    "img": "l0.png",
+    "x": 0,
+    "y": 283
+   },
+   {
+    "img": "l1.png",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "img": "l2.png",
+    "x": 0,
+    "y": 283
+   },
+   {
+    "img": "l11.png",
+    "x": 0,
+    "y": 0
+   }
+  ],
+  "buttons": [
+   {
+    "action": "play",
+    "x": 4,
+    "y": 379,
+    "w": 22,
+    "h": 22,
+    "down": "b3.png"
+   },
+   {
+    "action": "pause",
+    "x": 27,
+    "y": 379,
+    "w": 22,
+    "h": 22,
+    "down": "b4.png"
+   },
+   {
+    "action": "stop",
+    "x": 50,
+    "y": 379,
+    "w": 22,
+    "h": 22,
+    "down": "b5.png"
+   },
+   {
+    "action": "prev",
+    "x": 84,
+    "y": 379,
+    "w": 22,
+    "h": 22,
+    "down": "b6.png"
+   },
+   {
+    "action": "next",
+    "x": 153,
+    "y": 379,
+    "w": 22,
+    "h": 22,
+    "down": "b7.png"
+   },
+   {
+    "action": "close",
+    "x": 4,
+    "y": 287,
+    "w": 14,
+    "h": 14,
+    "down": "b8.png"
+   },
+   {
+    "action": "fullmode",
+    "x": 301,
+    "y": 287,
+    "w": 14,
+    "h": 14,
+    "down": "b9.png"
+   },
+   {
+    "action": "minimize",
+    "x": 318,
+    "y": 287,
+    "w": 14,
+    "h": 14,
+    "down": "b10.png"
+   }
+  ],
+  "sliders": [
+   {
+    "kind": "seek",
+    "x": 63,
+    "y": 330,
+    "w": 207,
+    "h": 20,
+    "dir": "Horizontal",
+    "thumb": "s12.png"
+   },
+   {
+    "kind": "volume",
+    "x": 53,
+    "y": 355,
+    "w": 77,
+    "h": 20,
+    "dir": "horizontal",
+    "thumb": "s13.png"
+   }
+  ],
+  "texts": [
+   {
+    "x": 37,
+    "y": 23,
+    "w": 199,
+    "color": "#FFFFFF",
+    "size": 8
+   }
+  ],
+  "screen": {
+   "x": 8,
+   "y": 55,
+   "w": 320,
+   "h": 240
+  }
+ },
+ "msn": {
+  "id": "msn",
+  "w": 320,
+  "h": 240,
+  "layers": [
+   {
+    "img": "l0.png",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "img": "l1.png",
+    "x": 248,
+    "y": 24
+   },
+   {
+    "img": "l6.png",
+    "x": 186,
+    "y": 188
+   },
+   {
+    "img": "l9.png",
+    "x": 172,
+    "y": 146
+   },
+   {
+    "img": "l20.png",
+    "x": 85,
+    "y": 130
+   },
+   {
+    "img": "l21.png",
+    "x": 90,
+    "y": 34
+   },
+   {
+    "img": "l22.png",
+    "x": 42,
+    "y": 68
+   },
+   {
+    "img": "l23.png",
+    "x": 50,
+    "y": 98
+   },
+   {
+    "img": "l24.png",
+    "x": 172,
+    "y": 146
+   }
+  ],
+  "buttons": [
+   {
+    "action": "minimize",
+    "x": 248,
+    "y": 24,
+    "w": 18,
+    "h": 16,
+    "hover": "b2.png",
+    "down": "b3.png"
+   },
+   {
+    "action": "close",
+    "x": 266,
+    "y": 24,
+    "w": 17,
+    "h": 16,
+    "hover": "b4.png",
+    "down": "b5.png"
+   },
+   {
+    "action": "fullmode",
+    "x": 187,
+    "y": 208,
+    "w": 17,
+    "h": 17,
+    "hover": "b7.png",
+    "down": "b8.png"
+   },
+   {
+    "action": "play",
+    "x": 176,
+    "y": 146,
+    "w": 34,
+    "h": 34,
+    "hover": "b10.png",
+    "down": "b11.png"
+   },
+   {
+    "action": "stop",
+    "x": 198,
+    "y": 146,
+    "w": 39,
+    "h": 21,
+    "hover": "b12.png",
+    "down": "b13.png"
+   },
+   {
+    "action": "prev",
+    "x": 237,
+    "y": 146,
+    "w": 27,
+    "h": 21,
+    "hover": "b14.png",
+    "down": "b15.png"
+   },
+   {
+    "action": "next",
+    "x": 264,
+    "y": 146,
+    "w": 27,
+    "h": 21,
+    "hover": "b16.png",
+    "down": "b17.png"
+   },
+   {
+    "action": "pause",
+    "x": 177,
+    "y": 147,
+    "w": 33,
+    "h": 33,
+    "img": "b18.png",
+    "hover": "b19.png"
+   }
+  ],
+  "sliders": [],
+  "texts": [
+   {
+    "x": 0,
+    "y": 2,
+    "w": 119,
+    "color": "#ffffff",
+    "size": 7
+   }
+  ],
+  "screen": {
+   "x": 193,
+   "y": 43,
+   "w": 118,
+   "h": 90
+  }
+ },
+ "newsupermariobros": {
+  "id": "newsupermariobros",
+  "w": 582,
+  "h": 435,
+  "layers": [
+   {
+    "img": "l0.png",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "img": "l3.png",
+    "x": 50,
+    "y": 45
+   },
+   {
+    "img": "l1.png",
+    "x": 24,
+    "y": 60
+   },
+   {
+    "img": "l2.png",
+    "x": 163,
+    "y": 323
+   },
+   {
+    "img": "l4.png",
+    "x": 24,
+    "y": 60
+   },
+   {
+    "img": "l5.png",
+    "x": 0,
+    "y": 0
+   }
+  ],
+  "buttons": [
+   {
+    "action": "play",
+    "x": 42,
+    "y": 331,
+    "w": 44,
+    "h": 45,
+    "hover": "b6.png",
+    "down": "b7.png"
+   },
+   {
+    "action": "stop",
+    "x": 50,
+    "y": 385,
+    "w": 23,
+    "h": 24,
+    "hover": "b8.png",
+    "down": "b9.png"
+   },
+   {
+    "action": "prev",
+    "x": 83,
+    "y": 376,
+    "w": 27,
+    "h": 28,
+    "hover": "b10.png",
+    "down": "b11.png"
+   },
+   {
+    "action": "next",
+    "x": 101,
+    "y": 343,
+    "w": 27,
+    "h": 28,
+    "hover": "b12.png",
+    "down": "b13.png"
+   },
+   {
+    "action": "fullmode",
+    "x": 514,
+    "y": 20,
+    "w": 16,
+    "h": 17,
+    "hover": "b14.png",
+    "down": "b15.png"
+   },
+   {
+    "action": "minimize",
+    "x": 464,
+    "y": 20,
+    "w": 16,
+    "h": 17,
+    "hover": "b16.png",
+    "down": "b17.png"
+   },
+   {
+    "action": "close",
+    "x": 489,
+    "y": 19,
+    "w": 17,
+    "h": 18,
+    "hover": "b18.png",
+    "down": "b19.png"
+   },
+   {
+    "action": "pause",
+    "x": 41,
+    "y": 331,
+    "w": 45,
+    "h": 45,
+    "img": "b20.png",
+    "hover": "b21.png",
+    "down": "b22.png"
+   }
+  ],
+  "sliders": [
+   {
+    "kind": "volume",
+    "x": 230,
+    "y": 364,
+    "w": 97,
+    "h": 28,
+    "dir": "horizontal",
+    "bg": "s23.png",
+    "thumb": "s24.png"
+   }
+  ],
+  "texts": [
+   {
+    "x": 61,
+    "y": 291,
+    "w": 400,
+    "color": "#00A4FD",
+    "size": 8
+   }
+  ],
+  "screen": {
+   "x": 140,
+   "y": 45,
+   "w": 310,
+   "h": 230
+  }
+ },
+ "revert": {
+  "id": "revert",
+  "w": 256,
+  "h": 130,
+  "layers": [
+   {
+    "img": "l0.png",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "img": "l15.png",
+    "x": 14,
+    "y": 97
+   },
+   {
+    "img": "l18.png",
+    "x": 3,
+    "y": 3
+   }
+  ],
+  "buttons": [
+   {
+    "action": "play",
+    "x": 19,
+    "y": 100,
+    "w": 26,
+    "h": 25,
+    "hover": "b1.png",
+    "down": "b2.png"
+   },
+   {
+    "action": "stop",
+    "x": 47,
+    "y": 104,
+    "w": 18,
+    "h": 17,
+    "hover": "b3.png",
+    "down": "b4.png"
+   },
+   {
+    "action": "prev",
+    "x": 72,
+    "y": 104,
+    "w": 18,
+    "h": 17,
+    "hover": "b5.png",
+    "down": "b6.png"
+   },
+   {
+    "action": "next",
+    "x": 92,
+    "y": 104,
+    "w": 18,
+    "h": 17,
+    "hover": "b7.png",
+    "down": "b8.png"
+   },
+   {
+    "action": "fullmode",
+    "x": 213,
+    "y": 2,
+    "w": 14,
+    "h": 14,
+    "hover": "b9.png",
+    "down": "b10.png"
+   },
+   {
+    "action": "minimize",
+    "x": 227,
+    "y": 2,
+    "w": 14,
+    "h": 14,
+    "hover": "b11.png",
+    "down": "b12.png"
+   },
+   {
+    "action": "close",
+    "x": 241,
+    "y": 2,
+    "w": 14,
+    "h": 14,
+    "hover": "b13.png",
+    "down": "b14.png"
+   },
+   {
+    "action": "pause",
+    "x": 19,
+    "y": 99,
+    "w": 26,
+    "h": 26,
+    "hover": "b16.png",
+    "down": "b17.png"
+   }
+  ],
+  "sliders": [],
+  "texts": [
+   {
+    "x": 0,
+    "y": 2,
+    "w": 155,
+    "color": "#89A4FF",
+    "size": 7
+   }
+  ],
+  "screen": {
+   "x": 164,
+   "y": 17,
+   "w": 89,
+   "h": 67
+  }
+ },
+ "zengarden": {
+  "id": "zengarden",
+  "w": 312,
+  "h": 152,
+  "layers": [
+   {
+    "img": "l1.png",
+    "x": 160,
+    "y": 0
+   },
+   {
+    "img": "l2.png",
+    "x": 40,
+    "y": 126
+   },
+   {
+    "img": "l0.png",
+    "x": 0,
+    "y": 12
+   },
+   {
+    "img": "l27.png",
+    "x": 160,
+    "y": 0
+   },
+   {
+    "img": "l28.png",
+    "x": 4,
+    "y": 0
+   },
+   {
+    "img": "l29.png",
+    "x": 40,
+    "y": 126
+   }
+  ],
+  "buttons": [
+   {
+    "action": "play",
+    "x": 191,
+    "y": 48,
+    "w": 40,
+    "h": 44,
+    "img": "b3.png",
+    "hover": "b4.png",
+    "down": "b5.png"
+   },
+   {
+    "action": "pause",
+    "x": 191,
+    "y": 48,
+    "w": 40,
+    "h": 44,
+    "img": "b6.png",
+    "hover": "b7.png",
+    "down": "b8.png"
+   },
+   {
+    "action": "stop",
+    "x": 120,
+    "y": 55,
+    "w": 20,
+    "h": 18,
+    "img": "b9.png",
+    "hover": "b10.png",
+    "down": "b11.png"
+   },
+   {
+    "action": "prev",
+    "x": 99,
+    "y": 57,
+    "w": 20,
+    "h": 14,
+    "img": "b12.png",
+    "hover": "b13.png",
+    "down": "b14.png"
+   },
+   {
+    "action": "next",
+    "x": 141,
+    "y": 57,
+    "w": 20,
+    "h": 14,
+    "img": "b15.png",
+    "hover": "b16.png",
+    "down": "b17.png"
+   },
+   {
+    "action": "close",
+    "x": 271,
+    "y": 22,
+    "w": 16,
+    "h": 27,
+    "img": "b18.png",
+    "hover": "b19.png",
+    "down": "b20.png"
+   },
+   {
+    "action": "minimize",
+    "x": 258,
+    "y": 39,
+    "w": 12,
+    "h": 7,
+    "img": "b21.png",
+    "hover": "b22.png",
+    "down": "b23.png"
+   },
+   {
+    "action": "fullmode",
+    "x": 263,
+    "y": 95,
+    "w": 28,
+    "h": 27,
+    "img": "b24.png",
+    "hover": "b25.png",
+    "down": "b26.png"
+   }
+  ],
+  "sliders": [
+   {
+    "kind": "volume",
+    "x": 25,
+    "y": 43,
+    "w": 20,
+    "h": 44,
+    "dir": "vertical",
+    "bg": "s30.png",
+    "fg": "s31.png",
+    "thumb": "s32.png"
+   },
+   {
+    "kind": "seek",
+    "x": 19,
+    "y": 98,
+    "w": 184,
+    "h": 27,
+    "dir": "horizontal",
+    "bg": "s33.png",
+    "thumb": "s34.png"
+   }
+  ],
+  "texts": [
+   {
+    "x": 71,
+    "y": -115,
+    "w": 160,
+    "color": "#00FF00",
+    "size": 8
+   }
+  ]
+ }
+}
